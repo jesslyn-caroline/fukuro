@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/screens/getstarted.dart';
-import 'package:fukuro/screens/loading.dart';
-import 'package:fukuro/screens/login.dart';
-import 'package:fukuro/screens/welcome.dart';
-import 'package:provider/provider.dart';
-
-import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/providers/profile.dart';
-import 'package:fukuro/screens/home.dart';
+import 'package:fukuro/screens/welcome.dart';
+import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/styles/darktheme.dart';
 import 'package:fukuro/styles/lighttheme.dart';
+import 'package:provider/provider.dart';
 
 void main () {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +12,7 @@ void main () {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_) => Profile()),
+      ChangeNotifierProvider(create: (context) => Profile()),
     ],
     child: MyApp(),
   ));
@@ -33,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: GetStarted(),
+      home: Welcome(),
     );
   }
 }

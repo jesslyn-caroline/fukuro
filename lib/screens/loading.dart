@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
- import 'dart:async';
+import 'dart:async';
 
 class Loading extends StatefulWidget {
   const Loading({super.key});
@@ -9,15 +9,21 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-
   int degree = -1;
+  Timer? timer;
 
   @override
   void initState() {
     super.initState();
-    Timer.periodic(Duration(milliseconds: 70), (timer) {
-      setState(() { degree += 1; });
+    timer = Timer.periodic(Duration(milliseconds: 70), (timer) {
+      setState(() => degree++);
     });
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -37,30 +43,37 @@ class _LoadingState extends State<Loading> {
                   margin: EdgeInsets.only(top: 10),
                   child: Transform.rotate(
                     angle: degree % 360,
-                    child: Icon(Icons.star_rounded, size: 50, color: Theme.of(context).colorScheme.secondary)
+                    child: Icon(Icons.star_rounded, size: 40, color: Theme.of(context).colorScheme.secondary)
                   )
                 ),
-                Image.asset('assets/images/owl.png', width: 150),
+                Image.asset('assets/images/owl.png', width: 140),
                 Container(
                   margin: EdgeInsets.only(top: 80),
                   child: Transform.rotate(
                     angle: (360 - degree) % 360,
-                    child: Icon(Icons.star_rounded, size: 50, color: Theme.of(context).colorScheme.tertiary)
+                    child: Icon(Icons.star_rounded, size: 40, color: Theme.of(context).colorScheme.tertiary)
                   )
                 ),
               ],
             ),
             SizedBox(),
-            Text("fukuro", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontSize: 36,
-              fontWeight: FontWeight.w900,
-              color: Theme.of(context).colorScheme.primary
-            ),),   
+            Text(
+              "fukuro",
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: 32,
+                fontWeight: FontWeight.w800,
+                color: Theme.of(context).colorScheme.primary
+              )
+            ),   
             SizedBox(height: 20),
-            Text("Preparing to open the door of knowledge", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontSize: 24,
-              color: Theme.of(context).colorScheme.primary
-            ), textAlign: TextAlign.center,),    
+            Text(
+              "Preparing to open the door of knowledge",
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.primary
+              ),
+              textAlign: TextAlign.center
+            ),    
           ],
         ),
       )
