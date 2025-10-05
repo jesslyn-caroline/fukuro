@@ -28,11 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-<<<<<<< HEAD
-      home: Home(),
-=======
       home: Welcome(),
->>>>>>> c33af10ef98a07fa9fb400a507768cb1b4af4944
     );
   }
 }
