@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
+import 'package:fukuro/screens/home.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -46,6 +47,7 @@ class Login extends StatelessWidget {
                 BlockField(hintText: "Password", controller: passwordC, errorText: "", isPassword: true),
                 SizedBox(height: 28,),
                 BlockButton(text: "LOGIN", action: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home()));
                 }, bgColor: Theme.of(context).colorScheme.primary, textColor: Colors.white, borderColor: Theme.of(context).colorScheme.primary,)
               ],
             ),
