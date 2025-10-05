@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: GetStarted(),
+      home: Home(),
     );
   }
 }
