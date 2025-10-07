@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite_common_ffi/windows/sqflite_ffi_setup.dart';
+
 import 'package:fukuro/providers/profile.dart';
 import 'package:fukuro/screens/welcome.dart';
 import 'package:fukuro/services/sharedpref.dart';
@@ -9,6 +12,9 @@ import 'package:provider/provider.dart';
 void main () {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPref.init();
+  
+  sqfliteFfiInit();
+  var databaseFactory = databaseFactoryFfi;
 
   runApp(MultiProvider(
     providers: [
