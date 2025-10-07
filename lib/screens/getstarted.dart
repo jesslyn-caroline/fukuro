@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
-import 'package:fukuro/screens/loading.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/screens/signup.dart';
 
@@ -56,7 +55,11 @@ class _GetStartedState extends State<GetStarted> {
               children: [
                 BlockButton(
                   text: "GET STARTED", 
-                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Signup())), 
+                  action: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Signup())
+                    );
+                  },
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white,
                   borderColor: Theme.of(context).colorScheme.primary,
@@ -64,7 +67,11 @@ class _GetStartedState extends State<GetStarted> {
                 SizedBox(height: 15),
                 BlockButton(
                   text: "I ALREADY HAVE AN ACCOUNT",
-                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login())),
+                  action: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Login())
+                    );
+                  },
                   bgColor: Theme.of(context).colorScheme.background,
                   textColor: Theme.of(context).colorScheme.primary,
                   borderColor: Theme.of(context).colorScheme.primary

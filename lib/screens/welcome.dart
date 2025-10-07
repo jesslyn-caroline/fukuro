@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:fukuro/components/blockbutton.dart';
+import 'package:fukuro/providers/profile.dart';
 import 'package:fukuro/screens/getstarted.dart';
+import 'package:fukuro/screens/home.dart';
 import 'package:fukuro/screens/loading.dart';
 
 class Welcome extends StatelessWidget {
@@ -21,6 +24,9 @@ class Welcome extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Loading();
+            }
+            if (context.read<Profile>().isLoggedIn) {
+              return Home();
             }
             return Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +51,11 @@ class Welcome extends StatelessWidget {
                 ),
                 BlockButton(
                   text: "LET'S GO", 
-                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted())), 
+                  action: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => GetStarted())
+                    );
+                  }, 
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white, 
                   borderColor: Theme.of(context).colorScheme.primary

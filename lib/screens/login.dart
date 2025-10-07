@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
+import 'package:fukuro/providers/profile.dart';
+import 'package:fukuro/screens/home.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -19,7 +22,7 @@ class Login extends StatelessWidget {
             hoverColor: Colors.transparent,
             splashColor: Colors.transparent,
             onPressed: () => Navigator.of(context).pop(), 
-            icon: Icon(Icons.arrow_back, size: 32, color: Colors.grey,)
+            icon: Icon(Icons.arrow_back, size: 24)
           ),
         ),
       ),
@@ -27,30 +30,46 @@ class Login extends StatelessWidget {
         alignment: Alignment.bottomRight,
         children: [
           Container(
-            padding: const EdgeInsets.fromLTRB(30, 12, 30, 12),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
             child: ListView(
               children: [
-                Text("Welcome back!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 20, 
-                  fontWeight: FontWeight.w900, 
-                  color: Theme.of(context).colorScheme.primary),
+                Text(
+                  "Welcome back!",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    color: Theme.of(context).colorScheme.primary
+                  ),
                 ),
-                Text("Ready to discover more?", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 20, 
-                  fontWeight: FontWeight.w900, 
-                  color: Theme.of(context).colorScheme.secondary),
+                Text(
+                  "Ready to discover more?",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 20, 
+                    fontWeight: FontWeight.w900, 
+                    color: Theme.of(context).colorScheme.secondary
+                  ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20),
                 BlockField(hintText: "Email", controller: emailC, errorText: "", isPassword: false),
-                SizedBox(height: 16,),
+                SizedBox(height: 16),
                 BlockField(hintText: "Password", controller: passwordC, errorText: "", isPassword: true),
-                SizedBox(height: 28,),
-                BlockButton(text: "LOGIN", action: () {
-                }, bgColor: Theme.of(context).colorScheme.primary, textColor: Colors.white, borderColor: Theme.of(context).colorScheme.primary,)
+                SizedBox(height: 28),
+                BlockButton(
+                  text: "LOGIN",
+                  action: () {
+                    context.read<Profile>().changeLoginStatus();
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Home())
+                    );
+                  },
+                  bgColor: Theme.of(context).colorScheme.primary,
+                  textColor: Colors.white,
+                  borderColor: Theme.of(context).colorScheme.primary
+                )
               ],
             ),
           ),
-          Image.asset("assets/images/peekaboo-owl.png", width: 150, fit: BoxFit.cover,),
+          Image.asset("assets/images/peekaboo-owl.png", width: 150, fit: BoxFit.cover),
         ]
       ),
     );

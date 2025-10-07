@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
+import 'package:fukuro/providers/profile.dart';
+import 'package:fukuro/screens/login.dart';
 
 class Signup extends StatelessWidget {
   Signup({super.key});
+
+  Profile profileProvider = Profile();
 
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -57,7 +61,17 @@ class Signup extends StatelessWidget {
                 SizedBox(height: 16),
                 BlockField(hintText: "Confirm Password", controller: confirmPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 28),
-                BlockButton(text: "SIGN UP", action: () {}, bgColor: Theme.of(context).colorScheme.primary, textColor: Colors.white, borderColor: Theme.of(context).colorScheme.primary,)
+                BlockButton(
+                  text: "SIGN UP",
+                  action: () {
+                    Navigator.push(
+                      context, MaterialPageRoute(builder: (context) => Login())
+                    );
+                  },
+                  bgColor: Theme.of(context).colorScheme.primary,
+                  textColor: Colors.white,
+                  borderColor: Theme.of(context).colorScheme.primary
+                )
               ],
             ),
           ),
