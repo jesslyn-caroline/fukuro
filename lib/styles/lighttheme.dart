@@ -18,5 +18,10 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: lightThemeInputDecoration,
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: Color(0XFF5B31B5),
+    actionBackgroundColor: Color(0XFF5B31B5),
+    behavior: SnackBarBehavior.floating
+  ),
   scaffoldBackgroundColor: Color(0XFFFFFFFF),
 );

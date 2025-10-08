@@ -19,5 +19,10 @@ ThemeData darkTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: darkThemeInputDecoration,
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: Color(0XFF875CFF),
+    actionBackgroundColor: Color(0XFF875CFF),
+    behavior: SnackBarBehavior.floating
+  ),
   scaffoldBackgroundColor: Color(0XFF121212),
 );
