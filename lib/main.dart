@@ -14,7 +14,7 @@ void main () {
   sharedPref.init();
   
   sqfliteFfiInit();
-  var databaseFactory = databaseFactoryFfi;
+  databaseFactory = databaseFactoryFfi;
 
   runApp(MultiProvider(
     providers: [
