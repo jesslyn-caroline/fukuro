@@ -1,6 +1,7 @@
-class User {
-  User({required this.name, required this.email, required this.password});
+class UserModel {
+  UserModel({required this.name, required this.id, required this.email, required this.password});
   
+  String id;
   String name;
   String email;
   String password;
