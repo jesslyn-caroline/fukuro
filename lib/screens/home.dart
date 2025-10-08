@@ -10,15 +10,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Home", 
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            fontSize: 20, 
-            color: Theme.of(context).colorScheme.primary
-          ),
-        ),
-      ),
       body: ListView(
         children: [
           Container(
@@ -26,7 +17,7 @@ class Home extends StatelessWidget {
             padding: EdgeInsets.only(left: 30, top: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: [               
                 Text("Hello, Cutiati", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontSize: 24, 
                   fontWeight: FontWeight.w900, 
