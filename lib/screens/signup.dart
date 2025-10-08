@@ -3,11 +3,13 @@ import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/providers/profile.dart';
 import 'package:fukuro/screens/login.dart';
+import 'package:fukuro/services/usersdb.dart';
 
 class Signup extends StatelessWidget {
   Signup({super.key});
 
   Profile profileProvider = Profile();
+  UsersDb usersDb = UsersDb();
 
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -64,6 +66,14 @@ class Signup extends StatelessWidget {
                 BlockButton(
                   text: "SIGN UP",
                   action: () {
+                    Map <String, dynamic> data = {
+                      "name": nameC.text,
+                      "email": emailC.text,
+                      "password": passwordC.text
+                    };
+
+                    usersDb.insert(data);
+
                     Navigator.push(
                       context, MaterialPageRoute(builder: (context) => Login())
                     );
