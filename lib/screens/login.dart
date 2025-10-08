@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
+import 'package:fukuro/models/user.dart';
 import 'package:fukuro/providers/profile.dart';
 import 'package:fukuro/screens/home.dart';
+import 'package:fukuro/services/usersdb.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
@@ -10,6 +12,8 @@ class Login extends StatelessWidget {
 
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
+
+  UsersDb usersDb = UsersDb();
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +60,21 @@ class Login extends StatelessWidget {
                 SizedBox(height: 28),
                 BlockButton(
                   text: "LOGIN",
-                  action: () {
-                    context.read<Profile>().changeLoginStatus();
+                  action: () async {
+                    String msg = await context.read<Profile>().login(emailC.text, passwordC.text);
+
+                    ScaffoldMessenger.of(context).clearSnackBars();
+
+                    if (msg != "") {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(msg), 
+                          backgroundColor: Theme.of(context).snackBarTheme.backgroundColor,
+                        )
+                      );
+                      return;
+                    }   
+                    
                     Navigator.push(
                       context, MaterialPageRoute(builder: (context) => Home())
                     );
