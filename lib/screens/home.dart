@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/course_card.dart';
 import 'package:fukuro/components/progress_card.dart';
-import 'package:fukuro/providers/profile.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -18,15 +16,22 @@ class Home extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [               
-                Text("Hello, Cutiati", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 24, 
-                  fontWeight: FontWeight.w900, 
-                  color: Colors.white),),
-                Text("Knowledge is Power", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w900,
-                  color: Colors.white
-                )),
+                Text(
+                  "Hello, Cutiati",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 24, 
+                    fontWeight: FontWeight.w900, 
+                    color: Colors.white
+                  )
+                ),
+                Text(
+                  "Knowledge is Power",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white
+                  )
+                ),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Image.asset("assets/images/peekaboo-owl.png", width: 140,)
