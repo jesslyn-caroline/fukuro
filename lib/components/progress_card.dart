@@ -8,32 +8,41 @@ class ProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Theme.of(context).colorScheme.primary)
+    return Expanded(
+      child: Container(
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Theme.of(context).colorScheme.primary)
+        ),
+        child: Row(
+          children: [
+            Image.asset(img, width: 28),
+            SizedBox(width: 12),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  num.toString(),
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: Theme.of(context).colorScheme.primary,
+                  )
+                ),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.primary,
+                    fontWeight: FontWeight.w800
+                  )
+                ),
+              ],
+            )
+          ],
+        )
       ),
-      child: Row(
-        children: [
-          Image.asset("${img}", width: 30,),
-          SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("${num}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 20,
-                color: Theme.of(context).colorScheme.primary,
-              ),),
-              Text("${title}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 12,
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w800
-              ),),
-            ],
-          )
-        ],
-      )
     );
   }
 }

@@ -19,7 +19,7 @@ class BlockButton extends StatelessWidget {
     return Container(
       color: Colors.transparent,
       width: double.infinity,
-      height: 40,
+      height: 44,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: bgColor,

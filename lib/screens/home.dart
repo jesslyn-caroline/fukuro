@@ -12,15 +12,15 @@ class Home extends StatelessWidget {
         children: [
           Container(
             color: Theme.of(context).colorScheme.primary,
-            padding: EdgeInsets.only(left: 30, top: 40),
+            padding: EdgeInsets.only(left: 24, top: 44),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [               
                 Text(
                   "Hello, Cutiati",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 24, 
-                    fontWeight: FontWeight.w900, 
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
                     color: Colors.white
                   )
                 ),
@@ -28,72 +28,86 @@ class Home extends StatelessWidget {
                   "Knowledge is Power",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 16,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w700,
                     color: Colors.white
                   )
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
-                  child: Image.asset("assets/images/peekaboo-owl.png", width: 140,)
+                  child: Image.asset("assets/images/peekaboo-owl.png", width: 140)
                 ),       
               ],
             )
           ),
           Container(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ProgressCard(title: "Ongoing Course", num: 3, img: "assets/images/bulb.png",),
-                    ProgressCard(title: "Completed Course", num: 3, img: "assets/images/goal.png",),
+                    ProgressCard(title: "Ongoing", num: 3, img: "assets/images/bulb.png"),
+                    SizedBox(width: 8),
+                    ProgressCard(title: "Completed", num: 1, img: "assets/images/goal.png"),
                   ],
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 20),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(10),
                     color: Theme.of(context).colorScheme.secondary
                   ),
                   child: Row(
                     children: [
                       Expanded(
-                        child: Text("What would you like to learn today?", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white
-                        ),),
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
+                          child: Text(
+                            "What would you like to learn today?",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white
+                            )
+                          ),
+                        ),
                       ),
-                      Image.asset("assets/images/illustration.png", width: 180,)
+                      Image.asset("assets/images/illustration.png", width: 140)
                     ],
                   ),
                 ),
-                SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text("Popular Courses", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900
-                    ),),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text("See all Courses", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w900,
-                        color: Theme.of(context).colorScheme.primary
-                      ),)
-                    )
-                  ],
+                SizedBox(height: 20),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Popular Courses",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w900
+                        )
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Text(
+                          "See all Courses",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
+                            color: Theme.of(context).colorScheme.primary
+                          )
+                        )
+                      )
+                    ],
+                  ),
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: 12),
                 Column(
                   children: [
                     CourseCard(
-                      title: "Front-End Web Development: React JS",
+                      title: "React JS for Front-End Web Dev",
                       subtitle: "Intermediate: 40 lessons",
                       imgSrc: "assets/images/reactjs-fill.png",
                     ),
@@ -103,31 +117,12 @@ class Home extends StatelessWidget {
                       imgSrc: "assets/images/python.png",
                     ),
                     CourseCard(
-                      title: "Build Your First Web with HTML and CSS",
-                      subtitle: "Intermediate: 40 lessons",
+                      title: "Your First Web: HTML and CSS",
+                      subtitle: "Beginner: 25 lessons",
                       imgSrc: "assets/images/web.png",
                     )
                   ],
                 )
-                // ListView(
-                //   children: [
-                //     CourseCard(
-                //       title: "Front-End Web Development: React JS",
-                //       subtitle: "Intermediate: 40 courses",
-                //       imgSrc: "assets/images/reactjs-fill.png",
-                //     ),
-                //     CourseCard(
-                //       title: "Front-End Web Development: React JS",
-                //       subtitle: "Intermediate: 40 courses",
-                //       imgSrc: "assets/images/reactjs-fill.png",
-                //     ),
-                //     CourseCard(
-                //       title: "Front-End Web Development: React JS",
-                //       subtitle: "Intermediate: 40 courses",
-                //       imgSrc: "assets/images/reactjs-fill.png",
-                //     )
-                //   ],
-                // ),
               ],
             )
           )
