@@ -48,11 +48,7 @@ class Welcome extends StatelessWidget {
                 ),
                 BlockButton(
                   text: "LET'S GO", 
-                  action: () {
-                    Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => GetStarted())
-                    );
-                  }, 
+                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted())),
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white, 
                   borderColor: Theme.of(context).colorScheme.primary
