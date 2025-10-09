@@ -16,19 +16,16 @@ class Welcome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
-        child: FutureBuilder(
-          future: loading(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Loading();
-            }
-            if (context.read<Profile>().isLoggedIn) {
-              return Home();
-            }
-            return Column(
+    return FutureBuilder(
+      future: loading(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) return Loading();
+        if (context.read<Profile>().isLoggedIn) return Home();
+
+        return Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -61,10 +58,10 @@ class Welcome extends StatelessWidget {
                   borderColor: Theme.of(context).colorScheme.primary
                 )
               ],
-            );
-          }
-        )
-      )
+            ),
+          ),
+        );
+      }  
     );
   }
 }
