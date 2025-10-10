@@ -45,14 +45,6 @@ class Home extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(top: 16, right: 12),
-                      child: IconButton(
-                        icon: Icon(Icons.logout),
-                        color: Colors.white,
-                        onPressed: () => context.read<ProfileProvider>().changeLoginStatus(""),
-                      ),
-                    )
                   ],
                 ),
                 Align(

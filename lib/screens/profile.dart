@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/profile_setting_tile.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/change_profile_picture.dart';
@@ -51,6 +52,13 @@ class Profile extends StatelessWidget {
                     onChanged: (value) => context.read<ProfileProvider>().changeTheme(value),
                   )
                 ),
+                SizedBox(height: 12,),
+                BlockButton(
+                  text: "LOG OUT", 
+                  action: () => context.read<ProfileProvider>().changeLoginStatus(""), 
+                  bgColor: Theme.of(context).colorScheme.primary, 
+                  textColor: Colors.white, 
+                  borderColor: Theme.of(context).colorScheme.primary)
               ],
             )
           )
