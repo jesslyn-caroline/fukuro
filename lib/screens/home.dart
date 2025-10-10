@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Hello, Cutiati",
+                            "Hello, ${context.read<ProfileProvider>().name}",
                             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 26,
                               fontWeight: FontWeight.w800,

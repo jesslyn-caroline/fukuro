@@ -9,7 +9,7 @@ class ProfileProvider with ChangeNotifier {
   bool isDark = sharedPref.getMode();
   bool isLoggedIn = sharedPref.getLoginStatus();
 
-  String name = "fuku";
+  String name = "";
 
   void changeTheme(value) {
     isDark = value;
@@ -29,7 +29,6 @@ class ProfileProvider with ChangeNotifier {
     if (user.password != password) return "Incorrect password";
 
     name = user.name;
-    notifyListeners();
 
     changeLoginStatus();
     return "";
