@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/course_card.dart';
 import 'package:fukuro/components/progress_card.dart';
+import 'package:fukuro/providers/profile.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -12,25 +14,46 @@ class Home extends StatelessWidget {
         children: [
           Container(
             color: Theme.of(context).colorScheme.primary,
-            padding: EdgeInsets.only(left: 24, top: 44),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [               
-                Text(
-                  "Hello, Cutiati",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                    color: Colors.white
-                  )
-                ),
-                Text(
-                  "Knowledge is Power",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white
-                  )
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 24, top: 52),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Hello, Cutiati",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w800,
+                              color: Colors.white
+                            )
+                          ),
+                          Text(
+                            "Knowledge is Power",
+                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white
+                            )
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 16, right: 12),
+                      child: IconButton(
+                        icon: Icon(Icons.logout),
+                        color: Colors.white,
+                        onPressed: context.read<Profile>().changeLoginStatus,
+                      ),
+                    )
+                  ],
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
