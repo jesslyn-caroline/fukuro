@@ -42,7 +42,7 @@ class Profile extends StatelessWidget {
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())), 
                   title: "Change Profile Picture", 
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)),
-                SizedBox(height: 12,),
+                SizedBox(height: 14,),
                 ProfileSettingTile(
                   action: () => {}, 
                   title: "Switch Mode", 
@@ -50,22 +50,31 @@ class Profile extends StatelessWidget {
                     value: context.watch<ProfileProvider>().isDark, 
                     onChanged: (value) => context.read<ProfileProvider>().changeTheme(value))
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: 14,),
+                ProfileSettingTile(
+                  action: () {}, 
+                  title: "Username",
+                  subtitle: context.watch<ProfileProvider>().currentUser?.name,
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
+                SizedBox(height: 14,),
                 ProfileSettingTile(
                   action: () {}, 
                   title: "Email", 
                   subtitle: context.watch<ProfileProvider>().currentUser?.email,
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)),
-                SizedBox(height: 12,),
+                SizedBox(height: 14,),
                 ProfileSettingTile(
                   action: () {}, 
                   title: "Password", 
                   subtitle: "• • • • • • • • • •",
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
-                SizedBox(height: 12,),
+                SizedBox(height: 14,),                
                 BlockButton(
                   text: "LOG OUT", 
-                  action: () => context.read<ProfileProvider>().changeLoginStatus(""), 
+                  action: () {
+                    context.read<ProfileProvider>().changeLoginStatus("");
+                    Navigator.of(context).pop();
+                  }, 
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white, 
                   borderColor: Theme.of(context).colorScheme.primary)
