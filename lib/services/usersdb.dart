@@ -8,17 +8,20 @@ class UsersDb {
   String NAME = "name";
   String EMAIL = "email";
   String PASSWORD = "password";
+  String PROFILE = "profile";
 
   DBService dbService = DBService();
 
 
   createTableUsers(db) async {
+    // await db.execute('DROP TABLE IF EXISTS $TABLE');
     await db.execute('''
       CREATE TABLE IF NOT EXISTS $TABLE (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $NAME TEXT NOT NULL,
         $EMAIL TEXT NOT NULL UNIQUE,
-        $PASSWORD TEXT NOT NULL
+        $PASSWORD TEXT NOT NULL,
+        $PROFILE TEXT NOT NULL DEFAULT "assets/images/pp-bear.png"
       )
     ''');
   }
@@ -37,6 +40,7 @@ class UsersDb {
         name: data.first['name'].toString(),
         email: data.first['email'].toString(),
         password: data.first['password'].toString(),
+        profile: data.first['profile'].toString()
       );
 
       return user;
