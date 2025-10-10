@@ -24,5 +24,9 @@ ThemeData darkTheme = ThemeData(
     actionBackgroundColor: Color(0XFF875CFF),
     behavior: SnackBarBehavior.floating
   ),
+  switchTheme: SwitchThemeData(
+    thumbColor: WidgetStateProperty.all(Colors.black),
+    trackColor: WidgetStateProperty.all(Color(0XFF875CFF)),
+  ),
   scaffoldBackgroundColor: Color(0XFF121212),
 );

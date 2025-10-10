@@ -23,5 +23,9 @@ ThemeData lightTheme = ThemeData(
     actionBackgroundColor: Color(0XFF5B31B5),
     behavior: SnackBarBehavior.floating
   ),
+  switchTheme: SwitchThemeData(
+    thumbColor: WidgetStateProperty.all(Color(0XFF5B31B5)),
+    trackOutlineColor: WidgetStateProperty.all(Color(0XFF5B31B5)),
+  ),
   scaffoldBackgroundColor: Color(0XFFFFFFFF),
 );
