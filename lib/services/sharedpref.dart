@@ -16,7 +16,6 @@ class SharedPref{
   }
 
   String getLoginStatus() {
-    print( sharedPref?.getString('userLoggedIn'));
     return sharedPref?.getString('userLoggedIn') ?? "";
   }
 
