@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/course_card.dart';
 import 'package:fukuro/components/progress_card.dart';
-import 'package:fukuro/providers/profile.dart';
+import 'package:fukuro/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(Icons.logout),
                         color: Colors.white,
-                        onPressed: context.read<Profile>().changeLoginStatus,
+                        onPressed: context.read<ProfileProvider>().changeLoginStatus,
                       ),
                     )
                   ],
