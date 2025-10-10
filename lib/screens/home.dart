@@ -5,7 +5,14 @@ import 'package:fukuro/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+
+  List<String> quotes = [
+    "Knowledge is your power",
+    "Study now, success later",
+    "Try, Fail, Learn, Repeat",
+    "Progress over perfection",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +41,21 @@ class Home extends StatelessWidget {
                               color: Colors.white
                             )
                           ),
-                          Text(
-                            "Knowledge is Power",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white
-                            )
+                          StreamBuilder(
+                            stream: Stream.periodic(
+                              Duration(seconds: 2),
+                              (count) => count % quotes.length,
+                            ),
+                            builder: (context, snapshot) {
+                              return Text(
+                                quotes[snapshot.data ?? 0],
+                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white
+                                )
+                              );
+                            }
                           ),
                         ],
                       ),
