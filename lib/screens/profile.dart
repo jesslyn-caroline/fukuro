@@ -41,17 +41,27 @@ class Profile extends StatelessWidget {
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())), 
                   title: "Change Profile Picture", 
-                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)
-                ),
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)),
                 SizedBox(height: 12,),
                 ProfileSettingTile(
                   action: () => {}, 
                   title: "Switch Mode", 
                   trailing: Switch(
                     value: context.watch<ProfileProvider>().isDark, 
-                    onChanged: (value) => context.read<ProfileProvider>().changeTheme(value),
-                  )
+                    onChanged: (value) => context.read<ProfileProvider>().changeTheme(value))
                 ),
+                SizedBox(height: 12,),
+                ProfileSettingTile(
+                  action: () {}, 
+                  title: "Email", 
+                  subtitle: context.watch<ProfileProvider>().currentUser?.email,
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)),
+                SizedBox(height: 12,),
+                ProfileSettingTile(
+                  action: () {}, 
+                  title: "Password", 
+                  subtitle: "• • • • • • • • • •",
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
                 SizedBox(height: 12,),
                 BlockButton(
                   text: "LOG OUT", 
