@@ -1,26 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/screens/index.dart';
 import 'package:provider/provider.dart';
 import 'package:fukuro/components/blockbutton.dart';
-import 'package:fukuro/providers/profile.dart';
+import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/getstarted.dart';
 import 'package:fukuro/screens/home.dart';
 import 'package:fukuro/screens/loading.dart';
 
-class Welcome extends StatelessWidget {
+class Welcome extends StatefulWidget {
   Welcome({super.key});
 
+  @override
+  State<Welcome> createState() => _WelcomeState();
+}
+
+class _WelcomeState extends State<Welcome> {
   loading() async {
     await Future.delayed(Duration(seconds: 3));
     return true;
   }
 
+  late Future <void> futureLoading;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    futureLoading = loading();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: loading(),
-      builder: (context, snapshot) {
+      future: futureLoading,
+      builder: (context, snapshot) {   
         if (snapshot.connectionState == ConnectionState.waiting) return Loading();
-        if (context.read<Profile>().isLoggedIn) return Home();
+        if (context.read<ProfileProvider>().isLoggedIn) return Index();
 
         return Scaffold(
           body: Padding(
