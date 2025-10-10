@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/getstarted.dart';
-import 'package:fukuro/screens/home.dart';
 import 'package:fukuro/screens/loading.dart';
 
 class Welcome extends StatefulWidget {
@@ -36,7 +35,7 @@ class _WelcomeState extends State<Welcome> {
       future: futureLoading,
       builder: (context, snapshot) {   
         if (snapshot.connectionState == ConnectionState.waiting) return Loading();
-        if (context.read<ProfileProvider>().isLoggedIn) return Index();
+        if (context.read<ProfileProvider>().userLoggedIn != "") return Index();
 
         return Scaffold(
           body: Padding(
