@@ -27,7 +27,7 @@ class Home extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Hello, ${context.read<ProfileProvider>().name}",
+                            "Hello, ${context.read<ProfileProvider>().currentUser?.name}",
                             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                               fontSize: 26,
                               fontWeight: FontWeight.w800,
@@ -50,7 +50,7 @@ class Home extends StatelessWidget {
                       child: IconButton(
                         icon: Icon(Icons.logout),
                         color: Colors.white,
-                        onPressed: context.read<ProfileProvider>().changeLoginStatus,
+                        onPressed: () => context.read<ProfileProvider>().changeLoginStatus(""),
                       ),
                     )
                   ],
