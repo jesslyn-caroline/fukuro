@@ -15,12 +15,13 @@ class SharedPref{
     await sharedPref?.setBool('mode', mode);
   }
 
-  bool getLoginStatus() {
-    return sharedPref?.getBool('isLoggedIn') ?? false;
+  String getLoginStatus() {
+    print( sharedPref?.getString('userLoggedIn'));
+    return sharedPref?.getString('userLoggedIn') ?? "";
   }
 
-  Future<void> setLoginStatus(bool loginStatus) async {
-    await sharedPref?.setBool('isLoggedIn', loginStatus);
+  Future<void> setLoginStatus(String userLoggedIn) async {
+    await sharedPref?.setString('userLoggedIn', userLoggedIn);
   }
 }
 
