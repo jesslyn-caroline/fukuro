@@ -7,8 +7,8 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: AppBarTheme( color: Colors.transparent ),
   colorScheme: ColorScheme.dark(
     primary: Color(0XFF875CFF),
-    secondary: Color(0XFFD9CBF6),
-    tertiary: Color(0XFFAC87E8),
+    tertiary: Color(0XFFD9CBF6),
+    secondary: Color(0XFFAC87E8),
     background: Color(0XFF121212),
     surfaceContainer: Color(0XFF222222),
   ),
