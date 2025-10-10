@@ -12,8 +12,8 @@ class Index extends StatefulWidget {
 class _IndexState extends State<Index> {
 
   List <Map <String, dynamic>> screens = [
-    { "screen" : Home(), "icon" : Icons.home_filled, "label" : "Home" },
-    { "screen" : Profile(), "icon" : Icons.person_2, "label" : "Profile" },
+    { "screen" : Home(), "icon" : Icons.home_rounded, "label" : "Home" },
+    { "screen" : Profile(), "icon" : Icons.person_2_rounded, "label" : "Profile" },
   ];
 
   int index = 0;
@@ -24,10 +24,11 @@ class _IndexState extends State<Index> {
       body: screens[index]["screen"],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
-        onTap: (value) => setState(() {index = value;}),
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        onTap: (value) => setState(() => index = value),
         items: [
           ...screens.map((e) {
-            return BottomNavigationBarItem(icon: Icon(e["icon"], size: 30,), label: e["label"]);
+            return BottomNavigationBarItem(icon: Icon(e["icon"]), label: e["label"]);
           })
         ]
       ),

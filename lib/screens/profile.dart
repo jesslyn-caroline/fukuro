@@ -16,7 +16,7 @@ class Profile extends StatelessWidget {
             height: 220,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))
+              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10), bottomRight: Radius.circular(10))
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -29,7 +29,14 @@ class Profile extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10,),
-                Text("${context.watch<ProfileProvider>().name}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800),)
+                Text(
+                  context.watch<ProfileProvider>().name,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800
+                  )
+                )
               ],
             ),
           ),
