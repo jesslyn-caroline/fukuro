@@ -3,16 +3,18 @@ import 'package:fukuro/models/user.dart';
 import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/services/usersdb.dart';
 
-class Profile with ChangeNotifier {
+class ProfileProvider with ChangeNotifier {
   UsersDb usersDb = UsersDb();
 
   bool isDark = sharedPref.getMode();
   bool isLoggedIn = sharedPref.getLoginStatus();
 
-  void changeTheme() {
-    isDark = !isDark;
+  String name = "fuku";
+
+  void changeTheme(value) {
+    isDark = value;
     notifyListeners();
-    sharedPref.setMode(isDark);
+    sharedPref.setMode(value);
   }
 
   void changeLoginStatus() {
@@ -25,6 +27,9 @@ class Profile with ChangeNotifier {
     UserModel? user = await usersDb.getOne(email);
     if (user == null) return "User not found";
     if (user.password != password) return "Incorrect password";
+
+    name = user.name;
+    notifyListeners();
 
     changeLoginStatus();
     return "";
