@@ -59,7 +59,7 @@ class Signup extends StatelessWidget {
                 SizedBox(height: 16),
                 BlockField(hintText: "Email", controller: emailC, errorText: "", isPassword: false),
                 SizedBox(height: 16),
-                BlockField(hintText: "Password", controller: passwordC, errorText: "", isPassword: false),
+                BlockField(hintText: "Password", controller: passwordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
                 BlockField(hintText: "Confirm Password", controller: confirmPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 28),
