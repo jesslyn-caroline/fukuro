@@ -66,17 +66,12 @@ class Login extends StatelessWidget {
 
                     if (msg != "") {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(msg), 
-                          backgroundColor: Theme.of(context).snackBarTheme.backgroundColor,
-                        )
+                        SnackBar( content: Text(msg), backgroundColor: Theme.of(context).snackBarTheme.backgroundColor, )
                       );
                       return;
                     }   
                     
-                    Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Index())
-                    );
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Index()));
                   },
                   bgColor: Theme.of(context).colorScheme.primary,
                   textColor: Colors.white,
