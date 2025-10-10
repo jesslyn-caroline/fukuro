@@ -65,7 +65,7 @@ class Home extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Image.asset("assets/images/peekaboo-owl.png", width: 140)
-                ),       
+                ),
               ],
             )
           ),
