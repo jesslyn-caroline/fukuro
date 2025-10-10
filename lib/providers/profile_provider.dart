@@ -7,9 +7,10 @@ class ProfileProvider with ChangeNotifier {
   UsersDb usersDb = UsersDb();
 
   bool isDark = sharedPref.getMode();
-  bool isLoggedIn = sharedPref.getLoginStatus();
+  String userLoggedIn = sharedPref.getLoginStatus();
 
-  String name = "";
+  UserModel? currentUser;
+
 
   void changeTheme(value) {
     isDark = value;
@@ -17,10 +18,11 @@ class ProfileProvider with ChangeNotifier {
     sharedPref.setMode(value);
   }
 
-  void changeLoginStatus() {
-    isLoggedIn = !isLoggedIn;
+  void changeLoginStatus(String name) {
+    userLoggedIn = name;
+
     notifyListeners();
-    sharedPref.setLoginStatus(isLoggedIn);
+    sharedPref.setLoginStatus(name);
   }
 
   Future <String> login(String email, String password) async {
@@ -28,9 +30,20 @@ class ProfileProvider with ChangeNotifier {
     if (user == null) return "User not found";
     if (user.password != password) return "Incorrect password";
 
-    name = user.name;
+    currentUser = user;
 
-    changeLoginStatus();
+    changeLoginStatus(user.name);
     return "";
+  }
+
+  Future <void> getUserInfo(String email) async {
+    UserModel? user = await usersDb.getOne(email);
+    currentUser = user;
+
+    notifyListeners();
+  }
+
+  ProfileProvider() {
+    getUserInfo(userLoggedIn);
   }
 }
