@@ -3,6 +3,7 @@ import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/profile_setting_tile.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/change_profile_picture.dart';
+import 'package:fukuro/screens/change_username.dart';
 import 'package:fukuro/screens/getstarted.dart';
 import 'package:provider/provider.dart';
 
@@ -53,7 +54,7 @@ class Profile extends StatelessWidget {
                 ),
                 SizedBox(height: 14,),
                 ProfileSettingTile(
-                  action: () {}, 
+                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeUsername())), 
                   title: "Username",
                   subtitle: context.watch<ProfileProvider>().currentUser?.name,
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
