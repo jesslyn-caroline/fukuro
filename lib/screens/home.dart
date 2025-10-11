@@ -23,7 +23,7 @@ class Home extends StatelessWidget {
             color: Theme.of(context).colorScheme.primary,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [               
+              children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,

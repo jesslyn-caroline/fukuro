@@ -28,7 +28,10 @@ class Profile extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())),
-                  child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().currentUser?.profile}").image, ),
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().currentUser?.profile}").image
+                  ),
                 ),
                 SizedBox(height: 10,),
                 Text( "${context.watch<ProfileProvider>().currentUser?.name}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
