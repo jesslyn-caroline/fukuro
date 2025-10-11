@@ -49,8 +49,8 @@ class UsersDb {
     }   
   }
 
-  Future <void> updateOne(Map <String, dynamic> data) async {
+  Future <void> updateOne(email, Map <String, dynamic> data) async {
     Database db = await dbService.getDatabase();
-    db.update(TABLE, data, where: "$EMAIL = ?", whereArgs: [data['email']]);
+    db.update(TABLE, data, where: "$EMAIL = ?", whereArgs: [email]);
   }
 }
