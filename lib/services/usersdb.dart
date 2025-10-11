@@ -21,7 +21,7 @@ class UsersDb {
         $NAME TEXT NOT NULL,
         $EMAIL TEXT NOT NULL UNIQUE,
         $PASSWORD TEXT NOT NULL,
-        $PROFILE TEXT NOT NULL DEFAULT "assets/images/pp-bear.png"
+        $PROFILE TEXT NOT NULL DEFAULT "pp-bear.png"
       )
     ''');
   }
@@ -47,5 +47,10 @@ class UsersDb {
     } catch (err) {
       return null;
     }   
+  }
+
+  Future <void> updateOne(Map <String, dynamic> data) async {
+    Database db = await dbService.getDatabase();
+    db.update(TABLE, data, where: "$EMAIL = ?", whereArgs: [data['email']]);
   }
 }
