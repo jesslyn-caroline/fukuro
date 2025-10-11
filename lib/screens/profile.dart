@@ -3,6 +3,7 @@ import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/profile_setting_tile.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/change_profile_picture.dart';
+import 'package:fukuro/screens/getstarted.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
@@ -25,7 +26,7 @@ class Profile extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())),
-                  child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/pp-bear.png").image, ),
+                  child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().currentUser?.profile}").image, ),
                 ),
                 SizedBox(height: 10,),
                 Text( "${context.watch<ProfileProvider>().currentUser?.name}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -73,7 +74,7 @@ class Profile extends StatelessWidget {
                   text: "LOG OUT", 
                   action: () {
                     context.read<ProfileProvider>().changeLoginStatus("");
-                    Navigator.of(context).pop();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted()));
                   }, 
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white, 
