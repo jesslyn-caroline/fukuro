@@ -23,7 +23,6 @@ class _WelcomeState extends State<Welcome> {
 
   @override
   void initState() {
-    // TODO: implement initState
     futureLoading = loading();
     super.initState();
   }
@@ -72,7 +71,7 @@ class _WelcomeState extends State<Welcome> {
             ),
           ),
         );
-      }  
+      }
     );
   }
 }
