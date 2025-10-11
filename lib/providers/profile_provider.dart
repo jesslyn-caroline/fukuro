@@ -18,11 +18,11 @@ class ProfileProvider with ChangeNotifier {
     sharedPref.setMode(value);
   }
 
-  void changeLoginStatus(String name) {
-    userLoggedIn = name;
+  void changeLoginStatus(String email) {
+    userLoggedIn = email;
 
     notifyListeners();
-    sharedPref.setLoginStatus(name);
+    sharedPref.setLoginStatus(email);
   }
 
   Future <String> login(String email, String password) async {
@@ -32,7 +32,7 @@ class ProfileProvider with ChangeNotifier {
 
     currentUser = user;
 
-    changeLoginStatus(user.name);
+    changeLoginStatus(user.email);
     return "";
   }
 
@@ -43,7 +43,13 @@ class ProfileProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future <void> updateUserInfo(Map <String, dynamic> data) async {
+    await usersDb.updateOne(data);
+    getUserInfo(userLoggedIn);
+  }
+
   ProfileProvider() {
+    userLoggedIn = sharedPref.getLoginStatus();
     getUserInfo(userLoggedIn);
   }
 }
