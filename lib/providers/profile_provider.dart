@@ -39,12 +39,12 @@ class ProfileProvider with ChangeNotifier {
   Future <void> getUserInfo(String email) async {
     UserModel? user = await usersDb.getOne(email);
     currentUser = user;
-
+    
     notifyListeners();
   }
 
   Future <void> updateUserInfo(Map <String, dynamic> data) async {
-    await usersDb.updateOne(data);
+    await usersDb.updateOne(currentUser?.email, data);
     getUserInfo(userLoggedIn);
   }
 
