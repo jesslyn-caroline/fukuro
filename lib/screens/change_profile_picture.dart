@@ -31,7 +31,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         actionsPadding: EdgeInsets.all(12),
         actions: [
           TextButton(onPressed: () {  
-            Map <String, dynamic> data = { "email" : context.read<ProfileProvider>().currentUser?.email, "profile" : image };
+            Map <String, dynamic> data = { "profile" : image };
             context.read<ProfileProvider>().updateUserInfo(data);
             Navigator.of(context).pop();
           }, child: Text("Save", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),))
