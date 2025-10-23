@@ -14,7 +14,6 @@ class UsersDb {
 
 
   createTableUsers(db) async {
-    // await db.execute('DROP TABLE IF EXISTS $TABLE');
     await db.execute('''
       CREATE TABLE IF NOT EXISTS $TABLE (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
