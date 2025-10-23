@@ -15,7 +15,7 @@ class DBService {
 
   Future <Database> initDatabase() async {
     String databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, 'users.db');
+    String path = join(databasesPath, 'fukuro.db');
 
     return await openDatabase(path, version: 1);
   }
