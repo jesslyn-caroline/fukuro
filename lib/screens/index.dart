@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/screens/courses.dart';
 import 'package:fukuro/screens/home.dart';
 import 'package:fukuro/screens/profile.dart';
 
@@ -13,6 +14,7 @@ class _IndexState extends State<Index> {
 
   List <Map <String, dynamic>> screens = [
     { "screen" : Home(), "icon" : Icons.home_rounded, "label" : "Home" },
+    { "screen" : Courses(), "icon" : Icons.book_rounded, "label" : "Courses" },
     { "screen" : Profile(), "icon" : Icons.person_2_rounded, "label" : "Profile" },
   ];
 
