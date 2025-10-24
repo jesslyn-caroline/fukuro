@@ -4,7 +4,6 @@ import 'package:fukuro/models/course_model.dart';
 import 'package:http/http.dart' as http;
 
 class CourseRespository {
-  // CourseRespository();
   String URL = "https://fukuro-api.vercel.app/courses";
 
   Future <List<CourseModel>> fetch() async {

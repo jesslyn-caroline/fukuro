@@ -52,8 +52,7 @@ class ChangePassword extends StatelessWidget {
                   text: "CHANGE",
                   action: () {
                     String msg = "";
-                    if (currentPasswordC.text != context.read<ProfileProvider>().currentUser?.password) msg = "Incorrect password";
-                    else if (newPasswordC.text != confirmPasswordC.text) msg = "Passwords do not match";
+                    if (newPasswordC.text != confirmPasswordC.text) msg = "Passwords do not match";
 
                     if (msg != "") {
                       ScaffoldMessenger.of(context).showSnackBar(

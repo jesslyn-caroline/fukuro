@@ -12,7 +12,7 @@ class Login extends StatelessWidget {
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
 
-  UsersDb usersDb = UsersDb();
+  // UsersDb usersDb = UsersDb();
 
   @override
   Widget build(BuildContext context) {
@@ -63,13 +63,12 @@ class Login extends StatelessWidget {
                     String msg = await context.read<ProfileProvider>().login(emailC.text, passwordC.text);
 
                     ScaffoldMessenger.of(context).clearSnackBars();
-
-                    if (msg != "") {
+                    if (!msg.contains("success")) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar( content: Text(msg), backgroundColor: Theme.of(context).snackBarTheme.backgroundColor, )
                       );
                       return;
-                    }   
+                    }
                     
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Index()));
                   },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/providers/profile_provider.dart';
+import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/services/usersdb.dart';
 
@@ -10,6 +11,7 @@ class Signup extends StatelessWidget {
 
   ProfileProvider profileProvider = ProfileProvider();
   UsersDb usersDb = UsersDb();
+  UserRespository userRespository = UserRespository();
 
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -65,18 +67,19 @@ class Signup extends StatelessWidget {
                 SizedBox(height: 28),
                 BlockButton(
                   text: "SIGN UP",
-                  action: () {
-                    Map <String, dynamic> data = {
-                      "name": nameC.text,
-                      "email": emailC.text,
-                      "password": passwordC.text,
-                    };
+                  action: () async {
+                    String msg = await userRespository.post(
+                      emailC.text, 
+                      passwordC.text, 
+                      nameC.text);
 
-                    usersDb.insert(data);
-
-                    Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Login())
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(msg))
                     );
+
+                    if (msg.contains("success")) {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
+                    }              
                   },
                   bgColor: Theme.of(context).colorScheme.primary,
                   textColor: Colors.white,

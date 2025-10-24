@@ -42,7 +42,7 @@ class Courses extends StatelessWidget {
                   return Center(child: CircularProgressIndicator(),);
                 }
                 else if (snapshot.hasError) {
-                  return Center(child: Text("${snapshot.error}"),);
+                  return Center(child: Text("Something went wrong"),);
                 }
 
                 return Column(

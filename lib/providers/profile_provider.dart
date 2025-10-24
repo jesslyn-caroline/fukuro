@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/models/user.dart';
+import 'package:fukuro/models/user_model.dart';
+import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/services/usersdb.dart';
 
 class ProfileProvider with ChangeNotifier {
+  UserRespository userRespository = UserRespository();
   UsersDb usersDb = UsersDb();
 
   bool isDark = sharedPref.getMode();
@@ -26,14 +28,17 @@ class ProfileProvider with ChangeNotifier {
   }
 
   Future <String> login(String email, String password) async {
-    UserModel? user = await usersDb.getOne(email);
-    if (user == null) return "User not found";
-    if (user.password != password) return "Incorrect password";
+    Map <String, dynamic> data = await userRespository.fetch(email, password);
+    String message = data["message"];
+    UserModel? user = data["user"];
+
+    if (user == null) return message;
 
     currentUser = user;
-
     changeLoginStatus(user.email);
-    return "";
+    usersDb.insert(user.toJson());
+
+    return message;
   }
 
   Future <void> getUserInfo(String email) async {
@@ -43,8 +48,12 @@ class ProfileProvider with ChangeNotifier {
   }
 
   Future <void> updateUserInfo(Map <String, dynamic> data) async {
-    await usersDb.updateOne(currentUser?.email, data);
+    data["email"] = currentUser?.email;
+
+    await usersDb.updateOne(data);
     getUserInfo(userLoggedIn);
+
+    await userRespository.update(data);
   }
 
   ProfileProvider() {
