@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/screens/detail_course.dart';
+import 'package:fukuro/screens/course_detail.dart';
 
 class CourseCard1 extends StatelessWidget {
-  CourseCard1({super.key, required this.title, required this.numOfLessons, required this.level});
+  CourseCard1({super.key, required this.id, required this.title, required this.numOfLessons, required this.level});
   
-  String title, level;
+  String id, title, level;
   int numOfLessons;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailCourse())),
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetail(id: id))),
       child: Container(
         margin: EdgeInsets.only(bottom: 14),
         width: double.infinity,
