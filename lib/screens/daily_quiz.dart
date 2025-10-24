@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/models/quiz_model.dart';
 import 'package:fukuro/respositories/quiz_respository.dart';
-import 'package:fukuro/screens/loading.dart';
 
 class DailyQuiz extends StatefulWidget {
   DailyQuiz({super.key});

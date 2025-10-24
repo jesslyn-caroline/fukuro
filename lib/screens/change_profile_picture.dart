@@ -10,8 +10,11 @@ class ChangeProfilePicture extends StatefulWidget {
 }
 
 class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
-  List <String> profilePic = ["pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png"];
-  String? getProfilePic () { return context.read<ProfileProvider>().currentUser?.profile; }
+  List<String> profilePic = [ "pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png" ];
+
+  String? getProfilePic () {
+    return context.read<ProfileProvider>().currentUser?.profile;
+  }
 
   String? image;
 
@@ -21,7 +24,6 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,11 +32,19 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actionsPadding: EdgeInsets.all(12),
         actions: [
-          TextButton(onPressed: () {  
-            Map <String, dynamic> data = { "profile" : image };
-            context.read<ProfileProvider>().updateUserInfo(data);
-            Navigator.of(context).pop();
-          }, child: Text("Save", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),))
+          TextButton(
+            onPressed: () {  
+              Map<String, dynamic> data = { "profile" : image };
+              context.read<ProfileProvider>().updateUserInfo(data);
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              "Save",
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Colors.white
+              )
+            )
+          )
         ],
       ),
       body: Column(
@@ -44,12 +54,16 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
             height: 160,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(16),
+                bottomRight: Radius.circular(16)
+              )
+            ),
             child: Column(
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: Image.asset("assets/images/${image}").image,),
+                  backgroundImage: Image.asset("assets/images/$image").image,),
               ],
             ),
           ),
