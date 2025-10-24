@@ -48,7 +48,7 @@ class Courses extends StatelessWidget {
                 return Column(
                   children: [
                     ...snapshot.data!.map((course) {
-                      return CourseCard1(title: course.name, level: course.level, numOfLessons: course.numberOfLessons,);
+                      return CourseCard1(id: course.id, title: course.name, level: course.level, numOfLessons: course.numberOfLessons,);
                     })
                   ],
                 );
