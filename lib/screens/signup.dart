@@ -68,10 +68,7 @@ class Signup extends StatelessWidget {
                 BlockButton(
                   text: "SIGN UP",
                   action: () async {
-                    String msg = await userRespository.post(
-                      emailC.text, 
-                      passwordC.text, 
-                      nameC.text);
+                    String msg = await userRespository.post(emailC.text,passwordC.text, nameC.text);
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text(msg))
