@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fukuro/models/course_detail_model.dart';
 import 'package:fukuro/models/course_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,5 +23,21 @@ class CourseRespository {
     }
 
     return [];
+  }
+
+  Future <CourseDetailModel?> fetchOne(String id) async{
+    try {
+      var response = await http.get(Uri.parse("$URL/$id"));
+      var result = jsonDecode(response.body);
+
+      CourseDetailModel course = CourseDetailModel.fromJson(result["data"]);
+
+      if (response.statusCode == 200) return course;
+
+    } catch (err) {
+      print(err);
+    }
+
+    return null;
   }
 }
