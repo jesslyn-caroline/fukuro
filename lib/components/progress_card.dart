@@ -17,7 +17,7 @@ class ProgressCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(img, width: 28),
+            Image.asset(img, width: 36),
             SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class ProgressCard extends StatelessWidget {
                 Text(
                   title,
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                    fontSize: 12,
+                    fontSize: 14,
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w800
                   )
