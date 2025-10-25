@@ -4,7 +4,7 @@ import 'package:fukuro/models/quiz_model.dart';
 import 'package:http/http.dart' as http;
 
 class QuizRespository {
-  String URL = "http://localhost:8000/daily-quiz";
+  String URL = "https://fukuro-api.vercel.app/daily-quiz";
 
   Future <List <QuizModel>> fetch() async {
     List <QuizModel> quizzes = [];
