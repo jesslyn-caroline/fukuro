@@ -16,8 +16,12 @@ class Button extends StatelessWidget {
           borderRadius: BorderRadius.circular(10))  
       ),
       onPressed: action, 
-      child: Text("$text", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-        color: Colors.white))
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          color: Colors.white
+        )
+      )
     );
   }
 }

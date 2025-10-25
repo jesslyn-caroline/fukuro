@@ -3,7 +3,7 @@ import 'package:fukuro/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class UserRespository {
-  String URL = "https://fukuro-api.vercel.app/user";
+  String URL = "http://localhost:8000/user";
 
   Future <Map<String, dynamic>> fetch(String email, String password) async {
     Map <String, dynamic> data = {};

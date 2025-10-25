@@ -21,15 +21,23 @@ class Courses extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Courses", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Colors.white, 
-                  fontSize: 24, 
-                  fontWeight: FontWeight.w900),),
-                SizedBox(height: 4,),
-                Text("Explore a variety of tech courses designed to help you grow your skills", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Colors.white, 
-                  fontSize: 14, 
-                  fontWeight: FontWeight.w500),),
+                Text(
+                  "Courses",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.white, 
+                    fontSize: 24, 
+                    fontWeight: FontWeight.w900
+                  )
+                ),
+                SizedBox(height: 4),
+                Text(
+                  "Explore a variety of tech courses designed to help you grow your skills",
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: Colors.white, 
+                    fontSize: 14, 
+                    fontWeight: FontWeight.w500
+                  )
+                ),
               ],
             ),
           ),
@@ -57,7 +65,6 @@ class Courses extends StatelessWidget {
           )
         ],
       )
-      
     );
   }
 }

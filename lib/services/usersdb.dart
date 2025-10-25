@@ -14,14 +14,16 @@ class UsersDb {
 
 
   createTableUsers(db) async {
-    await db.execute('''
-      CREATE TABLE IF NOT EXISTS $TABLE (
-        $ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        $NAME TEXT NOT NULL,
-        $EMAIL TEXT NOT NULL UNIQUE,
-        $PROFILE TEXT NOT NULL
-      )
-    ''');
+    await db.execute(
+      '''
+        CREATE TABLE IF NOT EXISTS $TABLE (
+          $ID INTEGER PRIMARY KEY AUTOINCREMENT,
+          $NAME TEXT NOT NULL,
+          $EMAIL TEXT NOT NULL UNIQUE,
+          $PROFILE TEXT NOT NULL
+        )
+      '''
+  );
   }
 
   void insert(Map<String, dynamic> data) async {

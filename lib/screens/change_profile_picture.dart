@@ -34,7 +34,11 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         actions: [
           TextButton(
             onPressed: () {  
+<<<<<<< HEAD
+              Map <String, dynamic> data = { "profile" : image };
+=======
               Map<String, dynamic> data = { "profile" : image };
+>>>>>>> 416e15439fe782f7e5e4e4ba6e78197fa4b723b6
               context.read<ProfileProvider>().updateUserInfo(data);
               Navigator.of(context).pop();
             },
@@ -63,7 +67,11 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
               children: [
                 CircleAvatar(
                   radius: 50,
+<<<<<<< HEAD
+                  backgroundImage: Image.asset("assets/images/$image").image),
+=======
                   backgroundImage: Image.asset("assets/images/$image").image,),
+>>>>>>> 416e15439fe782f7e5e4e4ba6e78197fa4b723b6
               ],
             ),
           ),
@@ -79,7 +87,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
                     onTap: () => setState(() {image = profilePic[index];}),
                     child: CircleAvatar(
                       radius: 30,
-                      backgroundImage: Image.asset("assets/images/${profilePic[index]}").image,),
+                      backgroundImage: Image.asset("assets/images/${profilePic[index]}").image),
                   ),
                 );
               },
