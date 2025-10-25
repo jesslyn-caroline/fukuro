@@ -3,9 +3,12 @@ import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/models/quiz_model.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/respositories/quiz_respository.dart';
+<<<<<<< HEAD
 import 'package:fukuro/services/usersdb.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+=======
+>>>>>>> 416e15439fe782f7e5e4e4ba6e78197fa4b723b6
 
 class DailyQuiz extends StatefulWidget {
   const DailyQuiz({super.key});

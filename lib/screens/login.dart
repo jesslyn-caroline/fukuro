@@ -3,7 +3,6 @@ import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/index.dart';
-import 'package:fukuro/services/usersdb.dart';
 import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
@@ -61,7 +60,6 @@ class Login extends StatelessWidget {
                   text: "LOGIN",
                   action: () async {
                     String msg = await context.read<ProfileProvider>().login(emailC.text, passwordC.text);
-
                     ScaffoldMessenger.of(context).clearSnackBars();
                     if (!msg.contains("success")) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -69,7 +67,6 @@ class Login extends StatelessWidget {
                       );
                       return;
                     }
-                    
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Index()));
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

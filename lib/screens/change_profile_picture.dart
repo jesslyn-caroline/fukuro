@@ -10,8 +10,11 @@ class ChangeProfilePicture extends StatefulWidget {
 }
 
 class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
-  List <String> profilePic = ["pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png"];
-  String? getProfilePic () { return context.read<ProfileProvider>().currentUser?.profile; }
+  List<String> profilePic = [ "pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png" ];
+
+  String? getProfilePic () {
+    return context.read<ProfileProvider>().currentUser?.profile;
+  }
 
   String? image;
 
@@ -20,7 +23,6 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
     image = getProfilePic();
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,11 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         actions: [
           TextButton(
             onPressed: () {  
+<<<<<<< HEAD
               Map <String, dynamic> data = { "profile" : image };
+=======
+              Map<String, dynamic> data = { "profile" : image };
+>>>>>>> 416e15439fe782f7e5e4e4ba6e78197fa4b723b6
               context.read<ProfileProvider>().updateUserInfo(data);
               Navigator.of(context).pop();
             },
@@ -52,12 +58,20 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
             height: 160,
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(16), bottomRight: Radius.circular(16))),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(16),
+                bottomRight: Radius.circular(16)
+              )
+            ),
             child: Column(
               children: [
                 CircleAvatar(
                   radius: 50,
+<<<<<<< HEAD
                   backgroundImage: Image.asset("assets/images/$image").image),
+=======
+                  backgroundImage: Image.asset("assets/images/$image").image,),
+>>>>>>> 416e15439fe782f7e5e4e4ba6e78197fa4b723b6
               ],
             ),
           ),

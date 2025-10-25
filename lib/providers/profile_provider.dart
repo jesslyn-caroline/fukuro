@@ -27,8 +27,8 @@ class ProfileProvider with ChangeNotifier {
     sharedPref.setLoginStatus(email);
   }
 
-  Future <String> login(String email, String password) async {
-    Map <String, dynamic> data = await userRespository.fetch(email, password);
+  Future<String> login(String email, String password) async {
+    Map<String, dynamic> data = await userRespository.fetch(email, password);
     String message = data["message"];
     UserModel? user = data["user"];
 
@@ -42,13 +42,13 @@ class ProfileProvider with ChangeNotifier {
     return message;
   }
 
-  Future <void> getUserInfo(String email) async {
+  Future<void> getUserInfo(String email) async {
     UserModel? user = await usersDb.getOne(email);
     currentUser = user;
     notifyListeners();
   }
 
-  Future <void> updateUserInfo(Map <String, dynamic> data) async {
+  Future<void> updateUserInfo(Map <String, dynamic> data) async {
     data["email"] = currentUser?.email;
 
     await usersDb.updateOne(data);
