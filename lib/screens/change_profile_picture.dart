@@ -30,11 +30,19 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actionsPadding: EdgeInsets.all(12),
         actions: [
-          TextButton(onPressed: () {  
-            Map <String, dynamic> data = { "profile" : image };
-            context.read<ProfileProvider>().updateUserInfo(data);
-            Navigator.of(context).pop();
-          }, child: Text("Save", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Colors.white),))
+          TextButton(
+            onPressed: () {  
+              Map <String, dynamic> data = { "profile" : image };
+              context.read<ProfileProvider>().updateUserInfo(data);
+              Navigator.of(context).pop();
+            },
+            child: Text(
+              "Save",
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Colors.white
+              )
+            )
+          )
         ],
       ),
       body: Column(
@@ -49,7 +57,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: Image.asset("assets/images/${image}").image,),
+                  backgroundImage: Image.asset("assets/images/$image").image),
               ],
             ),
           ),
@@ -65,7 +73,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
                     onTap: () => setState(() {image = profilePic[index];}),
                     child: CircleAvatar(
                       radius: 30,
-                      backgroundImage: Image.asset("assets/images/${profilePic[index]}").image,),
+                      backgroundImage: Image.asset("assets/images/${profilePic[index]}").image),
                   ),
                 );
               },

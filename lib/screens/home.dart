@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/components/course_card.dart';
 import 'package:fukuro/components/course_card_1.dart';
 import 'package:fukuro/components/progress_card.dart';
 import 'package:fukuro/providers/profile_provider.dart';

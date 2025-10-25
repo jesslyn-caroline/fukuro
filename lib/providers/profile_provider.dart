@@ -36,6 +36,7 @@ class ProfileProvider with ChangeNotifier {
 
     currentUser = user;
     changeLoginStatus(user.email);
+
     usersDb.insert(user.toJson());
 
     return message;
