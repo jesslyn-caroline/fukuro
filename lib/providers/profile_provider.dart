@@ -13,7 +13,6 @@ class ProfileProvider with ChangeNotifier {
 
   UserModel? currentUser;
 
-
   void changeTheme(value) {
     isDark = value;
     notifyListeners();
