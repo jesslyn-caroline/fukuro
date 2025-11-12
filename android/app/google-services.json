@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "564859109323",
+    "project_id": "fukuro-34691",
+    "storage_bucket": "fukuro-34691.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564859109323:android:133fc19c4b3407b592c04e",
+        "android_client_info": {
+          "package_name": "com.example.fukuro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBR0aDek9f8gpdJ2_gtsJpuRrVtbVHyQw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

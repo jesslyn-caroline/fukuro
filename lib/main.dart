@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite_common_ffi/windows/sqflite_ffi_setup.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/welcome.dart';
@@ -9,12 +10,14 @@ import 'package:fukuro/styles/darktheme.dart';
 import 'package:fukuro/styles/lighttheme.dart';
 import 'package:provider/provider.dart';
 
-void main () {
+void main () async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPref.init();
   
   sqfliteFfiInit();
   databaseFactory = databaseFactoryFfi;
+
+  await Firebase.initializeApp();
 
   runApp(MultiProvider(
     providers: [
