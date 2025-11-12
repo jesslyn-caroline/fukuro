@@ -14,8 +14,8 @@ void main () async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPref.init();
   
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
+  // sqfliteFfiInit();
+  // databaseFactory = databaseFactoryFfi;
 
   await Firebase.initializeApp();
 
