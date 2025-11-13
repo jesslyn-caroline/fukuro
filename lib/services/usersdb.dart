@@ -23,7 +23,7 @@ class UsersDb {
           $PROFILE TEXT NOT NULL
         )
       '''
-  );
+    );
   }
 
   void insert(Map<String, dynamic> data) async {
