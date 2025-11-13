@@ -27,9 +27,7 @@ class UserRespository {
     return data; 
   }
 
-  Future <String> post(String email, String password, String name) async {
-    String msg = "";
-
+  Future <void> post(String email, String password, String name) async {
     try {
       var response = await http.post(Uri.parse("$URL/signup"), 
         headers: { "Content-Type": "application/json" },
@@ -37,13 +35,9 @@ class UserRespository {
       );
       var result = jsonDecode(response.body);
 
-      if (response.statusCode == 201) msg = result["message"];
-
     } catch (err) {
-      msg = err.toString();
+      print(err); 
     }
-
-    return msg;
   }
 
   Future <void> update(Map<String, dynamic> data) async {
