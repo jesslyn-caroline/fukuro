@@ -43,7 +43,8 @@ class FirebaseAuthenticationService {
     } on FirebaseAuthException catch (err) {
       if (err.code == "invalid-email") msg = "Invalid email";
       else if (err.code == "user-not-found") msg = "User not found";
-      else if (err.code == "wrong-password" || err.code == "invalid-credentials") msg = "Wrong password";
+      else if (err.code == "wrong-password") msg = "Wrong password";
+      else if (err.code == "invalid-credential") msg = "Invalid credential";
     }
 
     return msg;
