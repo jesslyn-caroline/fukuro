@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/course_card_1.dart';
 import 'package:fukuro/components/progress_card.dart';
+import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/daily_quiz.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   Home({super.key});
+
+  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
 
   List<String> quotes = [
     "Knowledge is your power",
@@ -83,7 +86,10 @@ class Home extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 GestureDetector(
-                  onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => DailyQuiz())),
+                  onTap: () {
+                    analytics.logQuiz();
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => DailyQuiz()));
+                  },
                   child: Container(
                     padding: EdgeInsets.fromLTRB(18, 16, 18, 10),
                     decoration: BoxDecoration(
