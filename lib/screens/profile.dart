@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/profile_setting_tile.dart';
+import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/change_password.dart';
 import 'package:fukuro/screens/change_profile_picture.dart';
@@ -9,7 +10,9 @@ import 'package:fukuro/screens/getstarted.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  Profile({super.key});
+
+  FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +72,7 @@ class Profile extends StatelessWidget {
                 BlockButton(
                   text: "LOG OUT", 
                   action: () {
+                    firebaseAuthenticationService.logout();
                     context.read<ProfileProvider>().changeLoginStatus("");
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted()));
                   }, 
