@@ -11,8 +11,6 @@ class Login extends StatelessWidget {
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
 
-  // UsersDb usersDb = UsersDb();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,6 +66,7 @@ class Login extends StatelessWidget {
                       );
                       return;
                     }
+                    emailC.text = passwordC.text = "";
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Index()));
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

@@ -77,6 +77,7 @@ class Signup extends StatelessWidget {
 
                     if (msg == "") {
                       await userRespository.post(emailC.text,passwordC.text, nameC.text);
+                      emailC.text = passwordC.text = nameC.text = confirmPasswordC.text = "";
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
