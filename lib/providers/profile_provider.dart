@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:fukuro/models/user_model.dart';
 import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/services/sharedpref.dart';
@@ -7,6 +8,8 @@ import 'package:fukuro/services/usersdb.dart';
 class ProfileProvider with ChangeNotifier {
   UserRespository userRespository = UserRespository();
   UsersDb usersDb = UsersDb();
+
+  FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
 
   bool isDark = sharedPref.getMode();
   String userLoggedIn = sharedPref.getLoginStatus();
@@ -27,18 +30,26 @@ class ProfileProvider with ChangeNotifier {
   }
 
   Future<String> login(String email, String password) async {
-    Map<String, dynamic> data = await userRespository.fetch(email, password);
-    String message = data["message"];
-    UserModel? user = data["user"];
+    String msg = "";
+    msg = await firebaseAuthenticationService.login(email, password);
 
-    if (user == null) return message;
+    if (msg == "") {
+      Map<String, dynamic> data = await userRespository.fetch(email, password);
+      String message = data["message"];
+      UserModel? user = data["user"];
 
-    currentUser = user;
-    changeLoginStatus(user.email);
+      if (user == null) {
+        msg = message;
+        return msg;
+      }
 
-    usersDb.insert(user.toJson());
+      currentUser = user;
+      changeLoginStatus(user.email);
 
-    return message;
+      usersDb.insert(user.toJson());
+    }
+
+    return msg;
   }
 
   Future<void> getUserInfo(String email) async {
