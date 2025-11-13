@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/screens/course_detail.dart';
 
 class CourseCard1 extends StatelessWidget {
@@ -8,17 +9,13 @@ class CourseCard1 extends StatelessWidget {
   String id, title, level;
   int numOfLessons;
 
-  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-
-  Future <void> logCourse() async {
-    await analytics.logEvent(name: "${title.replaceAll(' ', '_')}");
-  }
+  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices(); 
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        logCourse();
+        analytics.logCourse(title);
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetail(id: id)));
       },
       child: Container(
