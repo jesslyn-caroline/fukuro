@@ -59,9 +59,10 @@ class Login extends StatelessWidget {
                 BlockButton(
                   text: "LOGIN",
                   action: () async {
-                    String msg = await context.read<ProfileProvider>().login(emailC.text, passwordC.text);
+                    String msg = await Provider.of<ProfileProvider>(context, listen: false).login(emailC.text, passwordC.text);
+
                     ScaffoldMessenger.of(context).clearSnackBars();
-                    if (!msg.contains("success")) {
+                    if (msg != "") {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar( content: Text(msg), backgroundColor: Theme.of(context).snackBarTheme.backgroundColor, )
                       );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
+import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/screens/login.dart';
@@ -12,6 +13,7 @@ class Signup extends StatelessWidget {
   ProfileProvider profileProvider = ProfileProvider();
   UsersDb usersDb = UsersDb();
   UserRespository userRespository = UserRespository();
+  FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
 
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -68,15 +70,19 @@ class Signup extends StatelessWidget {
                 BlockButton(
                   text: "SIGN UP",
                   action: () async {
-                    String msg = await userRespository.post(emailC.text,passwordC.text, nameC.text);
+                    String msg = "";
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(msg))
-                    );
+                    if (passwordC.text != confirmPasswordC.text) msg = "Passwords do not match";
+                    else msg = await firebaseAuthenticationService.signup(emailC.text, passwordC.text);
 
-                    if (msg.contains("success")) {
+                    if (msg == "") {
+                      await userRespository.post(emailC.text,passwordC.text, nameC.text);
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
-                    }              
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(msg))
+                      ); 
+                    }      
                   },
                   bgColor: Theme.of(context).colorScheme.primary,
                   textColor: Colors.white,
