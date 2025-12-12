@@ -5,16 +5,16 @@ import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/services/usersdb.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 class ProfileProvider with ChangeNotifier {
   UserRespository userRespository = UserRespository();
   UsersDb usersDb = UsersDb();
-
   FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
 
   bool isDark = sharedPref.getMode();
-  String userLoggedIn = sharedPref.getLoginStatus();
 
-  UserModel? currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
 
   void changeTheme(value) {
     isDark = value;
@@ -22,53 +22,40 @@ class ProfileProvider with ChangeNotifier {
     sharedPref.setMode(value);
   }
 
-  void changeLoginStatus(String email) {
-    userLoggedIn = email;
-
-    notifyListeners();
-    sharedPref.setLoginStatus(email);
-  }
-
   Future<String> login(String email, String password) async {
     String msg = "";
     msg = await firebaseAuthenticationService.login(email, password);
 
-    if (msg == "") {
-      Map<String, dynamic> data = await userRespository.fetch(email, password);
-      String message = data["message"];
-      UserModel? user = data["user"];
+    if (msg != "") return msg;
 
-      if (user == null) {
-        msg = message;
-        return msg;
-      }
+    user = FirebaseAuth.instance.currentUser;
 
-      currentUser = user;
-      changeLoginStatus(user.email);
+    usersDb.insert({
+      "email" : user!.email,
+      "name" : user!.displayName,
+      "profile" : user!.photoURL
+    });
 
-      usersDb.insert(user.toJson());
-    }
+    notifyListeners();
 
     return msg;
   }
 
-  Future<void> getUserInfo(String email) async {
-    UserModel? user = await usersDb.getOne(email);
-    currentUser = user;
+  Future<void> updateUserInfo (Map <String, dynamic> data, String toBeChanged) async {
+    switch (toBeChanged) {
+      case "displayName": await firebaseAuthenticationService.changeDisplayName(data["name"]);
+      case "profilePic": await firebaseAuthenticationService.changeProfilePic(data["profile"]);
+      case "password": await firebaseAuthenticationService.changePassword(data["oldPassword"], data["password"]);
+    }
+    user = FirebaseAuth.instance.currentUser;
     notifyListeners();
-  }
 
-  Future<void> updateUserInfo(Map <String, dynamic> data) async {
-    data["email"] = currentUser?.email;
+    print(user);
+
+    data["email"] = user!.email;
 
     await usersDb.updateOne(data);
-    getUserInfo(userLoggedIn);
 
-    await userRespository.update(data);
-  }
-
-  ProfileProvider() {
-    userLoggedIn = sharedPref.getLoginStatus();
-    getUserInfo(userLoggedIn);
+    
   }
 }
