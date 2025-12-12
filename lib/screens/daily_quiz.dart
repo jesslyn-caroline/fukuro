@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
+import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/models/quiz_model.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/respositories/quiz_respository.dart';
@@ -22,6 +23,7 @@ class _DailyQuizState extends State<DailyQuiz> {
   int score = 0;
 
   QuizRespository quizRespository = QuizRespository();
+  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
 
   @override
   void initState() {
@@ -295,6 +297,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                     text: "SUBMIT",
                     action: () {
                       calculateScore(list_quiz);
+                      analytics.logQuiz(score);
                       showDialog(
                         context: context,
                         builder:
