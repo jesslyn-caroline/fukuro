@@ -9,15 +9,10 @@ class CourseCard1 extends StatelessWidget {
   String id, title, level;
   int numOfLessons;
 
-  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices(); 
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        analytics.logCourse(title);
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetail(id: id)));
-      },
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetail(id: id))),
       child: Container(
         margin: EdgeInsets.only(bottom: 14),
         width: double.infinity,
