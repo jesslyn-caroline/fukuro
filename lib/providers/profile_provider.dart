@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/firebase/firebase_authentication.dart';
-import 'package:fukuro/models/user_model.dart';
-import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/services/usersdb.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ProfileProvider with ChangeNotifier {
-  UserRespository userRespository = UserRespository();
   UsersDb usersDb = UsersDb();
   FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
 
@@ -50,12 +47,9 @@ class ProfileProvider with ChangeNotifier {
     user = FirebaseAuth.instance.currentUser;
     notifyListeners();
 
-    print(user);
+    if (toBeChanged == "password") return;
 
     data["email"] = user!.email;
-
     await usersDb.updateOne(data);
-
-    
   }
 }

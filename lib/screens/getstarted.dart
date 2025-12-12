@@ -1,6 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/screens/signup.dart';

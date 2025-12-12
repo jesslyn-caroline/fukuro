@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:fukuro/providers/profile_provider.dart';
-import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/services/usersdb.dart';
+
 
 class Signup extends StatefulWidget {
   Signup({super.key});
@@ -18,7 +19,6 @@ class _SignupState extends State<Signup> {
   ProfileProvider profileProvider = ProfileProvider();
 
   UsersDb usersDb = UsersDb();
-  UserRespository userRespository = UserRespository();
   FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
 
   TextEditingController nameC = TextEditingController();

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/profile_setting_tile.dart';
 import 'package:fukuro/firebase/firebase_authentication.dart';
@@ -7,7 +10,7 @@ import 'package:fukuro/screens/change_password.dart';
 import 'package:fukuro/screens/change_profile_picture.dart';
 import 'package:fukuro/screens/change_username.dart';
 import 'package:fukuro/screens/getstarted.dart';
-import 'package:provider/provider.dart';
+
 
 class Profile extends StatelessWidget {
   Profile({super.key});

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/components/course_card_1.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:fukuro/components/course_card.dart';
 import 'package:fukuro/components/progress_card.dart';
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/daily_quiz.dart';
-import 'package:provider/provider.dart';
+
 
 class Home extends StatelessWidget {
   Home({super.key});
@@ -186,9 +189,9 @@ class Home extends StatelessWidget {
                 SizedBox(height: 12),
                 Column(
                   children: [
-                    CourseCard1(id: "68f5ad59a870cf5c0c8a7f6a", title: "Python for Starters", numOfLessons: 12, level: "Beginner"),
-                    CourseCard1(id: "68f5ae0b89b6d338708a6627", title: "Web Basics with HTML and CSS", numOfLessons: 25, level: "Beginner"),
-                    CourseCard1(id: "68f5ae6d89b6d338708a662a", title: "Get to Know JavaScript", numOfLessons: 20, level: "Beginner"),
+                    CourseCard(id: "68f5ad59a870cf5c0c8a7f6a", title: "Python for Starters", numOfLessons: 12, level: "Beginner"),
+                    CourseCard(id: "68f5ae0b89b6d338708a6627", title: "Web Basics with HTML and CSS", numOfLessons: 25, level: "Beginner"),
+                    CourseCard(id: "68f5ae6d89b6d338708a662a", title: "Get to Know JavaScript", numOfLessons: 20, level: "Beginner"),
                   ],
                 )
               ],

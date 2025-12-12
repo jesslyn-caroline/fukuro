@@ -1,52 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:fukuro/firebase/firebase_analytics.dart';
+import 'package:fukuro/screens/course_detail.dart';
 
 class CourseCard extends StatelessWidget {
-  CourseCard({super.key, required this.imgSrc, required this.title, required this.subtitle});
+  CourseCard({super.key, required this.id, required this.title, required this.numOfLessons, required this.level});
   
-  String imgSrc, title, subtitle;
+  String id, title, level;
+  int numOfLessons;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 12),
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: Theme.of(context).colorScheme.primary)
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsets.all(4),
-            decoration: BoxDecoration(
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseDetail(id: id))),
+      child: Container(
+        margin: EdgeInsets.only(bottom: 14),
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          border: Border.all(color: Theme.of(context).colorScheme.primary, width: 1.5),
+          borderRadius: BorderRadius.circular(10)
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("$title", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               color: Theme.of(context).colorScheme.primary,
-              borderRadius: BorderRadius.circular(8),
+              fontWeight: FontWeight.w900, 
+              fontSize: 14),
             ),
-            child: Image.asset(imgSrc, width: 32, height: 32),
-          ),
-          SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w900,
-                )
-              ),
-              Text(
-                subtitle,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: Colors.grey,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w900
-                )
-              ),
-            ],
-          )
-        ],
-      ),
+            Text("$level - $numOfLessons lessons", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: Colors.grey,
+              fontWeight: FontWeight.w800, 
+              fontSize: 12),
+            ),
+          ],
+        ),
+      )
     );
   }
 }

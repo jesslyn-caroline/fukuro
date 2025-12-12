@@ -33,10 +33,9 @@ class FirebaseAuthenticationService {
         email: user!.email!, 
         password: oldPassword
       );
+      
       await user.reauthenticateWithCredential(cred);
       await user.updatePassword(password);
-
-      print("CHANGED $user");
     } on FirebaseAuthException catch (err) {
       // if (err.code == ) 
     }

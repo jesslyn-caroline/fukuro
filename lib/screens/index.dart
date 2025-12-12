@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
+
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/screens/courses.dart';
 import 'package:fukuro/screens/home.dart';

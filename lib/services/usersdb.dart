@@ -1,6 +1,8 @@
-import 'package:fukuro/models/user_model.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'package:fukuro/models/user_model.dart';
 import 'package:fukuro/services/dbservice.dart';
+
 
 class UsersDb {
   String TABLE = "users";

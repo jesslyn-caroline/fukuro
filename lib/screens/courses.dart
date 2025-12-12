@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/components/course_card_1.dart';
+
+import 'package:fukuro/components/course_card.dart';
 import 'package:fukuro/respositories/course_respository.dart';
 
 class Courses extends StatelessWidget {
@@ -56,7 +57,7 @@ class Courses extends StatelessWidget {
                 return Column(
                   children: [
                     ...snapshot.data!.map((course) {
-                      return CourseCard1(id: course.id, title: course.name, level: course.level, numOfLessons: course.numberOfLessons,);
+                      return CourseCard(id: course.id, title: course.name, level: course.level, numOfLessons: course.numberOfLessons,);
                     })
                   ],
                 );

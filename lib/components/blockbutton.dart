@@ -30,7 +30,11 @@ class BlockButton extends StatelessWidget {
           ),
           side: BorderSide(color: Theme.of(context).colorScheme.primary, width: 1.5)
         ),
-        onPressed: isDisabled? null : action, 
+        onPressed: () {
+          if (isDisabled) return;
+          FocusManager.instance.primaryFocus?.unfocus();
+          action();
+        }, 
         child: Text(
           text,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
