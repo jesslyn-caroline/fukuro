@@ -31,10 +31,10 @@ class Profile extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())),
-                  child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().currentUser?.profile}").image, ),
+                  child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().user!.photoURL}").image, ),
                 ),
                 SizedBox(height: 10,),
-                Text( "${context.watch<ProfileProvider>().currentUser?.name}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                Text( "${context.watch<ProfileProvider>().user?.displayName}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800 )
                 )
               ],
@@ -60,7 +60,7 @@ class Profile extends StatelessWidget {
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeUsername())), 
                   title: "Username",
-                  subtitle: context.watch<ProfileProvider>().currentUser?.name,
+                  subtitle: context.watch<ProfileProvider>().user?.displayName,
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
                 SizedBox(height: 14,),
                 ProfileSettingTile(
@@ -73,7 +73,6 @@ class Profile extends StatelessWidget {
                   text: "LOG OUT", 
                   action: () {
                     firebaseAuthenticationService.logout();
-                    context.read<ProfileProvider>().changeLoginStatus("");
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted()));
                   }, 
                   bgColor: Theme.of(context).colorScheme.primary, 
