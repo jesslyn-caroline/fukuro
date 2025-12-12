@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/providers/profile_provider.dart';
@@ -32,7 +34,7 @@ class ChangeUsername extends StatelessWidget {
             child: ListView(
               children: [
                 Text(
-                  "Change username",
+                  "${AppLocalizations.of(context)!.usernameChange}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
@@ -40,10 +42,10 @@ class ChangeUsername extends StatelessWidget {
                   ),
                 ),               
                 SizedBox(height: 20),
-                BlockField(hintText: "New username", controller: nameC, errorText: "", isPassword: false),
+                BlockField(hintText: "${AppLocalizations.of(context)!.usernameNew}", controller: nameC, errorText: "", isPassword: false),
                 SizedBox(height: 28),
                 BlockButton(
-                  text: "CHANGE",
+                  text: "${AppLocalizations.of(context)!.changeButton}",
                   action: () {
                     context.read<ProfileProvider>().updateUserInfo({ "name": nameC.text }, "displayName");
                     Navigator.of(context).pop();

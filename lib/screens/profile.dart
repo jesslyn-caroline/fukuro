@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:provider/provider.dart';
 
@@ -49,12 +50,12 @@ class Profile extends StatelessWidget {
               children: [
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())), 
-                  title: "Change Profile Picture", 
+                  title: "${AppLocalizations.of(context)!.profileProfilePicture}", 
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)),
                 SizedBox(height: 14,),
                 ProfileSettingTile(
                   action: () => {}, 
-                  title: "Switch Mode", 
+                  title: "${AppLocalizations.of(context)!.profileSwitch}", 
                   trailing: Switch(
                     value: context.watch<ProfileProvider>().isDark, 
                     onChanged: (value) => context.read<ProfileProvider>().changeTheme(value))
@@ -62,18 +63,18 @@ class Profile extends StatelessWidget {
                 SizedBox(height: 14,),
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeUsername())), 
-                  title: "Username",
+                  title: "${AppLocalizations.of(context)!.profileUsername}",
                   subtitle: context.watch<ProfileProvider>().user?.displayName,
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
                 SizedBox(height: 14,),
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangePassword())), 
-                  title: "Password", 
+                  title: "${AppLocalizations.of(context)!.profilePassword}", 
                   subtitle: "• • • • • • • • • •",
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
                 SizedBox(height: 14,),                
                 BlockButton(
-                  text: "LOG OUT", 
+                  text: "${AppLocalizations.of(context)!.profileLogout}", 
                   action: () {
                     firebaseAuthenticationService.logout();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted()));

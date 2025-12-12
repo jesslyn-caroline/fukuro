@@ -17,9 +17,13 @@ class ProfileSettingTile extends StatelessWidget {
       onTap: action,
       title: Text("$title", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
         color: Theme.of(context).colorScheme.primary, 
-        fontWeight: FontWeight.w800
+        fontWeight: FontWeight.w800,
+        fontSize: 16
       ),),
-      subtitle: subtitle != null ? Text("$subtitle", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: Theme.of(context).colorScheme.primary),) : null,
+      subtitle: subtitle != null ? Text("$subtitle", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+        color: Theme.of(context).colorScheme.primary,
+        fontSize: 16
+      ),) : null,
       trailing: trailing,
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 
 class ChangeProfilePicture extends StatefulWidget {
@@ -39,9 +41,10 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
               Navigator.of(context).pop();
             },
             child: Text(
-              "Save",
+              "${AppLocalizations.of(context)!.profilePictureSave}",
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                color: Colors.white
+                color: Colors.white,
+                fontSize: 18
               )
             )
           )

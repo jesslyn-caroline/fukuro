@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/screens/course_detail.dart';
 
@@ -29,7 +31,7 @@ class CourseCard extends StatelessWidget {
               fontWeight: FontWeight.w900, 
               fontSize: 14),
             ),
-            Text("$level - $numOfLessons lessons", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            Text("$level - $numOfLessons ${AppLocalizations.of(context)!.coursesDetailLessons}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               color: Colors.grey,
               fontWeight: FontWeight.w800, 
               fontSize: 12),

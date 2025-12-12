@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 
@@ -35,7 +37,7 @@ class ChangePassword extends StatelessWidget {
             child: ListView(
               children: [
                 Text(
-                  "Change Password",
+                  "${AppLocalizations.of(context)!.passwordChange}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
@@ -43,17 +45,17 @@ class ChangePassword extends StatelessWidget {
                   ),
                 ),               
                 SizedBox(height: 20),
-                BlockField(hintText: "Current password", controller: currentPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${AppLocalizations.of(context)!.passwordCurrent}", controller: currentPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
-                BlockField(hintText: "New password", controller: newPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${AppLocalizations.of(context)!.passwordNew}", controller: newPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
-                BlockField(hintText: "Confirm password", controller: confirmPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${AppLocalizations.of(context)!.passwordConfirm}", controller: confirmPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 28),
                 BlockButton(
-                  text: "CHANGE",
+                  text: "${AppLocalizations.of(context)!.changeButton}",
                   action: () {
                     String msg = "";
-                    if (newPasswordC.text != confirmPasswordC.text) msg = "Passwords do not match";
+                    if (newPasswordC.text != confirmPasswordC.text) msg = "${AppLocalizations.of(context)!.passwordNotMatch}";
 
                     if (msg != "") {
                       ScaffoldMessenger.of(context).showSnackBar(

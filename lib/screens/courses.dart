@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:fukuro/components/course_card.dart';
+import 'package:fukuro/components/cards/course_card.dart';
 import 'package:fukuro/respositories/course_respository.dart';
 
 class Courses extends StatelessWidget {
@@ -23,7 +24,7 @@ class Courses extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Courses",
+                  "${AppLocalizations.of(context)!.coursesTitle}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.white, 
                     fontSize: 24, 
@@ -32,7 +33,7 @@ class Courses extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  "Explore a variety of tech courses designed to help you grow your skills",
+                  "${AppLocalizations.of(context)!.coursesDescription}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.white, 
                     fontSize: 14, 
@@ -51,7 +52,7 @@ class Courses extends StatelessWidget {
                   return Center(child: CircularProgressIndicator(),);
                 }
                 else if (snapshot.hasError) {
-                  return Center(child: Text("Something went wrong"),);
+                  return Center(child: Text("${AppLocalizations.of(context)!.error}"),);
                 }
 
                 return Column(

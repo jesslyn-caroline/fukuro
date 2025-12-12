@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fukuro/components/cards/greetings_card.dart';
+import 'package:fukuro/components/cards/homebanner_card.dart';
+import 'package:fukuro/components/cards/todoDailyQuiz_card.dart';
 
 import 'package:provider/provider.dart';
 
-import 'package:fukuro/components/course_card.dart';
-import 'package:fukuro/components/progress_card.dart';
+import 'package:fukuro/components/cards/course_card.dart';
+import 'package:fukuro/components/cards/progress_card.dart';
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/daily_quiz.dart';
@@ -14,150 +18,27 @@ class Home extends StatelessWidget {
 
   FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
 
-  List<String> quotes = [
-    "Knowledge is your power",
-    "Study now, success later",
-    "Try, Fail, Learn, Repeat",
-    "Progress over perfection",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
-          Container(
-            color: Theme.of(context).colorScheme.primary,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(left: 24, top: 52),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Hello, ${context.read<ProfileProvider>().user!.displayName}",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 26,
-                              fontWeight: FontWeight.w800,
-                              color: Colors.white
-                            )
-                          ),
-                          StreamBuilder(
-                            stream: Stream.periodic(
-                              Duration(seconds: 2),
-                              (count) => count % quotes.length,
-                            ),
-                            builder: (context, snapshot) {
-                              return Text(
-                                quotes[snapshot.data ?? 0],
-                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white
-                                )
-                              );
-                            }
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Image.asset("assets/images/peekaboo-owl.png", width: 140)
-                ),
-              ],
-            )
-          ),
+          GreetingsCard(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 30),
             child: Column(
               children: [
                 Row(
                   children: [
-                    ProgressCard(title: "Ongoing", num: 3, img: "assets/images/bulb.png"),
+                    ProgressCard(title: "${AppLocalizations.of(context)!.homeOngoing}", num: 3, img: "assets/images/bulb.png"),
                     SizedBox(width: 12),
-                    ProgressCard(title: "Completed", num: 1, img: "assets/images/goal.png"),
+                    ProgressCard(title: "${AppLocalizations.of(context)!.homeCompleted}", num: 1, img: "assets/images/goal.png"),
                   ],
                 ),
                 SizedBox(height: 12),
-                GestureDetector(
-                  onTap: () {
-                    analytics.toQuiz();
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => DailyQuiz()));
-                  },
-                  child: Container(
-                    padding: EdgeInsets.fromLTRB(18, 16, 18, 10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: Theme.of(context).colorScheme.primary)
-                    ),
-                    child: Row(
-                      children: [
-                        Image.asset("assets/images/quiz.png", width: 50),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Ready for Today's challenge?", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w900,
-                                  color: Theme.of(context).colorScheme.primary
-                                ),
-                              ),
-                              SizedBox(height: 2),
-                              Text(
-                                "Test your knowledge with fun, bite-sized quizzes!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w800,
-                                  color: Theme.of(context).colorScheme.secondary
-                                ),
-                                softWrap: true,
-                              ),
-                              SizedBox(height: 4),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),           
+                TodoDailyQuizCard(),           
                 SizedBox(height: 20),
-                Container(
-                  padding: EdgeInsets.fromLTRB(16, 12, 0, 0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Theme.of(context).colorScheme.secondary
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 12),
-                          child: Text(
-                            "What would you like to learn today?",
-                            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white
-                            )
-                          ),
-                        ),
-                      ),
-                      Image.asset("assets/images/illustration.png", width: 150)
-                    ],
-                  ),
-                ),
+                HomebannerCard(),
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4),
@@ -166,18 +47,18 @@ class Home extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "Popular Courses",
+                        "${AppLocalizations.of(context)!.coursesTitle}",
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 16,
+                          fontSize: 20,
                           fontWeight: FontWeight.w900
                         )
                       ),
                       GestureDetector(
                         onTap: () {},
                         child: Text(
-                          "See all Courses",
+                          "${AppLocalizations.of(context)!.homeSeeAllCourse}",
                           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w900,
                             color: Theme.of(context).colorScheme.primary
                           )

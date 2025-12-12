@@ -12,6 +12,7 @@ class ProfileProvider with ChangeNotifier {
   bool isDark = sharedPref.getMode();
 
   User? user = FirebaseAuth.instance.currentUser;
+  String selectedLang = "ja";
 
   void changeTheme(value) {
     isDark = value;
