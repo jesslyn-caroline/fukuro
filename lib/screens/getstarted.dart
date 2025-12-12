@@ -21,6 +21,7 @@ class _GetStartedState extends State<GetStarted> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 60),
         child: Column(
