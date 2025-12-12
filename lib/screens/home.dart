@@ -87,7 +87,7 @@ class Home extends StatelessWidget {
                 SizedBox(height: 12),
                 GestureDetector(
                   onTap: () {
-                    analytics.logQuiz();
+                    analytics.toQuiz();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => DailyQuiz()));
                   },
                   child: Container(
