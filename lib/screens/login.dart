@@ -69,11 +69,8 @@ class Login extends StatelessWidget {
                         return;
                       }
                       emailC.text = passwordC.text = "";
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Index()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Index()));
                     },
-                    bgColor: Theme.of(context).colorScheme.primary,
-                    textColor: Colors.white,
-                    borderColor: Theme.of(context).colorScheme.primary
                   )
                 ],
               ),

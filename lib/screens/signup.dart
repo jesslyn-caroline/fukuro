@@ -26,6 +26,8 @@ class _SignupState extends State<Signup> {
   TextEditingController passwordC = TextEditingController();
   TextEditingController confirmPasswordC = TextEditingController();
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -79,12 +81,12 @@ class _SignupState extends State<Signup> {
                     text: "SIGN UP",
                     action: () async {
                       String msg = "";
-      
+
                       if (passwordC.text != confirmPasswordC.text) msg = "Passwords do not match";
-                      else msg = await firebaseAuthenticationService.signup(emailC.text, passwordC.text);
+                      else msg = await firebaseAuthenticationService.signup(emailC.text, passwordC.text, nameC.text);
       
                       if (msg == "") {
-                        await userRespository.post(emailC.text,passwordC.text, nameC.text);
+                        // await userRespository.post(emailC.text,passwordC.text, nameC.text);
                         emailC.text = passwordC.text = nameC.text = confirmPasswordC.text = "";
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
                       } else {
@@ -93,9 +95,6 @@ class _SignupState extends State<Signup> {
                         ); 
                       }      
                     },
-                    bgColor: Theme.of(context).colorScheme.primary,
-                    textColor: Colors.white,
-                    borderColor: Theme.of(context).colorScheme.primary
                   )
                 ],
               ),
