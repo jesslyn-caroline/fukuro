@@ -1,0 +1,52 @@
+{
+  "hello": "こんにちは",
+  "homeFirstQuote": "チシキハアナタノチカラデス",
+  "homeSecondQuote": "イマベンキョウシテ、アトデセイコウシヨウ",
+  "homeThirdQuote": "チョウセン、シッパイ、ガクシュウ、クリカエシ",
+  "homeFourthQuote": "カンペキヨリシンポヲジュウシ",
+  "homeOngoing": "シンコウチュウ",
+  "homeCompleted": "カンリョウ",
+  "homeChallenge": "キョウノチャレンジノジュンビハデキマシタカ？",
+  "homeChallengeDesc": "タノシクテミジカイクイズデチシキヲタメシマショウ",
+  "homeBanner": "キョウハナニヲマナビマスカ？",
+  "homePopularCourse": "ニンキコース",
+  "homeSeeAllCourse": "スベテノコースヲミル",
+
+  "quizDailyQuiz": "デイリークイズ",
+  "quizDescription": "スコシキュウケイシテ、キョウハナンモンセイカイデキルカタメシテミマショウ",
+  "quizQuestion": "シツモン",
+  "quizSubmit": "ソウシン",
+  "quizComplete": "クイズカンリョウ",
+  "quizScore": "アナタノスコア",
+
+  "coursesTitle": "コース",
+  "coursesDescription": "スキルヲノバスタメノサマザマナテックコースヲサガシマショウ",
+  "coursesDetailLevel": "レベル",            
+  "coursesDetailLessons": "マテリアルスウ",  
+  "coursesDetailEnroll": "エンロール",
+
+  "profileProfilePicture": "プロフィールシャシンヲヘンコウ",
+  "profileSwitch": "モードキリカエ",
+  "profileUsername": "ユーザー名",
+  "profilePassword": "パスワード",
+  "profileLogout": "ログアウト",
+
+  "profilePictureSave": "ホゾン",
+
+  "usernameChange": "ユーザー名ヲヘンコウ",
+  "usernameNew": "アタラシイユーザー名",
+
+  "passwordChange": "パスワードヘンコウ",
+  "passwordCurrent": "ゲンザイノパスワード",
+  "passwordNew": "アタラシイパスワード",
+  "passwordConfirm": "パスワードコンファーム",
+  "passwordNotMatch": "パスワードドゥノットマッチ",
+
+  "languageEnglish": "エイゴ",
+  "languageIndonesian": "インドネシアゴ",
+  "languageJapanese": "ニホンゴ",
+  "languageQuestion": "フクロデシヨウスルゲンゴハナンデスカ?",
+
+  "changeButton": "ヘンコウ",
+  "error": "サムシングロング"
+}

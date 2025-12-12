@@ -1,0 +1,52 @@
+{
+  "hello": "Hello",
+  "homeFirstQuote": "Knowledge is your power",
+  "homeSecondQuote": "Study now, success later",
+  "homeThirdQuote": "Try, Fail, Learn, Repeat",
+  "homeFourthQuote": "Progress over perfection",
+  "homeOngoing": "Ongoing",
+  "homeCompleted": "Completed",
+  "homeChallenge": "Ready for today's challenge",
+  "homeChallengeDesc": "Test your knowledge with fun, bite-sized quizzes",
+  "homeBanner": "What would you like to learn today",
+  "homePopularCourse": "Popular Courses",
+  "homeSeeAllCourse": "See all courses",
+
+  "quizDailyQuiz": "Daily Quiz",
+  "quizDescription": "Take a short break and see how many questions you can get right today",
+  "quizQuestion": "Question",
+  "quizSubmit": "SUBMIT",
+  "quizComplete": "Quiz Complete",
+  "quizScore": "Your score",
+
+  "coursesTitle": "Courses",
+  "coursesDescription": "Explore a variety of tech courses designed to help you grow your skills",
+  "coursesDetailLevel": "Level",
+  "coursesDetailLessons": "Number of Lessons",
+  "coursesDetailEnroll": "Enroll",
+
+  "profileProfilePicture": "Change Profile Picture",
+  "profileSwitch": "Switch Mode",
+  "profileUsername": "Username",
+  "profilePassword": "Password",
+  "profileLogout": "LOG OUT",
+
+  "profilePictureSave": "Save",
+
+  "usernameChange": "Change username",
+  "usernameNew": "New username",
+
+  "passwordChange": "Change Password",
+  "passwordCurrent": "Current Password",
+  "passwordNew": "New Password",
+  "passwordConfirm": "Confirm Password",
+  "passwordNotMatch" : "Passwords do not match",
+
+  "languageEnglish": "English",
+  "languageIndonesian": "Indonesia",
+  "languageJapanese": "Japan",
+  "languageQuestion": "What language do you want to use for Fukuro?",
+
+  "changeButton": "CHANGE",
+  "error": "Something wrong"
+}

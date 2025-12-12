@@ -1,0 +1,52 @@
+{
+  "hello" : "Halo",
+  "homeFirstQuote": "Pengetahuan adalah kekuatanmu",
+  "homeSecondQuote": "Belajar sekarang, sukses nanti",
+  "homeThirdQuote": "Coba, Gagal, Belajar, Ulangi",
+  "homeFourthQuote": "Progres lebih penting daripada kesempurnaan",
+  "homeOngoing": "Berlangsung",
+  "homeCompleted": "Selesai",
+  "homeChallenge": "Siap tantangan hari ini?",
+  "homeChallengeDesc": "Uji pengetahuanmu dengan kuis singkat yang menyenangkan",
+  "homeBanner": "Apa yang ingin kamu pelajari hari ini?",
+  "homePopularCourse": "Kursus Populer",
+  "homeSeeAllCourse": "Lihat semua",
+
+  "quizDailyQuiz": "Kuis Harian",
+  "quizDescription": "Ambil jeda sebentar dan lihat berapa banyak soal yang bisa kamu jawab hari ini",
+  "quizQuestion": "Pertanyaan",
+  "quizSubmit": "KIRIM",
+  "quizComplete": "Kuis Selesai",
+  "quizScore": "Skormu",
+
+  "coursesTitle": "Kursus",
+  "coursesDescription": "Jelajahi berbagai kursus teknologi untuk mengembangkan kemampuanmu",
+  "coursesDetailLevel": "Tingkat",
+  "coursesDetailLessons": "Jumlah Materi",
+  "coursesDetailEnroll": "Daftar",
+
+  "profileProfilePicture": "Ubah Foto Profil",
+  "profileSwitch": "Ganti Mode",
+  "profileUsername": "Nama Pengguna",
+  "profilePassword": "Kata Sandi",
+  "profileLogout": "KELUAR",
+
+  "profilePictureSave": "Simpan",
+
+  "usernameChange": "Ubah nama pengguna",
+  "usernameNew": "Nama pengguna baru",
+
+  "passwordChange": "Ubah Kata Sandi",
+  "passwordCurrent": "Kata sandi saat ini",
+  "passwordNew": "Kata sandi baru",
+  "passwordConfirm": "Konfirmasi Password",
+  "passwordNotMatch" : "Passwords tidak cocok",
+
+  "languageEnglish": "Inggris",
+  "languageIndonesian": "Indonesia",
+  "languageJapanese": "Jepang",
+  "languageQuestion": "Bahasa apa yang ingin kamu gunakan untuk Fukuro?",
+
+  "changeButton": "UBAH",
+  "error": "Terjadi kesalahan"
+}
