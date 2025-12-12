@@ -14,6 +14,7 @@ class ChangePassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         toolbarHeight: 90,
         leading: Padding(
@@ -61,8 +62,7 @@ class ChangePassword extends StatelessWidget {
                       return;
                     }
                     
-                    Map <String, dynamic> data = { "password" : newPasswordC.text };
-                    context.read<ProfileProvider>().updateUserInfo(data);
+                    context.read<ProfileProvider>().updateUserInfo({ "oldPassword" : currentPasswordC.text, "password" : newPasswordC.text }, "password");
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

@@ -45,8 +45,7 @@ class ChangeUsername extends StatelessWidget {
                 BlockButton(
                   text: "CHANGE",
                   action: () {
-                    Map <String, dynamic> data = { "name" : nameC.text};
-                    context.read<ProfileProvider>().updateUserInfo(data);
+                    context.read<ProfileProvider>().updateUserInfo({ "name": nameC.text }, "displayName");
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

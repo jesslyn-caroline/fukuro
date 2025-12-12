@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:provider/provider.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 
@@ -13,7 +14,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
   List<String> profilePic = [ "pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png" ];
 
   String? getProfilePic () {
-    return context.read<ProfileProvider>().currentUser?.profile;
+    return context.read<ProfileProvider>().user?.photoURL;
   }
 
   String? image;
@@ -34,8 +35,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         actions: [
           TextButton(
             onPressed: () {  
-              Map <String, dynamic> data = { "profile" : image };
-              context.read<ProfileProvider>().updateUserInfo(data);
+              context.read<ProfileProvider>().updateUserInfo({ "profile" : image }, "profilePic");
               Navigator.of(context).pop();
             },
             child: Text(
