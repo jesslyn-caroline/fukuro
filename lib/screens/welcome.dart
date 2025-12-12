@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fukuro/screens/index.dart';
 import 'package:provider/provider.dart';
 import 'package:fukuro/components/blockbutton.dart';
@@ -32,9 +33,9 @@ class _WelcomeState extends State<Welcome> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: futureLoading,
-      builder: (context, snapshot) {   
+      builder: (context, snapshot) { 
         if (snapshot.connectionState == ConnectionState.waiting) return Loading();
-        if (context.read<ProfileProvider>().userLoggedIn != "") return Index();
+        if (context.read<ProfileProvider>().user != null) return Index();
 
         return Scaffold(
           body: Padding(
