@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/button.dart';
 import 'package:fukuro/components/tag.dart';
+import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/respositories/course_respository.dart';
 import 'package:fukuro/screens/loading.dart';
 
@@ -8,6 +9,8 @@ class CourseDetail extends StatelessWidget {
   CourseDetail({super.key, required this.id});
 
   CourseRespository courseRespository = CourseRespository();
+  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices(); 
+
   String id;
 
   @override
@@ -62,7 +65,9 @@ class CourseDetail extends StatelessWidget {
                 SizedBox(height: 12,),
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Button(action: () {}, text: "Enroll")
+                  child: Button(action: () {
+                    analytics.logCourse(id, snapshot.data!.name, snapshot.data!.level);
+                  }, text: "Enroll")
                 )
               ],
             );
