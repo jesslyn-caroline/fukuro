@@ -7,10 +7,16 @@ import 'package:fukuro/respositories/user_respository.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/services/usersdb.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
   Signup({super.key});
 
+  @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
   ProfileProvider profileProvider = ProfileProvider();
+
   UsersDb usersDb = UsersDb();
   UserRespository userRespository = UserRespository();
   FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
@@ -29,12 +35,11 @@ class Signup extends StatelessWidget {
         appBar: AppBar(
           toolbarHeight: 90,
           leading: Padding(
-            padding: EdgeInsets.all(14),
+            padding: EdgeInsets.all(2),
             child: IconButton(
-              hoverColor: Colors.transparent,
-              splashColor: Colors.transparent,
+              style: Theme.of(context).iconButtonTheme.style,
               onPressed: () => Navigator.of(context).pop(), 
-              icon: Icon(Icons.arrow_back, size: 24)
+              icon: Icon(Icons.arrow_back)
             ),
           ),
         ),

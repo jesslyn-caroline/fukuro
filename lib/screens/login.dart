@@ -20,12 +20,11 @@ class Login extends StatelessWidget {
          appBar: AppBar(
           toolbarHeight: 90,
           leading: Padding(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.all(2),
             child: IconButton(
-              hoverColor: Colors.transparent,
-              splashColor: Colors.transparent,
+              style: Theme.of(context).iconButtonTheme.style,
               onPressed: () => Navigator.of(context).pop(), 
-              icon: Icon(Icons.arrow_back, size: 24)
+              icon: Icon(Icons.arrow_back)
             ),
           ),
         ),

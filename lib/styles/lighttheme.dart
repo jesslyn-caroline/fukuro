@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/styles/lighttheme_iconbutton.dart';
 import 'package:fukuro/styles/lighttheme_inputdecoration.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,6 +19,7 @@ ThemeData lightTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: lightThemeInputDecoration,
+  iconButtonTheme: lightThemeIconButton,
   snackBarTheme: SnackBarThemeData(
     backgroundColor: Color(0XFF5B31B5),
     actionBackgroundColor: Color(0XFF5B31B5),
