@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProgressCard extends StatelessWidget {
-  ProgressCard({super.key, required this.title, required this.num, required this.img});
+  ProgressCard({super.key, required this.title, required this.num, required this.img, required this.semanticLabel});
 
-  String title, img;
+  String title, img, semanticLabel;
   int num;
 
   @override
@@ -17,7 +17,7 @@ class ProgressCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Image.asset(img, width: 36),
+            Image.asset(img, width: 36, semanticLabel: "",),
             SizedBox(width: 12),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +28,8 @@ class ProgressCard extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
                     color: Theme.of(context).colorScheme.primary,
-                  )
+                  ),
+                  semanticsLabel: semanticLabel,
                 ),
                 Text(
                   title,
@@ -36,7 +37,8 @@ class ProgressCard extends StatelessWidget {
                     fontSize: 14,
                     color: Theme.of(context).colorScheme.primary,
                     fontWeight: FontWeight.w800
-                  )
+                  ),
+                  semanticsLabel: "",
                 ),
               ],
             )
