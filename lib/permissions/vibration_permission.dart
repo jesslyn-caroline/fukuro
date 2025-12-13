@@ -1,4 +1,3 @@
-import 'package:permission_handler/permission_handler.dart';
 import 'package:vibration/vibration.dart';
 
 Future <void> vibrate () async {
