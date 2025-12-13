@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fukuro/permissions/access_location_permission.dart';
+import 'package:fukuro/services/sharedpref.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fukuro/screens/index.dart';
@@ -24,6 +25,7 @@ class _WelcomeState extends State<Welcome> {
   }
 
   late Future <void> futureLoading;
+  SharedPref sharedPref = SharedPref();
 
   @override
   void initState() {
@@ -39,12 +41,16 @@ class _WelcomeState extends State<Welcome> {
       builder: (context, snapshot) { 
         if (snapshot.connectionState == ConnectionState.waiting) return Loading();
 
-        String idLang = "en";
-        () async => idLang = await requestLocationPermission();
-        context.read<ProfileProvider>().changeLang(idLang);
-        
-        if (context.read<ProfileProvider>().user != null) return Index();
+        sharedPref.clear();
+        print(sharedPref.getSelectedLang());
+        if (sharedPref.getSelectedLang() == null) {
+          () async => await requestLocationPermission();
+          String idLang = context.read<ProfileProvider>().selectedLang;
+          context.read<ProfileProvider>().changeLang(idLang);
+        }
 
+        if (context.read<ProfileProvider>().user != null) return Index();
+        
         return Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(14),

@@ -15,13 +15,15 @@ class SharedPref{
     await sharedPref?.setBool('mode', mode);
   }
 
-  String getLoginStatus() {
-    return sharedPref?.getString('userLoggedIn') ?? "";
+  String? getSelectedLang() {
+    return sharedPref?.getString('lang');
   }
 
-  Future<void> setLoginStatus(String userLoggedIn) async {
-    await sharedPref?.setString('userLoggedIn', userLoggedIn);
+  Future<void> setSelectedLang(String lang) async {
+    await sharedPref?.setString('lang', lang);
   }
+
+  Future <void> clear() async => await sharedPref?.remove('lang');
 }
 
 final sharedPref = SharedPref();

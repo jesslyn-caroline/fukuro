@@ -17,11 +17,12 @@ class ProfileProvider with ChangeNotifier {
   User? user = FirebaseAuth.instance.currentUser;
   UserInfoModel? userInfo;
 
-  String selectedLang = "en";
+  String selectedLang = sharedPref.getSelectedLang() ?? 'en';
 
   void changeLang (langCode) {
     selectedLang = langCode;
     notifyListeners();
+    sharedPref.setSelectedLang(langCode);
   }
 
   void changeTheme(value) {

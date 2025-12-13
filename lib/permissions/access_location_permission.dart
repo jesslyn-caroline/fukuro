@@ -15,6 +15,8 @@ Future <String> requestLocationPermission () async {
     selectedLang = langCode;
   }
 
+  print(selectedLang);
+
   return selectedLang;
 }
 
