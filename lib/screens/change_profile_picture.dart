@@ -13,7 +13,14 @@ class ChangeProfilePicture extends StatefulWidget {
 }
 
 class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
-  List<String> profilePic = [ "pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png" ];
+  // List<String> profilePic = [ "pp-bear.png", "pp-rabbit.png", "pp-dino.png", "pp-racoon.png" ];
+
+  List <Map <String, dynamic>> profilePic = [
+    { "pic" : "pp-bear.png" , "name" : "Bear"},
+    { "pic" : "pp-rabbit.png" , "name" : "Rabbit" },
+    { "pic" : "pp-dino.png" , "name" : "Dino" },
+    { "pic" : "pp-racoon.png" , "name" : "Racoon" },
+  ];
 
   String? getProfilePic () {
     return context.read<ProfileProvider>().user?.photoURL;
@@ -37,7 +44,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         actions: [
           TextButton(
             onPressed: () {  
-              context.read<ProfileProvider>().updateUserInfo({ "profile" : image }, "profilePic");
+              context.read<ProfileProvider>().updateUserProfile({ "profile" : image }, "profilePic");
               Navigator.of(context).pop();
             },
             child: Text(
@@ -78,11 +85,16 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsets.all(18),
-                  child: GestureDetector(
-                    onTap: () => setState(() {image = profilePic[index];}),
-                    child: CircleAvatar(
-                      radius: 30,
-                      backgroundImage: Image.asset("assets/images/${profilePic[index]}").image),
+                  child: Semantics(
+                    excludeSemantics: true,
+                    label: "${profilePic[index]["name"]}",
+                    hint: "Double Tap to ${profilePic[index]["name"]} as profile picture and tap Save button on top left of the page.",
+                    child: GestureDetector(
+                      onTap: () => setState(() {image = profilePic[index]["pic"];}),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: Image.asset("assets/images/${profilePic[index]["pic"]}").image),
+                    ),
                   ),
                 );
               },

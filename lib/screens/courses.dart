@@ -11,6 +11,8 @@ class Courses extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: ListView(
         children: [
@@ -24,7 +26,7 @@ class Courses extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${AppLocalizations.of(context)!.coursesTitle}",
+                  "${l10n.coursesTitle}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.white, 
                     fontSize: 24, 
@@ -33,7 +35,7 @@ class Courses extends StatelessWidget {
                 ),
                 SizedBox(height: 4),
                 Text(
-                  "${AppLocalizations.of(context)!.coursesDescription}",
+                  "${l10n.coursesDescription}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: Colors.white, 
                     fontSize: 14, 
@@ -52,7 +54,7 @@ class Courses extends StatelessWidget {
                   return Center(child: CircularProgressIndicator(),);
                 }
                 else if (snapshot.hasError) {
-                  return Center(child: Text("${AppLocalizations.of(context)!.error}"),);
+                  return Center(child: Text("${l10n.error}"),);
                 }
 
                 return Column(

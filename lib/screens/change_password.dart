@@ -15,6 +15,8 @@ class ChangePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -37,7 +39,7 @@ class ChangePassword extends StatelessWidget {
             child: ListView(
               children: [
                 Text(
-                  "${AppLocalizations.of(context)!.passwordChange}",
+                  "${l10n.passwordChange}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
@@ -45,17 +47,17 @@ class ChangePassword extends StatelessWidget {
                   ),
                 ),               
                 SizedBox(height: 20),
-                BlockField(hintText: "${AppLocalizations.of(context)!.passwordCurrent}", controller: currentPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${l10n.passwordCurrent}", controller: currentPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
-                BlockField(hintText: "${AppLocalizations.of(context)!.passwordNew}", controller: newPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${l10n.passwordNew}", controller: newPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
-                BlockField(hintText: "${AppLocalizations.of(context)!.passwordConfirm}", controller: confirmPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${l10n.passwordConfirm}", controller: confirmPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 28),
                 BlockButton(
-                  text: "${AppLocalizations.of(context)!.changeButton}",
+                  text: "${l10n.changeButton}",
                   action: () {
                     String msg = "";
-                    if (newPasswordC.text != confirmPasswordC.text) msg = "${AppLocalizations.of(context)!.passwordNotMatch}";
+                    if (newPasswordC.text != confirmPasswordC.text) msg = "${l10n.passwordNotMatch}";
 
                     if (msg != "") {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -64,7 +66,7 @@ class ChangePassword extends StatelessWidget {
                       return;
                     }
                     
-                    context.read<ProfileProvider>().updateUserInfo({ "oldPassword" : currentPasswordC.text, "password" : newPasswordC.text }, "password");
+                    context.read<ProfileProvider>().updateUserProfile({ "oldPassword" : currentPasswordC.text, "password" : newPasswordC.text }, "password");
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

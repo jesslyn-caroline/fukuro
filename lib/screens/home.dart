@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fukuro/components/cards/greetings_card.dart';
 import 'package:fukuro/components/cards/homebanner_card.dart';
 import 'package:fukuro/components/cards/todoDailyQuiz_card.dart';
+import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: ListView(
         children: [
@@ -30,13 +33,17 @@ class Home extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ProgressCard(title: "${AppLocalizations.of(context)!.homeOngoing}", num: 3, img: "assets/images/bulb.png"),
+                    ProgressCard(title: "${l10n.homeOngoing}", num: 3, img: "assets/images/bulb.png"),
                     SizedBox(width: 12),
-                    ProgressCard(title: "${AppLocalizations.of(context)!.homeCompleted}", num: 1, img: "assets/images/goal.png"),
+                    ProgressCard(title: "${l10n.homeStreakQuiz}", num: context.watch<ProfileProvider>().userInfo?.streakQuiz ?? 0, img: "assets/images/goal.png"),
                   ],
                 ),
                 SizedBox(height: 12),
-                TodoDailyQuizCard(),           
+                (
+                  DateFormat.yMMMMd().format(DateTime.parse(context.watch<ProfileProvider>().userInfo?.lastQuizTaken ?? DateTime.now().toString())).
+                    compareTo(DateFormat.yMMMMd().format(DateTime.now())) != 0 ? 
+                  TodoDailyQuizCard() : SizedBox()
+                ),
                 SizedBox(height: 20),
                 HomebannerCard(),
                 SizedBox(height: 20),
@@ -47,7 +54,7 @@ class Home extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Text(
-                        "${AppLocalizations.of(context)!.coursesTitle}",
+                        "${l10n.coursesTitle}",
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w900
@@ -56,7 +63,7 @@ class Home extends StatelessWidget {
                       GestureDetector(
                         onTap: () {},
                         child: Text(
-                          "${AppLocalizations.of(context)!.homeSeeAllCourse}",
+                          "${l10n.homeSeeAllCourse}",
                           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontSize: 14,
                             fontWeight: FontWeight.w900,

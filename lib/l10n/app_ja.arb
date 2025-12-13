@@ -5,7 +5,7 @@
   "homeThirdQuote": "チョウセン、シッパイ、ガクシュウ、クリカエシ",
   "homeFourthQuote": "カンペキヨリシンポヲジュウシ",
   "homeOngoing": "シンコウチュウ",
-  "homeCompleted": "カンリョウ",
+  "homeStreakQuiz": "連日",
   "homeChallenge": "キョウノチャレンジノジュンビハデキマシタカ？",
   "homeChallengeDesc": "タノシクテミジカイクイズデチシキヲタメシマショウ",
   "homeBanner": "キョウハナニヲマナビマスカ？",
@@ -29,6 +29,7 @@
   "profileSwitch": "モードキリカエ",
   "profileUsername": "ユーザー名",
   "profilePassword": "パスワード",
+  "profileChangeLanguage": "言語を変更する",
   "profileLogout": "ログアウト",
 
   "profilePictureSave": "ホゾン",

@@ -71,6 +71,7 @@ class Login extends StatelessWidget {
                         );
                         return;
                       }
+                      context.read<ProfileProvider>().getUserInfo();
                       emailC.text = passwordC.text = "";
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Index()));
                     },

@@ -5,7 +5,7 @@
   "homeThirdQuote": "Try, Fail, Learn, Repeat",
   "homeFourthQuote": "Progress over perfection",
   "homeOngoing": "Ongoing",
-  "homeCompleted": "Completed",
+  "homeStreakQuiz": "Day Streak",
   "homeChallenge": "Ready for today's challenge",
   "homeChallengeDesc": "Test your knowledge with fun, bite-sized quizzes",
   "homeBanner": "What would you like to learn today",
@@ -29,6 +29,7 @@
   "profileSwitch": "Switch Mode",
   "profileUsername": "Username",
   "profilePassword": "Password",
+  "profileChangeLanguage": "Change Language",
   "profileLogout": "LOG OUT",
 
   "profilePictureSave": "Save",

@@ -13,6 +13,8 @@ class ChangeUsername extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 90,
@@ -34,7 +36,7 @@ class ChangeUsername extends StatelessWidget {
             child: ListView(
               children: [
                 Text(
-                  "${AppLocalizations.of(context)!.usernameChange}",
+                  "${l10n.usernameChange}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
@@ -42,12 +44,12 @@ class ChangeUsername extends StatelessWidget {
                   ),
                 ),               
                 SizedBox(height: 20),
-                BlockField(hintText: "${AppLocalizations.of(context)!.usernameNew}", controller: nameC, errorText: "", isPassword: false),
+                BlockField(hintText: "${l10n.usernameNew}", controller: nameC, errorText: "", isPassword: false),
                 SizedBox(height: 28),
                 BlockButton(
-                  text: "${AppLocalizations.of(context)!.changeButton}",
+                  text: "${l10n.changeButton}",
                   action: () {
-                    context.read<ProfileProvider>().updateUserInfo({ "name": nameC.text }, "displayName");
+                    context.read<ProfileProvider>().updateUserProfile({ "name": nameC.text }, "displayName");
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

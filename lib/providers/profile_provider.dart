@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/firebase/firebase_authentication.dart';
+import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
+import 'package:fukuro/models/userInfo_model.dart';
 import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/services/usersdb.dart';
 
@@ -8,11 +10,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 class ProfileProvider with ChangeNotifier {
   UsersDb usersDb = UsersDb();
   FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
+  FirestoreUser firestoreUser = FirestoreUser();
 
   bool isDark = sharedPref.getMode();
 
   User? user = FirebaseAuth.instance.currentUser;
-  String selectedLang = "ja";
+  UserInfoModel? userInfo;
+
+  String selectedLang = "en";
+
+  void changeLang (langCode) {
+    selectedLang = langCode;
+    notifyListeners();
+  }
 
   void changeTheme(value) {
     isDark = value;
@@ -39,7 +49,7 @@ class ProfileProvider with ChangeNotifier {
     return msg;
   }
 
-  Future<void> updateUserInfo (Map <String, dynamic> data, String toBeChanged) async {
+  Future<void> updateUserProfile (Map <String, dynamic> data, String toBeChanged) async {
     switch (toBeChanged) {
       case "displayName": await firebaseAuthenticationService.changeDisplayName(data["name"]);
       case "profilePic": await firebaseAuthenticationService.changeProfilePic(data["profile"]);
@@ -52,5 +62,24 @@ class ProfileProvider with ChangeNotifier {
 
     data["email"] = user!.email;
     await usersDb.updateOne(data);
+  }
+
+  Future <void> updateUserInfo (Map <String, dynamic> data) async {
+    data["uid"] = user!.uid;
+    await firestoreUser.updateOne(data);
+    getUserInfo();
+  }
+
+  Future <void> getUserInfo () async {
+    userInfo = await firestoreUser.getOne(user!.uid);
+    if (userInfo!.streakQuiz != 0 && DateTime.parse(userInfo!.lastQuizTaken).compareTo(DateTime.now()).abs() > 1) {
+      updateUserInfo({ "streakQuiz" : 0 });
+      return;
+    }
+    notifyListeners();
+  }
+
+  ProfileProvider() {
+    getUserInfo();
   }
 }

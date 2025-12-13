@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/firebase/firebase_analytics.dart';
+import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
 import 'package:fukuro/models/quiz_model.dart';
+import 'package:fukuro/permissions/vibration_permission.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/respositories/quiz_respository.dart';
 import 'package:fukuro/services/usersdb.dart';
@@ -24,6 +28,7 @@ class _DailyQuizState extends State<DailyQuiz> {
 
   QuizRespository quizRespository = QuizRespository();
   FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
+  FirestoreUser firestoreUser = FirestoreUser();
 
   @override
   void initState() {
@@ -51,6 +56,8 @@ class _DailyQuizState extends State<DailyQuiz> {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: FutureBuilder<List<QuizModel>>(
         future: quizFuture,
@@ -73,7 +80,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                     Icon(Icons.error_outline, color: Colors.white, size: 48),
                     SizedBox(height: 16),
                     Text(
-                      "Error loading quiz",
+                      "${l10n.error}",
                       style: GoogleFonts.quicksand(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -156,7 +163,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Daily Quiz",
+                                    "${l10n.quizDescription}",
                                     style: GoogleFonts.quicksand(
                                       textStyle: Theme.of(
                                         context,
@@ -169,7 +176,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                                   ),
                                   SizedBox(height: 5),
                                   Text(
-                                    "Take a short break and see how many questions you can get right today",
+                                    "${l10n.quizDescription}",
                                     style: GoogleFonts.quicksand(
                                       textStyle: Theme.of(
                                         context,
@@ -220,7 +227,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                                   bottom: 2,
                                 ),
                                 child: Text(
-                                  "Question ${(index + 1)}",
+                                  "${l10n.quizQuestion} ${(index + 1)}",
                                   style: GoogleFonts.quicksand(
                                     textStyle: Theme.of(
                                       context,
@@ -294,9 +301,14 @@ class _DailyQuizState extends State<DailyQuiz> {
                 Padding(
                   padding: const EdgeInsets.all(24),
                   child: BlockButton(
-                    text: "SUBMIT",
+                    text: "${l10n.quizSubmit}",
                     action: () {
                       calculateScore(list_quiz);
+                      context.read<ProfileProvider>().updateUserInfo({
+                        "lastQuizTaken" : DateTime.now().toString(),
+                        "streakQuiz" : context.read<ProfileProvider>().userInfo!.streakQuiz + 1
+                      });
+                      vibrate();
                       analytics.logQuiz(score);
                       showDialog(
                         context: context,
@@ -305,7 +317,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                               backgroundColor:
                                   Theme.of(context).colorScheme.background,
                               title: Text(
-                                "Quiz Complete!",
+                                "${l10n.quizComplete}",
                                 style: GoogleFonts.quicksand(
                                   textStyle: Theme.of(
                                     context,
@@ -318,7 +330,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                                 ),
                               ),
                               content: Text(
-                                "Your score: $score",
+                                "${l10n.quizScore}: $score",
                                 style: GoogleFonts.quicksand(
                                   textStyle: Theme.of(
                                     context,

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/firebase/firebase_authentication.dart';
+import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/services/usersdb.dart';
+import 'package:fukuro/screens/profile.dart';
 
 
 class Signup extends StatefulWidget {
@@ -20,6 +25,7 @@ class _SignupState extends State<Signup> {
 
   UsersDb usersDb = UsersDb();
   FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
+  FirestoreUser firestoreUser = FirestoreUser();
 
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -30,6 +36,8 @@ class _SignupState extends State<Signup> {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -86,7 +94,7 @@ class _SignupState extends State<Signup> {
                       else msg = await firebaseAuthenticationService.signup(emailC.text, passwordC.text, nameC.text);
       
                       if (msg == "") {
-                        // await userRespository.post(emailC.text,passwordC.text, nameC.text);
+                        firestoreUser.postOne(FirebaseAuth.instance.currentUser!.uid);
                         emailC.text = passwordC.text = nameC.text = confirmPasswordC.text = "";
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
                       } else {

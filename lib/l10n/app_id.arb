@@ -5,7 +5,7 @@
   "homeThirdQuote": "Coba, Gagal, Belajar, Ulangi",
   "homeFourthQuote": "Progres lebih penting daripada kesempurnaan",
   "homeOngoing": "Berlangsung",
-  "homeCompleted": "Selesai",
+  "homeStreakQuiz": "Streak",
   "homeChallenge": "Siap tantangan hari ini?",
   "homeChallengeDesc": "Uji pengetahuanmu dengan kuis singkat yang menyenangkan",
   "homeBanner": "Apa yang ingin kamu pelajari hari ini?",
@@ -29,6 +29,7 @@
   "profileSwitch": "Ganti Mode",
   "profileUsername": "Nama Pengguna",
   "profilePassword": "Kata Sandi",
+  "profileChangeLanguage": "Ubah bahasa",
   "profileLogout": "KELUAR",
 
   "profilePictureSave": "Simpan",
