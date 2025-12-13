@@ -1,5 +1,7 @@
 {
   "hello": "Hello",
+
+  "homeQuizPoint" : "Point",
   "homeFirstQuote": "Knowledge is your power",
   "homeSecondQuote": "Study now, success later",
   "homeThirdQuote": "Try, Fail, Learn, Repeat",

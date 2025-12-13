@@ -33,7 +33,7 @@ class Home extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ProgressCard(title: "${l10n.homeOngoing}", num: 3, img: "assets/images/bulb.png"),
+                    ProgressCard(title: "${l10n.homeQuizPoint}", num: context.watch<ProfileProvider>().userInfo?.point ?? 0, img: "assets/images/bulb.png"),
                     SizedBox(width: 12),
                     ProgressCard(title: "${l10n.homeStreakQuiz}", num: context.watch<ProfileProvider>().userInfo?.streakQuiz ?? 0, img: "assets/images/goal.png"),
                   ],

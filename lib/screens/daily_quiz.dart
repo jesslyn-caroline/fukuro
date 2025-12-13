@@ -306,9 +306,11 @@ class _DailyQuizState extends State<DailyQuiz> {
                       calculateScore(list_quiz);
                       context.read<ProfileProvider>().updateUserInfo({
                         "lastQuizTaken" : DateTime.now().toString(),
-                        "streakQuiz" : context.read<ProfileProvider>().userInfo!.streakQuiz + 1
+                        "streakQuiz" : context.read<ProfileProvider>().userInfo!.streakQuiz + 1,
+                        "point" : context.read<ProfileProvider>().userInfo!.point + score
                       });
                       vibrate();
+                      context.read<ProfileProvider>().getUserInfo();
                       analytics.logQuiz(score);
                       showDialog(
                         context: context,

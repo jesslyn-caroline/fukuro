@@ -9,7 +9,8 @@ class FirestoreUser {
     Map <String, dynamic> data = {
       "uid" : uid, 
       "lastQuizTaken" : DateTime.now().subtract(Duration(days: 2)).toString(),
-      "streakQuiz" : 0
+      "streakQuiz" : 0,
+      "point" : 0
     };
     await db.collection(docs).doc(uid).set(data);
   }
