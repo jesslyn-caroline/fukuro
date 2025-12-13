@@ -33,9 +33,19 @@ class Home extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    ProgressCard(title: "${l10n.homeQuizPoint}", num: context.watch<ProfileProvider>().userInfo?.point ?? 0, img: "assets/images/bulb.png"),
+                    ProgressCard(
+                      title: "${l10n.homeQuizPoint}", 
+                      num: context.watch<ProfileProvider>().userInfo?.point ?? 0, 
+                      img: "assets/images/bulb.png",
+                      semanticLabel: "You currently have ${context.watch<ProfileProvider>().userInfo?.point} points"
+                    ),
                     SizedBox(width: 12),
-                    ProgressCard(title: "${l10n.homeStreakQuiz}", num: context.watch<ProfileProvider>().userInfo?.streakQuiz ?? 0, img: "assets/images/goal.png"),
+                    ProgressCard(
+                      title: "${l10n.homeStreakQuiz}", 
+                      num: context.watch<ProfileProvider>().userInfo?.streakQuiz ?? 0, 
+                      img: "assets/images/goal.png",
+                      semanticLabel: "You have done quiz for ${context.watch<ProfileProvider>().userInfo?.streakQuiz} days in a row"
+                    ),
                   ],
                 ),
                 SizedBox(height: 12),
