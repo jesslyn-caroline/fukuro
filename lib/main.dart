@@ -44,7 +44,6 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: Welcome(),
-      // home: SelectLanguage(),
     );
   }
 }
