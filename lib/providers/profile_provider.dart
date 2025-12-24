@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/firebase/firebase_authentication.dart';
 import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
 import 'package:fukuro/models/userInfo_model.dart';
+import 'package:fukuro/permissions/internet_permission.dart';
 import 'package:fukuro/services/sharedpref.dart';
 import 'package:fukuro/services/usersdb.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:intl/intl.dart';
 
 class ProfileProvider with ChangeNotifier {
   UsersDb usersDb = UsersDb();
@@ -31,24 +33,12 @@ class ProfileProvider with ChangeNotifier {
     sharedPref.setMode(value);
   }
 
-  Future<String> login(String email, String password) async {
-    String msg = "";
-    msg = await firebaseAuthenticationService.login(email, password);
+  // Future<void> login() async {
+  //   user = FirebaseAuth.instance.currentUser;
+  //   userInfo = await usersDb.getOne(user!.uid);
 
-    if (msg != "") return msg;
-
-    user = FirebaseAuth.instance.currentUser;
-
-    usersDb.insert({
-      "email" : user!.email,
-      "name" : user!.displayName,
-      "profile" : user!.photoURL
-    });
-
-    notifyListeners();
-
-    return msg;
-  }
+  //   notifyListeners();
+  // }
 
   Future<void> updateUserProfile (Map <String, dynamic> data, String toBeChanged) async {
     switch (toBeChanged) {
@@ -62,25 +52,53 @@ class ProfileProvider with ChangeNotifier {
     if (toBeChanged == "password") return;
 
     data["email"] = user!.email;
-    await usersDb.updateOne(data);
+    await usersDb.updateByUID(data);
   }
 
   Future <void> updateUserInfo (Map <String, dynamic> data) async {
     data["uid"] = user!.uid;
-    await firestoreUser.updateOne(data);
+    await firestoreUser.updateByUID(data);
+    await usersDb.updateByUID(data);
     getUserInfo();
   }
 
   Future <void> getUserInfo () async {
-    userInfo = await firestoreUser.getOne(user!.uid);
-    if (userInfo!.streakQuiz != 0 && DateTime.parse(userInfo!.lastQuizTaken).compareTo(DateTime.now()).abs() > 1) {
-      updateUserInfo({ "streakQuiz" : 0 });
+    user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    userInfo = await usersDb.getByUID(user!.uid);
+
+    String msg = await isInternetConnected();
+    if (msg != "") {
+      notifyListeners();
       return;
     }
+    
+
+    userInfo = await firestoreUser.getByUID(user!.uid);
+
+    DateTime prev = DateTime.parse(userInfo!.lastQuizTaken.toString());
+    DateTime now = DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString());
+    int diff = now.compareTo(prev).abs();
+
+    print("PREV : $prev");
+    print("NOW : $now");
+    print("DIFF : $diff");
+
+    usersDb.getAll();
+
+
+
+    // if (userInfo!.streakQuiz != 0 && diff > 0) {
+    //   updateUserInfo({ "streakQuiz" : 0 });
+    //   return;
+    // }
+    userInfo = await firestoreUser.getByUID(user!.uid);
+
     notifyListeners();
   }
 
-  ProfileProvider() {
-    getUserInfo();
-  }
+  // ProfileProvider() {
+  //   getUserInfo();
+  // }
 }

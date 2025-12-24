@@ -1,12 +1,13 @@
+import 'package:fukuro/services/sharedpref.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:geolocator/geolocator.dart';
 
 Future <String> requestLocationPermission () async {
   String selectedLang = "en";
+  await Permission.location.request();
 
   var status = await Permission.location.status;
 
-  if (status.isDenied) await Permission.location.request();
   if (status.isPermanentlyDenied) await openAppSettings();
   status = await Permission.location.status;
 
@@ -15,7 +16,7 @@ Future <String> requestLocationPermission () async {
     selectedLang = langCode;
   }
 
-  print(selectedLang);
+  await sharedPref.setSelectedLang(selectedLang);
 
   return selectedLang;
 }

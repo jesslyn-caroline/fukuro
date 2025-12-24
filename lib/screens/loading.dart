@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:fukuro/services/usersdb.dart';
+
 class Loading extends StatefulWidget {
   const Loading({super.key});
 
@@ -12,8 +14,11 @@ class _LoadingState extends State<Loading> {
   int degree = -1;
   Timer? timer;
 
+  UsersDb usersDb = UsersDb();
+
   @override
   void initState() {
+    usersDb.getAll();
     super.initState();
     timer = Timer.periodic(Duration(milliseconds: 70), (timer) {
       setState(() => degree++);

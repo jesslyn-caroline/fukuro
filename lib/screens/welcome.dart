@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fukuro/permissions/access_location_permission.dart';
@@ -25,11 +26,26 @@ class _WelcomeState extends State<Welcome> {
   }
 
   late Future <void> futureLoading;
+
   SharedPref sharedPref = SharedPref();
+  String? idLang;
+
+  Future <void> requestLoc () async {
+    idLang = await requestLocationPermission();
+    print("idLang : $idLang");
+  }
 
   @override
   void initState() {
     futureLoading = loading();
+  
+    // idLang = context.read<ProfileProvider>().selectedLang;
+
+    // if (sharedPref.getSelectedLang() == null)  {
+    //   requestLoc();
+    //   context.read<ProfileProvider>().changeLang(idLang);w
+    // }
+
     super.initState();
   }
 
@@ -38,18 +54,9 @@ class _WelcomeState extends State<Welcome> {
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: futureLoading,
-      builder: (context, snapshot) { 
+      builder: (_, snapshot) { 
         if (snapshot.connectionState == ConnectionState.waiting) return Loading();
-
-        sharedPref.clear();
-        print(sharedPref.getSelectedLang());
-        if (sharedPref.getSelectedLang() == null) {
-          () async => await requestLocationPermission();
-          String idLang = context.read<ProfileProvider>().selectedLang;
-          context.read<ProfileProvider>().changeLang(idLang);
-        }
-
-        if (context.read<ProfileProvider>().user != null) return Index();
+        if (FirebaseAuth.instance.currentUser != null) return Index();
         
         return Scaffold(
           body: Padding(

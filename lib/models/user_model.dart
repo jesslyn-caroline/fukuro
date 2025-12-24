@@ -1,19 +1,39 @@
 class UserModel {
+  String uid;
+  String displayName;
   String email;
-  String name;
-  String profile;
+  String photoURL;
+  int point;
+  int streakQuiz;
+  String lastQuizTaken;
 
-  UserModel({required this.email, required this.name, required this.profile});
+  UserModel({
+    required this.uid,
+    required this.displayName,
+    required this.email,
+    required this.photoURL,
+    required this.point,
+    required this.streakQuiz,
+    required this.lastQuizTaken
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    email: json["email"],
-    name: json["name"],
-    profile: json["profile"],
+    uid: json['uid'],
+    displayName: json['displayName'],
+    email: json['email'],
+    photoURL: json['photoURL'],
+    point: json['point'],
+    streakQuiz: json['streakQuiz'],
+    lastQuizTaken: json['lastQuizTaken'],
   );
 
   Map<String, dynamic> toJson() => {
-    "email": email,
-    "name": name,
-    "profile": profile,
+    'uid': uid,
+    'displayName': displayName,
+    'email': email,
+    'photoURL': photoURL,
+    'point': point,
+    'streakQuiz': streakQuiz,
+    'lastQuizTaken': lastQuizTaken
   };
 }

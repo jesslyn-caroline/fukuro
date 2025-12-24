@@ -10,6 +10,7 @@ import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/respositories/quiz_respository.dart';
 import 'package:fukuro/services/usersdb.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class DailyQuiz extends StatefulWidget {
@@ -305,7 +306,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                     action: () {
                       calculateScore(list_quiz);
                       context.read<ProfileProvider>().updateUserInfo({
-                        "lastQuizTaken" : DateTime.now().toString(),
+                        "lastQuizTaken" : DateFormat('yyyy-MM-dd').format(DateTime.now()),
                         "streakQuiz" : context.read<ProfileProvider>().userInfo!.streakQuiz + 1,
                         "point" : context.read<ProfileProvider>().userInfo!.point + score
                       });

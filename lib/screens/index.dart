@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart  ';
 
 import 'package:fukuro/firebase/firebase_analytics.dart';
+import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/courses.dart';
 import 'package:fukuro/screens/home.dart';
 import 'package:fukuro/screens/profile.dart';
+import 'package:fukuro/services/usersdb.dart';
 
 class Index extends StatefulWidget {
   const Index({super.key});
@@ -14,6 +17,7 @@ class Index extends StatefulWidget {
 
 class _IndexState extends State<Index> {
   FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
+  UsersDb usersDb = UsersDb();
 
   List <Map <String, dynamic>> screens = [
     { "screen" : Home(), "icon" : Icons.home_rounded, "label" : "Home" },
@@ -22,6 +26,14 @@ class _IndexState extends State<Index> {
   ];
 
   int index = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    context.read<ProfileProvider>().getUserInfo();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +45,7 @@ class _IndexState extends State<Index> {
         onTap: (value) {
           analytics.movePage(screens[index]["label"], screens[value]["label"]);
           index = value;
+          // usersDb.getAll();
           
           setState(() {});
         },

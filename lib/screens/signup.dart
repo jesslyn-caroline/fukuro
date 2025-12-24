@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/components/snackbarcustom.dart';
+import 'package:fukuro/utils/signup.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -88,20 +90,15 @@ class _SignupState extends State<Signup> {
                   BlockButton(
                     text: "SIGN UP",
                     action: () async {
-                      String msg = "";
+                      String msg = await signup(emailC.text, nameC.text, passwordC.text, confirmPasswordC.text);
 
-                      if (passwordC.text != confirmPasswordC.text) msg = "Passwords do not match";
-                      else msg = await firebaseAuthenticationService.signup(emailC.text, passwordC.text, nameC.text);
-      
-                      if (msg == "") {
-                        firestoreUser.postOne(FirebaseAuth.instance.currentUser!.uid);
-                        emailC.text = passwordC.text = nameC.text = confirmPasswordC.text = "";
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(msg))
-                        ); 
-                      }      
+                      if (msg != "") {
+                        ScaffoldMessenger.of(context).showSnackBar(snackBarCustom(msg, context));
+                        return;
+                      }
+
+                      emailC.text = passwordC.text = nameC.text = confirmPasswordC.text = "";
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));    
                     },
                   )
                 ],

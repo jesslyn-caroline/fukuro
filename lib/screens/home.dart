@@ -50,8 +50,7 @@ class Home extends StatelessWidget {
                 ),
                 SizedBox(height: 12),
                 (
-                  DateFormat.yMMMMd().format(DateTime.parse(context.watch<ProfileProvider>().userInfo?.lastQuizTaken ?? DateTime.now().toString())).
-                    compareTo(DateFormat.yMMMMd().format(DateTime.now())) != 0 ? 
+                  context.watch<ProfileProvider>().userInfo?.lastQuizTaken.toString() != DateFormat('yyyy-MM-dd').format(DateTime.now()) ?
                   TodoDailyQuizCard() : SizedBox()
                 ),
                 SizedBox(height: 20),

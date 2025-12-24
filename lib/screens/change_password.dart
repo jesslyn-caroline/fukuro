@@ -24,8 +24,6 @@ class ChangePassword extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.all(14),
           child: IconButton(
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
             onPressed: () => Navigator.of(context).pop(), 
             icon: Icon(Icons.arrow_back, size: 24)
           ),

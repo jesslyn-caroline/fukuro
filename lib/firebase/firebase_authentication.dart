@@ -2,7 +2,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthenticationService {
 
-  Future <String> signup(String email, String password, String name) async {
+  Map <String, String> errMsg = {
+    "email-already-in-use" : "Email already in use",
+    "invalid-email" : "Invalid email",
+    "weak-password" : "Weak password",
+    "user-not-found" : "User not found",
+    "wrong-password" : "Wrong password",
+    "invalid-credential" : "Invalid credential"
+  };
+
+  Future <String> signup(String email, String password, String displayName) async {
     String msg = "";
 
     try {
@@ -13,14 +22,12 @@ class FirebaseAuthenticationService {
       msg = "";
 
       await FirebaseAuth.instance.currentUser?.updateProfile(
-        displayName: name,
+        displayName: displayName,
         photoURL: 'pp-dino.png'
       );
 
     } on FirebaseAuthException catch (err) {
-      if (err.code == "email-already-in-use") msg = "Email already in use";
-      else if (err.code == "invalid-email") msg = "Invalid email";
-      else if (err.code == "weak-password") msg = "Weak password";
+      msg = errMsg[err.code] ?? "Something went wrong";
     }
 
     return msg;
@@ -37,7 +44,7 @@ class FirebaseAuthenticationService {
       await user.reauthenticateWithCredential(cred);
       await user.updatePassword(password);
     } on FirebaseAuthException catch (err) {
-      // if (err.code == ) 
+      print(err);
     }
   }
   

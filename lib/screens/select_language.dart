@@ -18,10 +18,8 @@ class SelectLanguage extends StatefulWidget {
 class _SelectLanguageState extends State<SelectLanguage> {
 
   String? selectedLang;
-
-  String getSelectedLang() {
-    return context.read<ProfileProvider>().selectedLang;
-  }
+  String getSelectedLang() => context.read<ProfileProvider>().selectedLang;
+  
 
   @override
   void initState() {

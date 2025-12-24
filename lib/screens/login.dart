@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/components/snackbarcustom.dart';
+import 'package:fukuro/utils/login.dart';
 
 import 'package:provider/provider.dart';
 
@@ -62,13 +64,9 @@ class Login extends StatelessWidget {
                   BlockButton(
                     text: "LOGIN",
                     action: () async {
-                      String msg = await Provider.of<ProfileProvider>(context, listen: false).login(emailC.text, passwordC.text);
-      
-                      ScaffoldMessenger.of(context).clearSnackBars();
+                      String msg = await login(emailC.text, passwordC.text);
                       if (msg != "") {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar( content: Text(msg), backgroundColor: Theme.of(context).snackBarTheme.backgroundColor, )
-                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBarCustom(msg, context));
                         return;
                       }
                       context.read<ProfileProvider>().getUserInfo();
