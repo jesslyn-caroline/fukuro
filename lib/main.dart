@@ -1,12 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:fukuro/screens/select_language.dart';
-import 'package:fukuro/screens/testing.dart';
+import 'dart:async';
 
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'package:sqflite_common_ffi/windows/sqflite_ffi_setup.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fukuro/screens/testing.dart';
 import 'package:provider/provider.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+// import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+// import 'package:sqflite_common_ffi/windows/sqflite_ffi_setup.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/welcome.dart';
@@ -22,6 +24,7 @@ void main () async {
   // databaseFactory = databaseFactoryFfi;
 
   await Firebase.initializeApp();
+  unawaited(MobileAds.instance.initialize());
 
   runApp(MultiProvider(
     providers: [
@@ -44,7 +47,7 @@ class MyApp extends StatelessWidget {
       locale: Locale(context.watch<ProfileProvider>().selectedLang),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Welcome(),
+      home: Testing(),
     );
   }
 }
