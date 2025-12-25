@@ -65,6 +65,8 @@ dev_dependencies:
   vibration: ^3.1.4
   internet_connection_checker_plus: ^2.9.1+2
 
+  google_mobile_ads: ^6.0.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
