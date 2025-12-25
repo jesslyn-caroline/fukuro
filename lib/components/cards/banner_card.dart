@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomebannerCard extends StatelessWidget {
-  const HomebannerCard({super.key});
+class BannerCard extends StatelessWidget {
+  BannerCard({super.key, required this.text, required this.semanticsLabel, required this.image});
+
+  String text, semanticsLabel, image;
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
-      label: "Home Banner",
+      label: semanticsLabel,
       child: Container(
         padding: EdgeInsets.fromLTRB(16, 12, 0, 0),
         decoration: BoxDecoration(
@@ -21,7 +22,7 @@ class HomebannerCard extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.only(bottom: 12),
                 child: Text(
-                  "${AppLocalizations.of(context)!.homeBanner}",
+                  "${text}",
                   style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -30,7 +31,7 @@ class HomebannerCard extends StatelessWidget {
                 ),
               ),
             ),
-            Image.asset("assets/images/illustration.png", width: 150)
+            Image.asset(image, width: 150)
           ],
         ),
       ),
