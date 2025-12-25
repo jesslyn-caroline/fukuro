@@ -17,7 +17,6 @@ class Courses extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            width: double.infinity,
             padding: EdgeInsets.fromLTRB(24, 40, 24, 32),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
@@ -50,12 +49,8 @@ class Courses extends StatelessWidget {
             child: FutureBuilder(
               future: courseRepository.fetch(),
               builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator(),);
-                }
-                else if (snapshot.hasError) {
-                  return Center(child: Text("${l10n.error}"),);
-                }
+                if (snapshot.connectionState == ConnectionState.waiting) return Center(child: CircularProgressIndicator(),);
+                if (snapshot.hasError) return Center(child: Text("${l10n.error}"),);
 
                 return Column(
                   children: [

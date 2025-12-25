@@ -19,8 +19,6 @@ class CourseDetail extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: 90,
         leading: IconButton(
-          hoverColor: Colors.transparent,
-          splashColor: Colors.transparent,
           onPressed: () => Navigator.of(context).pop(), 
           icon: Icon(Icons.arrow_back, size: 24)
         ),
@@ -28,7 +26,7 @@ class CourseDetail extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: FutureBuilder(
-          future: courseRespository.fetchOne(id),
+          future: courseRespository.fetchById(id),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) return Loading();
             if (snapshot.hasError) return Text("Something wrong");
@@ -65,9 +63,10 @@ class CourseDetail extends StatelessWidget {
                 SizedBox(height: 12,),
                 Container(
                   alignment: Alignment.centerRight,
-                  child: Button(action: () {
-                    analytics.logCourse(id, snapshot.data!.name, snapshot.data!.level);
-                  }, text: "Enroll")
+                  child: Button(
+                    action: () => analytics.logCourse(id, snapshot.data!.name, snapshot.data!.level), 
+                    text: "Enroll"
+                  )
                 )
               ],
             );

@@ -1,45 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/components/snackbarcustom.dart';
-import 'package:fukuro/utils/signup.dart';
-import 'package:provider/provider.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
-import 'package:fukuro/firebase/firebase_authentication.dart';
-import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
-import 'package:fukuro/providers/profile_provider.dart';
+import 'package:fukuro/components/snackbarcustom.dart';
+import 'package:fukuro/services/signup_service.dart';
 import 'package:fukuro/screens/login.dart';
-import 'package:fukuro/services/usersdb.dart';
-import 'package:fukuro/screens/profile.dart';
 
 
-class Signup extends StatefulWidget {
+class Signup extends StatelessWidget {
   Signup({super.key});
 
-  @override
-  State<Signup> createState() => _SignupState();
-}
-
-class _SignupState extends State<Signup> {
-  ProfileProvider profileProvider = ProfileProvider();
-
-  UsersDb usersDb = UsersDb();
-  FirebaseAuthenticationService firebaseAuthenticationService = FirebaseAuthenticationService();
-  FirestoreUser firestoreUser = FirestoreUser();
-
-  TextEditingController nameC = TextEditingController();
-  TextEditingController emailC = TextEditingController();
-  TextEditingController passwordC = TextEditingController();
-  TextEditingController confirmPasswordC = TextEditingController();
-
-  bool isLoading = false;
+  SignupService _signupService = SignupService();
 
   @override
   Widget build(BuildContext context) {
-    var l10n = AppLocalizations.of(context)!;
-
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -62,42 +36,35 @@ class _SignupState extends State<Signup> {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               child: ListView(
                 children: [
-                  Text(
-                    "Let's get to know you better!",
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w900,
-                      color: Theme.of(context).colorScheme.primary
-                    ),
-                  ),
-                  Text(
-                    "Your journey starts here!",
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 20, 
-                      fontWeight: FontWeight.w900, 
-                      color: Theme.of(context).colorScheme.secondary
-                    ),
-                  ),
+                  Text("Let's get to know you better!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w900,
+                    color: Theme.of(context).colorScheme.primary
+                  )),
+                  Text("Your journey starts here!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    fontSize: 20, 
+                    fontWeight: FontWeight.w900, 
+                    color: Theme.of(context).colorScheme.secondary
+                  )),
                   SizedBox(height: 20),
-                  BlockField(hintText: "Name", controller: nameC, errorText: "", isPassword: false),
+                  BlockField(hintText: "Name", controller: _signupService.nameC, errorText: "", isPassword: false),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Email", controller: emailC, errorText: "", isPassword: false),
+                  BlockField(hintText: "Email", controller: _signupService.emailC, errorText: "", isPassword: false),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Password", controller: passwordC, errorText: "", isPassword: true),
+                  BlockField(hintText: "Password", controller: _signupService.passwordC, errorText: "", isPassword: true),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Confirm Password", controller: confirmPasswordC, errorText: "", isPassword: true),
+                  BlockField(hintText: "Confirm Password", controller: _signupService.confirmPasswordC, errorText: "", isPassword: true),
                   SizedBox(height: 28),
                   BlockButton(
                     text: "SIGN UP",
                     action: () async {
-                      String msg = await signup(emailC.text, nameC.text, passwordC.text, confirmPasswordC.text);
+                      String msg = await _signupService.signup();
 
                       if (msg != "") {
                         ScaffoldMessenger.of(context).showSnackBar(snackBarCustom(msg, context));
                         return;
                       }
 
-                      emailC.text = passwordC.text = nameC.text = confirmPasswordC.text = "";
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login()));    
                     },
                   )

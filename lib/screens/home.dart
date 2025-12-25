@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
 import 'package:fukuro/components/cards/greetings_card.dart';
 import 'package:fukuro/components/cards/homebanner_card.dart';
 import 'package:fukuro/components/cards/todoDailyQuiz_card.dart';
-import 'package:intl/intl.dart';
-
-import 'package:provider/provider.dart';
-
 import 'package:fukuro/components/cards/course_card.dart';
 import 'package:fukuro/components/cards/progress_card.dart';
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/providers/profile_provider.dart';
-import 'package:fukuro/screens/daily_quiz.dart';
 
 
 class Home extends StatelessWidget {

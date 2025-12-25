@@ -14,15 +14,10 @@ class _LoadingState extends State<Loading> {
   int degree = -1;
   Timer? timer;
 
-  UsersDb usersDb = UsersDb();
-
   @override
   void initState() {
-    usersDb.getAll();
+    timer = Timer.periodic(Duration(milliseconds: 70), (timer) => setState(() => degree++));
     super.initState();
-    timer = Timer.periodic(Duration(milliseconds: 70), (timer) {
-      setState(() => degree++);
-    });
   }
 
   @override
@@ -61,24 +56,16 @@ class _LoadingState extends State<Loading> {
                 ),
               ],
             ),
-            SizedBox(),
-            Text(
-              "fukuro",
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 32,
-                fontWeight: FontWeight.w800,
-                color: Theme.of(context).colorScheme.primary
-              )
-            ),   
+            Text("fukuro", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: 32,
+              fontWeight: FontWeight.w800,
+              color: Theme.of(context).colorScheme.primary
+            )),   
             SizedBox(height: 20),
-            Text(
-              "Preparing to open the door of knowledge",
-              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 20,
-                color: Theme.of(context).colorScheme.primary
-              ),
-              textAlign: TextAlign.center
-            ),    
+            Text("Preparing to open the door of knowledge", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: 20,
+              color: Theme.of(context).colorScheme.primary
+            ), textAlign: TextAlign.center,),    
           ],
         ),
       )

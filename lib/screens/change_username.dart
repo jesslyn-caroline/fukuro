@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/services/change_username_service.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -9,7 +10,7 @@ import 'package:fukuro/providers/profile_provider.dart';
 class ChangeUsername extends StatelessWidget {
   ChangeUsername({super.key});
 
-  TextEditingController nameC = TextEditingController();
+  ChangeUsernameService _changeUsernameService = ChangeUsernameService();
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,6 @@ class ChangeUsername extends StatelessWidget {
         leading: Padding(
           padding: const EdgeInsets.all(14),
           child: IconButton(
-            hoverColor: Colors.transparent,
-            splashColor: Colors.transparent,
             onPressed: () => Navigator.of(context).pop(), 
             icon: Icon(Icons.arrow_back, size: 24)
           ),
@@ -44,12 +43,13 @@ class ChangeUsername extends StatelessWidget {
                   ),
                 ),               
                 SizedBox(height: 20),
-                BlockField(hintText: "${l10n.usernameNew}", controller: nameC, errorText: "", isPassword: false),
+                BlockField(hintText: "${l10n.usernameNew}", controller: _changeUsernameService.nameC, errorText: "", isPassword: false),
                 SizedBox(height: 28),
                 BlockButton(
                   text: "${l10n.changeButton}",
-                  action: () {
-                    context.read<ProfileProvider>().updateUserProfile({ "name": nameC.text }, "displayName");
+                  action: () async {
+                    await _changeUsernameService.change();
+                    context.read<ProfileProvider>().getUserInfo();
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

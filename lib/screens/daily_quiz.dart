@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+import 'package:fukuro/components/alert_dialog_custom.dart';
 import 'package:fukuro/components/blockbutton.dart';
-import 'package:fukuro/firebase/firebase_analytics.dart';
-import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
-import 'package:fukuro/models/quiz_model.dart';
-import 'package:fukuro/permissions/vibration_permission.dart';
 import 'package:fukuro/providers/profile_provider.dart';
-import 'package:fukuro/respositories/quiz_respository.dart';
-import 'package:fukuro/services/usersdb.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+import 'package:fukuro/services/quiz_service.dart';
 
 class DailyQuiz extends StatefulWidget {
   const DailyQuiz({super.key});
@@ -21,38 +16,13 @@ class DailyQuiz extends StatefulWidget {
 }
 
 class _DailyQuizState extends State<DailyQuiz> {
-  UsersDb usersDb = UsersDb();
-
-  late Future<List<QuizModel>> quizFuture;
-  List<String?> selected_answers = [];
-  int score = 0;
-
-  QuizRespository quizRespository = QuizRespository();
-  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
-  FirestoreUser firestoreUser = FirestoreUser();
+  QuizService _quizService = QuizService();
 
   @override
   void initState() {
+    // TODO: implement initState
+    _quizService.init();
     super.initState();
-    quizFuture = quizRespository.fetch();
-  }
-
-  void selectAnswer(int index, String? answer) {
-    setState(() {
-      selected_answers[index] = answer;
-    });
-  }
-
-  void calculateScore(List<QuizModel> list_quiz) {
-    int current_score = 0;
-    for (int i = 0; i < list_quiz.length; i++) {
-      if (selected_answers[i] == list_quiz[i].answer) {
-        current_score += 20;
-      }
-    }
-    setState(() {
-      score = current_score;
-    });
   }
 
   @override
@@ -60,325 +30,108 @@ class _DailyQuizState extends State<DailyQuiz> {
     var l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: FutureBuilder<List<QuizModel>>(
-        future: quizFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Container(
-              color: Theme.of(context).colorScheme.primary,
-              child: Center(
-                child: CircularProgressIndicator(color: Colors.white),
-              ),
-            );
-          }
-          if (snapshot.hasError) {
-            return Container(
-              color: Theme.of(context).colorScheme.primary,
-              child: Center(
+      body: FutureBuilder(
+        future: _quizService.questions,
+        builder:(context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) return Center(child: CircularProgressIndicator(color: Theme.of(context).primaryColor),);
+          if (snapshot.hasError) return Text("${l10n.error}");
+
+          return ListView(
+            children: [
+              Container(
+                padding: EdgeInsets.fromLTRB(4, 16, 4, 24),
+                color: Theme.of(context).colorScheme.primary,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.error_outline, color: Colors.white, size: 48),
-                    SizedBox(height: 16),
-                    Text(
-                      "${l10n.error}",
-                      style: GoogleFonts.quicksand(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: Icon(Icons.arrow_back, color: Colors.white, size: 24),
                     ),
-                    SizedBox(height: 8),
-                    Text(
-                      "${snapshot.error}",
-                      style: GoogleFonts.quicksand(
-                        fontSize: 14,
-                        color: Colors.white70,
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(16, 24, 16, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("${l10n.quizDailyQuiz}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.white, 
+                            fontSize: 24, 
+                            fontWeight: FontWeight.w900
+                          )),
+                          SizedBox(height: 4),
+                          Text("${l10n.quizDescription}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Colors.white, 
+                            fontSize: 14, 
+                            fontWeight: FontWeight.w500
+                          )),
+                        ],
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                    )    
                   ],
                 ),
               ),
-            );
-          }
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Container(
-              color: Theme.of(context).colorScheme.primary,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.quiz_outlined, color: Colors.white, size: 48),
-                    SizedBox(height: 16),
-                    Text(
-                      "No quiz available",
-                      style: GoogleFonts.quicksand(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          }
-          List<QuizModel> list_quiz = snapshot.data!;
-          if (selected_answers.isEmpty) {
-            selected_answers = List.filled(list_quiz.length, null);
-          }
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: double.infinity,
-                  color: Theme.of(context).colorScheme.primary,
-                  child: Column(
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 16, 20, 20),
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 10,
-                          top: 45,
-                          bottom: 30,
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.tertiary,
+                          borderRadius: BorderRadius.circular(16)
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              icon: Icon(
-                                Icons.arrow_back,
-                                size: 28,
-                                color: Colors.white,
-                              ),
-                            ),
-                            SizedBox(height: 25),
-                            Padding(
-                              padding: EdgeInsets.only(left: 14, right: 125),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${l10n.quizDescription}",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: Theme.of(
-                                        context,
-                                      ).textTheme.bodyMedium!.copyWith(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5),
-                                  Text(
-                                    "${l10n.quizDescription}",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: Theme.of(
-                                        context,
-                                      ).textTheme.bodyMedium!.copyWith(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                        child: Text("Question ${index + 1}", style: Theme.of(context).textTheme.bodyMedium!.copyWith( 
+                          color: Theme.of(context).colorScheme.primary, 
+                          fontSize: 14, 
+                          fontWeight: FontWeight.w900
+                        )),
                       ),
+                      SizedBox(height: 10),
+                      Text("${snapshot.data![index].question}", style: Theme.of(context).textTheme.bodyMedium!.copyWith( fontWeight: FontWeight.w900, fontSize: 18 ),),
+                      SizedBox(height: 10),
+                      Column(
+                        children: [
+                          ...snapshot.data![index].options.map((option) => Row(
+                            children: [
+                              Radio(
+                                value: option, 
+                                groupValue: _quizService.selectedAns[index], 
+                                onChanged: (value) => setState(() => _quizService.selectedAns[index] = value!),
+                              ),
+                              Text("$option", style: Theme.of(context).textTheme.bodyMedium!.copyWith( fontWeight: FontWeight.w900, fontSize: 16 ),),
+                            ],
+                          ))
+                        ],
+                      ),
+                      SizedBox(height: 14),
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
-                ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: list_quiz.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        left: 24,
-                        top: 8,
-                        right: 24,
-                      ),
-                      child: Card(
-                        color: Colors.transparent,
-                        elevation: 0,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).colorScheme.tertiary,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 12,
-                                  right: 12,
-                                  top: 2,
-                                  bottom: 2,
-                                ),
-                                child: Text(
-                                  "${l10n.quizQuestion} ${(index + 1)}",
-                                  style: GoogleFonts.quicksand(
-                                    textStyle: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium!.copyWith(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              list_quiz[index].question,
-                              style: GoogleFonts.quicksand(
-                                textStyle: Theme.of(
-                                  context,
-                                ).textTheme.bodyMedium!.copyWith(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Wrap(
-                              spacing: 20,
-                              children: [
-                                ...list_quiz[index].options.map((option) {
-                                  return SizedBox(
-                                    width:
-                                        MediaQuery.of(context).size.width / 2 -
-                                        40,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Radio(
-                                          value: option,
-                                          groupValue: selected_answers[index],
-                                          onChanged: (value) {
-                                            selectAnswer(index, value);
-                                          },
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            option,
-                                            style: GoogleFonts.quicksand(
-                                              textStyle: Theme.of(
-                                                context,
-                                              ).textTheme.bodyMedium!.copyWith(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                }),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: BlockButton(
-                    text: "${l10n.quizSubmit}",
-                    action: () {
-                      calculateScore(list_quiz);
-                      context.read<ProfileProvider>().updateUserInfo({
-                        "lastQuizTaken" : DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                        "streakQuiz" : context.read<ProfileProvider>().userInfo!.streakQuiz + 1,
-                        "point" : context.read<ProfileProvider>().userInfo!.point + score
-                      });
-                      vibrate();
-                      context.read<ProfileProvider>().getUserInfo();
-                      analytics.logQuiz(score);
-                      showDialog(
-                        context: context,
-                        builder:
-                            (context) => AlertDialog(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.background,
-                              title: Text(
-                                "${l10n.quizComplete}",
-                                style: GoogleFonts.quicksand(
-                                  textStyle: Theme.of(
-                                    context,
-                                  ).textTheme.bodyMedium!.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ),
-                              content: Text(
-                                "${l10n.quizScore}: $score",
-                                style: GoogleFonts.quicksand(
-                                  textStyle: Theme.of(
-                                    context,
-                                  ).textTheme.bodyMedium!.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text(
-                                    "OK",
-                                    style: GoogleFonts.quicksand(
-                                      textStyle: Theme.of(
-                                        context,
-                                      ).textTheme.bodyMedium!.copyWith(
-                                        color:
-                                            Theme.of(
-                                              context,
-                                            ).colorScheme.primary,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                      );
-                    },
-                    bgColor: Theme.of(context).colorScheme.primary,
-                    textColor: Colors.white,
-                    borderColor: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ],
-            ),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 20), 
+                child: BlockButton(
+                  text: l10n.quizSubmit, 
+                  action: () {
+                    _quizService.submit(context.read<ProfileProvider>().user!.uid, _quizService.score, context.read<ProfileProvider>().userInfo!.streakQuiz);
+                    showAlertDialog(context, l10n.quizComplete, l10n.quizScore, _quizService.score, [
+                      BlockButton(text: "OK", action: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pop();
+                      })
+                    ]);
+                  }
+                )
+              )
+            ],
           );
         },
-      ),
+      )
     );
   }
 }

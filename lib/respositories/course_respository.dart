@@ -25,7 +25,7 @@ class CourseRespository {
     return [];
   }
 
-  Future <CourseDetailModel?> fetchOne(String id) async{
+  Future <CourseDetailModel?> fetchById(String id) async{
     try {
       var response = await http.get(Uri.parse("$URL/$id"));
       var result = jsonDecode(response.body);

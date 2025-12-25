@@ -29,7 +29,6 @@ class _IndexState extends State<Index> {
 
   @override
   void initState() {
-    // TODO: implement initState
     context.read<ProfileProvider>().getUserInfo();
 
     super.initState();
@@ -44,9 +43,7 @@ class _IndexState extends State<Index> {
         selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: (value) {
           analytics.movePage(screens[index]["label"], screens[value]["label"]);
-          index = value;
-          // usersDb.getAll();
-          
+          index = value;  
           setState(() {});
         },
         items: [

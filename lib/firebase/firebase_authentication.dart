@@ -33,7 +33,9 @@ class FirebaseAuthenticationService {
     return msg;
   }
 
-  Future <void> changePassword (String oldPassword, String password) async {
+  Future <String> changePassword (String oldPassword, String password) async {
+    String msg = "";
+
     try {
       var user = FirebaseAuth.instance.currentUser;
       final cred = EmailAuthProvider.credential(
@@ -44,8 +46,10 @@ class FirebaseAuthenticationService {
       await user.reauthenticateWithCredential(cred);
       await user.updatePassword(password);
     } on FirebaseAuthException catch (err) {
-      print(err);
+      msg = errMsg[err.code] ?? "Something went wrong";
     }
+
+    return msg;
   }
   
   Future <void> changeProfilePic (String pic) async {

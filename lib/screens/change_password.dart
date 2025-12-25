@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:fukuro/providers/profile_provider.dart';
+import 'package:fukuro/components/snackbarcustom.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
+import 'package:fukuro/providers/profile_provider.dart';
+import 'package:fukuro/services/change_password_service.dart';
 
 class ChangePassword extends StatelessWidget {
   ChangePassword({super.key});
 
-  TextEditingController currentPasswordC = TextEditingController();
-  TextEditingController newPasswordC = TextEditingController();
-  TextEditingController confirmPasswordC = TextEditingController();
+  ChangePasswordService _changePasswordService = ChangePasswordService();
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +46,22 @@ class ChangePassword extends StatelessWidget {
                   ),
                 ),               
                 SizedBox(height: 20),
-                BlockField(hintText: "${l10n.passwordCurrent}", controller: currentPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${l10n.passwordCurrent}", controller: _changePasswordService.currentPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
-                BlockField(hintText: "${l10n.passwordNew}", controller: newPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${l10n.passwordNew}", controller: _changePasswordService.newPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 16),
-                BlockField(hintText: "${l10n.passwordConfirm}", controller: confirmPasswordC, errorText: "", isPassword: true),
+                BlockField(hintText: "${l10n.passwordConfirm}", controller: _changePasswordService.confirmPasswordC, errorText: "", isPassword: true),
                 SizedBox(height: 28),
                 BlockButton(
                   text: "${l10n.changeButton}",
-                  action: () {
-                    String msg = "";
-                    if (newPasswordC.text != confirmPasswordC.text) msg = "${l10n.passwordNotMatch}";
-
+                  action: () async {
+                    String msg = await _changePasswordService.change();
                     if (msg != "") {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar( content: Text(msg), backgroundColor: Theme.of(context).snackBarTheme.backgroundColor, )
-                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBarCustom(msg, context));
                       return;
                     }
-                    
-                    context.read<ProfileProvider>().updateUserProfile({ "oldPassword" : currentPasswordC.text, "password" : newPasswordC.text }, "password");
+
+                    context.read<ProfileProvider>().getUserInfo();
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

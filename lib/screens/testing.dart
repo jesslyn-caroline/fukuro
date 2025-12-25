@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/permissions/access_location_permission.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:fukuro/admob/interstitial_ad.dart';
 
-class Testing extends StatelessWidget {
+class Testing extends StatefulWidget {
   const Testing({super.key});
+
+  @override
+  State<Testing> createState() => _TestingState();
+}
+
+class _TestingState extends State<Testing> {
+
+  InterstitialAdService _interstitialAdService = InterstitialAdService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _interstitialAdService.loadAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
-          onPressed: () async => await Permission.location.request(), 
-          child: Text("a")
-        ),
+        child: ElevatedButton(onPressed: () => _interstitialAdService.showAd(), child: Text("Try me")),
       ),
     );
   }
