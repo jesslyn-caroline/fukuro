@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/models/course_model.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 
 import 'package:fukuro/admob/banner_ad_service.dart';
 import 'package:fukuro/components/cards/course_card.dart';

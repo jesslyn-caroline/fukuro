@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/profile.dart';

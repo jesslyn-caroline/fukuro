@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/screens/reminder.dart';
+import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart  ';
 
 import 'package:fukuro/firebase/firebase_analytics.dart';
@@ -22,15 +24,16 @@ class _IndexState extends State<Index> {
   List <Map <String, dynamic>> screens = [
     { "screen" : Home(), "icon" : Icons.home_rounded, "label" : "Home" },
     { "screen" : Courses(), "icon" : Icons.book_rounded, "label" : "Courses" },
+    { "screen" : Reminder(), "icon" : Icons.timer_sharp, "label" : "Reminder" },
     { "screen" : Profile(), "icon" : Icons.person_2_rounded, "label" : "Profile" },
   ];
 
   int index = 0;
 
+
   @override
   void initState() {
-    context.read<ProfileProvider>().getUserInfo();
-
+    context.read<ProfileProvider>().setUserInfo();
     super.initState();
   }
 
@@ -40,6 +43,8 @@ class _IndexState extends State<Index> {
       body: screens[index]["screen"],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
+        showUnselectedLabels: true,
+        unselectedItemColor: Colors.grey,
         selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: (value) {
           analytics.movePage(screens[index]["label"], screens[value]["label"]);

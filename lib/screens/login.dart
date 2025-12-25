@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/utils/get_user_info.dart';
 
 import 'package:provider/provider.dart';
 
@@ -62,7 +63,7 @@ class Login extends StatelessWidget {
                         return;
                       }
 
-                      context.read<ProfileProvider>().getUserInfo();
+                      context.read<ProfileProvider>().setUserInfo();
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Index()));
                     },
                   )

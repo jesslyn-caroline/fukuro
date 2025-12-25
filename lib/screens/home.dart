@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fukuro/components/cards/greetings_card.dart';
-import 'package:fukuro/components/cards/homebanner_card.dart';
+import 'package:fukuro/components/cards/banner_card.dart';
 import 'package:fukuro/components/cards/todoDailyQuiz_card.dart';
 import 'package:fukuro/components/cards/course_card.dart';
 import 'package:fukuro/components/cards/progress_card.dart';
@@ -52,7 +52,7 @@ class Home extends StatelessWidget {
                   TodoDailyQuizCard() : SizedBox()
                 ),
                 SizedBox(height: 20),
-                HomebannerCard(),
+                BannerCard(text: l10n.homeBanner, semanticsLabel: "Home Banner", image: "assets/images/illustration.png",),
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4),

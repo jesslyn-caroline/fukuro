@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/screens/course_detail.dart';

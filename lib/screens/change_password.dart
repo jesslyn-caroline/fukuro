@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 
 import 'package:fukuro/components/snackbarcustom.dart';
 import 'package:fukuro/components/blockbutton.dart';
@@ -61,7 +62,6 @@ class ChangePassword extends StatelessWidget {
                       return;
                     }
 
-                    context.read<ProfileProvider>().getUserInfo();
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,
