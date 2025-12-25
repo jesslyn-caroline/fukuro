@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fukuro/notifications/notification.dart';
+import 'package:fukuro/notifications/quiz_notification.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 // import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 // import 'package:sqflite_common_ffi/windows/sqflite_ffi_setup.dart';
 
@@ -24,6 +27,7 @@ void main () async {
 
   await Firebase.initializeApp();
   unawaited(MobileAds.instance.initialize());
+  NotificationInit().init();
 
   runApp(MultiProvider(
     providers: [
