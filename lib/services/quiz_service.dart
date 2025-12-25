@@ -1,4 +1,4 @@
-import 'package:fukuro/admob/interstitial_ad.dart';
+import 'package:fukuro/admob/interstitial_ad_service.dart';
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
 import 'package:fukuro/models/quiz_model.dart';
@@ -46,6 +46,7 @@ class QuizService {
     };
 
     await _interstitialAdService.showAd();
+    _interstitialAdService.loadAd();
 
     _analytics.logQuiz(score);
     _firestoreUser.updateByUID(data);
