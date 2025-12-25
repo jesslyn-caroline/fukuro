@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       locale: Locale(context.watch<ProfileProvider>().selectedLang),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Testing(),
+      home: Welcome(),
     );
   }
 }
