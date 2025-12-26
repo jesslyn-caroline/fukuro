@@ -117,8 +117,8 @@ class _DailyQuizState extends State<DailyQuiz> {
                 padding: EdgeInsets.fromLTRB(20, 0, 20, 20), 
                 child: BlockButton(
                   text: l10n.quizSubmit, 
-                  action: () {
-                    _quizService.submit(context.read<ProfileProvider>().user!.uid, _quizService.score, context.read<ProfileProvider>().userInfo!.streakQuiz);
+                  action: () async {
+                    await _quizService.submit(context.read<ProfileProvider>().user!.uid, _quizService.score, context.read<ProfileProvider>().userInfo!.streakQuiz);
                     showAlertDialog(context, l10n.quizComplete, l10n.quizScore, _quizService.score, [
                       BlockButton(text: "OK", action: () {
                         Navigator.of(context).pop();

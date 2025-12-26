@@ -16,7 +16,7 @@ class QuizService {
   InterstitialAdService _interstitialAdService = InterstitialAdService();
   QuizNotification _quizNotification = QuizNotification();
   
-  late Future<List <QuizModel>> questions;
+  late Future<List<QuizModel>> questions;
   List <String> selectedAns = List.generate(5, (e) => "");
 
   int score = 0;
@@ -27,7 +27,7 @@ class QuizService {
     _interstitialAdService.loadAd();
   }
 
-  void calculateScore () async {
+  Future<void> calculateScore () async {
     List <QuizModel> _questions = await questions;
 
     for (int i = 0; i < _questions.length; i++) {
@@ -37,13 +37,13 @@ class QuizService {
     }
   }
 
-  Future <void> submit(String uid, int point, int streakQuiz) async {
-    calculateScore();
+  Future<void> submit(String uid, int point, int streakQuiz) async {
+    await calculateScore();
     vibrate();
     _quizNotification.showNotification();
 
     Map <String, dynamic> data = {
-      "point" : point,
+      "point" : point + score,
       "streakQuiz" : streakQuiz + 1,
       "lastQuizTaken" : DateFormat('yyyy-MM-dd').format(DateTime.now()),
     };
@@ -54,8 +54,6 @@ class QuizService {
     _analytics.logQuiz(score);
     _firestoreUser.updateByUID(data);
     _usersDb.updateByUID(data);
-
-    resetAll();
   }
 
   void resetAll () {
