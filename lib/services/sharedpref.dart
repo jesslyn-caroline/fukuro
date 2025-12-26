@@ -23,6 +23,18 @@ class SharedPref{
     await sharedPref?.setString('lang', lang);
   }
 
+  Future<void> setReminderTime(DateTime time) async {
+    await sharedPref?.setString('reminderTime', time.toString());
+  }
+
+  Future <void> delReminderTime () async {
+    await sharedPref?.remove('reminderTime');
+  }
+
+  String? getReminderTime() {
+    return sharedPref?.getString('reminderTime');
+  } 
+
   Future <void> clear() async => await sharedPref?.remove('lang');
 }
 
