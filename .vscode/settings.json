@@ -1,4 +1,4 @@
 {
-    "discord.enabled": true
-    // "cmake.sourceDirectory": "D:/Projects/fukuro/linux"
+    "discord.enabled": true,
+    "cmake.sourceDirectory": "D:/Projects/fukuro/linux"
 }
