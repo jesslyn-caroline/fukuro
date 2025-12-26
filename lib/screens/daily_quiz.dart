@@ -118,8 +118,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                 child: BlockButton(
                   text: l10n.quizSubmit, 
                   action: () async {
-                    Map <String, dynamic> data = await _quizService.submit(context.read<ProfileProvider>().user!.uid, _quizService.score, context.read<ProfileProvider>().userInfo!.streakQuiz);
-                    _quizService.updateData(data);
+                    await _quizService.submit();
                     showAlertDialog(context, l10n.quizComplete, l10n.quizScore, _quizService.score, [
                       BlockButton(text: "OK", action: () {
                         _quizService.resetAll();
@@ -127,6 +126,8 @@ class _DailyQuizState extends State<DailyQuiz> {
                         Navigator.of(context).pop();
                       })
                     ]);
+                    await _quizService.saveResult(context.read<ProfileProvider>().user!.uid, context.read<ProfileProvider>().userInfo!.point, context.read<ProfileProvider>().userInfo!.streakQuiz);
+                    _quizService.resetAll();
                   }
                 )
               )

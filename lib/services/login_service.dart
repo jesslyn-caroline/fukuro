@@ -39,7 +39,7 @@ class LoginService {
         point: userInfo.point
       ).toJson();
       
-      usersDb.updateByUID(data);
+      usersDb.updateByUID(currentUser.uid, data);
     }
 
     return msg;

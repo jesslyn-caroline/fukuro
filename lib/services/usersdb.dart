@@ -55,8 +55,8 @@ class UsersDb {
     print(data);
   }
 
-  Future <void> updateByUID(Map <String, dynamic> data) async {
+  Future <void> updateByUID(String uid, Map <String, dynamic> data) async {
     Database db = await dbService.getDatabase();
-    db.update(TABLE, data, where: "$UID = ?", whereArgs: [data[UID]]);
+    db.update(TABLE, data, where: "$UID = ?", whereArgs: [uid]);
   }
 }

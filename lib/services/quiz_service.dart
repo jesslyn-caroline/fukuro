@@ -37,7 +37,7 @@ class QuizService {
     }
   }
 
-  Future<Map <String, dynamic>> submit(String uid, int point, int streakQuiz) async {
+  Future<void> submit() async {
     await calculateScore();
     vibrate();
     _quizNotification.showNotification();
@@ -45,20 +45,16 @@ class QuizService {
     await _interstitialAdService.showAd();
     _interstitialAdService.loadAd();
 
-    _analytics.logQuiz(score);
-
+  Future<void> saveResult(String uid, int point, int streakQuiz) async {
     Map <String, dynamic> data = {
       "point" : point + score,
       "streakQuiz" : streakQuiz + 1,
       "lastQuizTaken" : DateFormat('yyyy-MM-dd').format(DateTime.now()),
     };
 
-    return data;
-  }
-
-  Future <void> updateData(Map <String, dynamic> data) async {
-    _firestoreUser.updateByUID(data);
-    _usersDb.updateByUID(data);
+    await _analytics.logQuiz(score);
+    await _firestoreUser.updateByUID(uid, data);
+    await _usersDb.updateByUID(uid, data);
   }
 
   void resetAll () {

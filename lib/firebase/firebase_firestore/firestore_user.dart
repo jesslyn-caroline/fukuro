@@ -28,7 +28,7 @@ class FirestoreUser {
     return userInfo;
   }
 
-  Future <void> updateByUID(Map <String, dynamic> data) async {
-    await db.collection(docs).doc(data["uid"]).update(data);
+  Future <void> updateByUID(String uid, Map <String, dynamic> data) async {
+    await db.collection(docs).doc(uid).update(data);
   }
 }

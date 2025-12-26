@@ -26,15 +26,21 @@ Future <UserInfoModel> getUserInfo () async {
   // int diff = now.compareTo(prev).abs();
 
   if (diff > 1) {
-    await _firestoreUser.updateByUID({
-      _firestoreUser.UID : userInfo.uid,
-      _firestoreUser.STREAKQUIZ : 0
-    });
+    await _firestoreUser.updateByUID(
+      userInfo.uid,
+      {
+        _firestoreUser.UID : userInfo.uid,
+        _firestoreUser.STREAKQUIZ : 0
+      }
+    );
 
-    await usersDb.updateByUID({
-      usersDb.UID : userInfo.uid,
-      usersDb.STREAKQUIZ : 0
-    });
+    await usersDb.updateByUID(
+      userInfo.uid,
+      {
+        usersDb.UID : userInfo.uid,
+        usersDb.STREAKQUIZ : 0
+      }
+    );
 
     userInfo.streakQuiz = 0;
   }
