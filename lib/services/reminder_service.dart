@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/providers/profile_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as picker;
 import 'package:fukuro/notifications/reminder_notification.dart';
 
 class ReminderService {
   ReminderNotification _reminderNotification = ReminderNotification();
   
-  DateTime? selectedTime = null;
+  DateTime selectedTime = DateTime.now().add(Duration(minutes: 5));
+  bool isSet = false;
 
-  Future <void> schedule() async {
-    if (selectedTime == null) return;
-    await _reminderNotification.showNotification(selectedTime!);
+  void initSelectedTime (context) {
+    DateTime? savedTime = context.read<ProfileProvider>().reminderTime;
+
+    if (savedTime == null) selectedTime = DateTime.now().add(Duration(minutes: 5));
+    else if (savedTime.isAfter(DateTime.now())) {
+      context.read<ProfileProvider>().setReminderTime(null);
+      selectedTime = DateTime.now().add(Duration(minutes: 5));
+    }
+    else selectedTime = savedTime;
   }
 
   Future <void> showDatePicker(context) async {
@@ -32,16 +41,13 @@ class ReminderService {
         containerHeight: MediaQuery.of(context).size.height * 0.4,
       ),
     );
-    print(selectedTime);
   }
 
   Future <void> showTimePicker(context) async {
-    if (selectedTime == null) return;
     await picker.DatePicker.showTimePicker(context, 
       showSecondsColumn: false,
       currentTime: DateTime.now(),
       onChanged: (time) => selectedTime = time,
-      onCancel: () => selectedTime = null,
       theme: picker.DatePickerTheme(
         backgroundColor: Theme.of(context).colorScheme.background,
         doneStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -58,4 +64,8 @@ class ReminderService {
       ),
     );
   }
+
+  void set() => _reminderNotification.showNotification(selectedTime);
+  
+  void remove() => _reminderNotification.cancelNotification();
 }
