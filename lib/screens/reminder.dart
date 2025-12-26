@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/reminder_tile.dart';
 import 'package:fukuro/providers/profile_provider.dart';
-import 'package:fukuro/screens/profile.dart';
 import 'package:fukuro/services/reminder_service.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
