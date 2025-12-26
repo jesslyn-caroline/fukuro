@@ -72,10 +72,11 @@ class _ReminderState extends State<Reminder> {
                 if (_reminderService.isSet) {
                   context.read<ProfileProvider>().changeReminderTime(null);
                   _reminderService.remove();
-                  return;
+                } else {
+                  context.read<ProfileProvider>().changeReminderTime(_reminderService.selectedTime);
+                  _reminderService.set();
                 }
-                context.read<ProfileProvider>().changeReminderTime(_reminderService.selectedTime);
-                _reminderService.set();
+                
                 setState(() {});
               }
             )
