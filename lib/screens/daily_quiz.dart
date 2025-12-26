@@ -121,6 +121,7 @@ class _DailyQuizState extends State<DailyQuiz> {
                     await _quizService.submit();
                     showAlertDialog(context, l10n.quizComplete, l10n.quizScore, _quizService.score, [
                       BlockButton(text: "OK", action: () {
+                        _quizService.resetAll();
                         Navigator.of(context).pop();
                         Navigator.of(context).pop();
                       })
