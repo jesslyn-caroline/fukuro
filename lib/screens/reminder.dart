@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/components/button.dart';
-import 'package:fukuro/components/cards/banner_card.dart';
+import 'package:fukuro/components/blockbutton.dart';
+import 'package:fukuro/components/reminder_tile.dart';
 import 'package:fukuro/services/reminder_service.dart';
 import 'package:intl/intl.dart';
 
@@ -24,50 +24,33 @@ class _ReminderState extends State<Reminder> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset("assets/images/alarm-clock.png", width: 200),
-            ListTile(
-              title: Text("Date", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: Theme.of(context).colorScheme.primary
-              )),
-              subtitle: Text("${_reminderService.selectedTime != null ? DateFormat.yMMMMd().format(_reminderService.selectedTime!) : "-"}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 25,
-                fontWeight: FontWeight.w900,
-                color: Theme.of(context).colorScheme.primary
-              )),
-              onTap: () async {
+            SizedBox(height: 16),
+            Text("Schedule your study session!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.w900,
+              color: Theme.of(context).colorScheme.primary
+            )),
+            SizedBox(height: 16),
+            ReminderTile(
+              title: "Date", 
+              subtitle: _reminderService.selectedTime != null ? DateFormat.yMMMMd().format(_reminderService.selectedTime!) : "Not set", 
+              icon: Icons.calendar_month_outlined, 
+              action: () async {
                 await _reminderService.showDatePicker(context);
                 setState(() {});
-              },
+              }
             ),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: Icon(Icons.timer_sharp),
-              title: Text("Time", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-                color: Theme.of(context).colorScheme.primary
-              )),
-              subtitle: Text("${_reminderService.selectedTime != null ? DateFormat.Hm().format(_reminderService.selectedTime!) : "-"}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: 25,
-                fontWeight: FontWeight.w900,
-                color: Theme.of(context).colorScheme.primary
-              )),
-              onTap: () async {
+            ReminderTile(
+              title: "Time", 
+              subtitle: _reminderService.selectedTime != null ? DateFormat.Hm().format(_reminderService.selectedTime!) : "Not set", 
+              icon: Icons.timer_outlined, 
+              action: () async {
                 await _reminderService.showTimePicker(context);
                 setState(() {});
-              },
-            )
-            // Text("Hi, I'm Fuko!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            //   fontSize: 20,
-            //   fontWeight: FontWeight.w900,
-            //   color: Theme.of(context).colorScheme.primary
-            // )),
-            // Text("Your study reminder", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            //   fontSize: 20, 
-            //   fontWeight: FontWeight.w900, 
-            //   color: Theme.of(context).colorScheme.secondary
-            // )),
+              }
+            ),
+            SizedBox(height: 12),
+            BlockButton(text: "SET REMINDER", action: () {})
           ],
         ),
       ),
