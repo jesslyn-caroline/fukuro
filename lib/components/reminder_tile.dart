@@ -21,7 +21,8 @@ class ReminderTile extends StatelessWidget {
       subtitle: Text(subtitle, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
         fontSize: 18,
         fontWeight: FontWeight.w900,
-      ))
+      )),
+      onTap: action,
     );
   }
 }
