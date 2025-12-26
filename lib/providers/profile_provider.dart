@@ -19,6 +19,7 @@ class ProfileProvider with ChangeNotifier {
   UserInfoModel? userInfo;
 
   String selectedLang = sharedPref.getSelectedLang() ?? 'en';
+  DateTime? reminderTime = sharedPref.getReminderTime() != null? DateTime.parse(sharedPref.getReminderTime()!) : null;
 
   void changeLang (langCode) {
     selectedLang = langCode;
@@ -30,6 +31,13 @@ class ProfileProvider with ChangeNotifier {
     isDark = value;
     notifyListeners();
     sharedPref.setMode(value);
+  }
+
+  void changeReminderTime(DateTime? time) {
+    reminderTime = time;
+    notifyListeners();
+    if (time == null) sharedPref.delReminderTime();
+    else sharedPref.setReminderTime(time);
   }
 
   Future <void> setUserInfo() async {
