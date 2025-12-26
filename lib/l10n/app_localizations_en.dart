@@ -36,7 +36,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get homeChallenge => 'Ready for today\'s challenge';
 
   @override
-  String get homeChallengeDesc => 'Test your knowledge with fun, bite-sized quizzes';
+  String get homeChallengeDesc =>
+      'Test your knowledge with fun, bite-sized quizzes';
 
   @override
   String get homeBanner => 'What would you like to learn today';
@@ -51,7 +52,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quizDailyQuiz => 'Daily Quiz';
 
   @override
-  String get quizDescription => 'Take a short break and see how many questions you can get right today';
+  String get quizDescription =>
+      'Take a short break and see how many questions you can get right today';
 
   @override
   String get quizQuestion => 'Question';
@@ -69,7 +71,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get coursesTitle => 'Courses';
 
   @override
-  String get coursesDescription => 'Explore a variety of tech courses designed to help you grow your skills';
+  String get coursesDescription =>
+      'Explore a variety of tech courses designed to help you grow your skills';
 
   @override
   String get coursesDetailLevel => 'Level';

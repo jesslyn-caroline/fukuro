@@ -36,7 +36,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get homeChallenge => 'Siap tantangan hari ini?';
 
   @override
-  String get homeChallengeDesc => 'Uji pengetahuanmu dengan kuis singkat yang menyenangkan';
+  String get homeChallengeDesc =>
+      'Uji pengetahuanmu dengan kuis singkat yang menyenangkan';
 
   @override
   String get homeBanner => 'Apa yang ingin kamu pelajari hari ini?';
@@ -51,7 +52,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get quizDailyQuiz => 'Kuis Harian';
 
   @override
-  String get quizDescription => 'Ambil jeda sebentar dan lihat berapa banyak soal yang bisa kamu jawab hari ini';
+  String get quizDescription =>
+      'Ambil jeda sebentar dan lihat berapa banyak soal yang bisa kamu jawab hari ini';
 
   @override
   String get quizQuestion => 'Pertanyaan';
@@ -69,7 +71,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get coursesTitle => 'Kursus';
 
   @override
-  String get coursesDescription => 'Jelajahi berbagai kursus teknologi untuk mengembangkan kemampuanmu';
+  String get coursesDescription =>
+      'Jelajahi berbagai kursus teknologi untuk mengembangkan kemampuanmu';
 
   @override
   String get coursesDetailLevel => 'Tingkat';
@@ -132,7 +135,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get languageJapanese => 'Jepang';
 
   @override
-  String get languageQuestion => 'Bahasa apa yang ingin kamu gunakan untuk Fukuro?';
+  String get languageQuestion =>
+      'Bahasa apa yang ingin kamu gunakan untuk Fukuro?';
 
   @override
   String get changeButton => 'UBAH';
