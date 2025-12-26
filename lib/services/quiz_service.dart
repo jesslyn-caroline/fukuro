@@ -44,7 +44,6 @@ class QuizService {
 
     await _interstitialAdService.showAd();
     _interstitialAdService.loadAd();
-  }
 
   Future<void> saveResult(String uid, int point, int streakQuiz) async {
     Map <String, dynamic> data = {
