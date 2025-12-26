@@ -10,8 +10,10 @@ class ReminderNotification {
       content: NotificationContent(
         id: 2, 
         channelKey: _notificationInit.reminderNotifChannelKey,
-        title: 'Don\'t forget to study!',
-        body: 'You have a study session at ${DateFormat.yMMMMd().format(time)} ${DateFormat.Hm().format(time)}'
+        title: 'Study Time ⏰',
+        body: 'It\’s time for your study session. Open the app and let\'s focus together 💪📚',
+        notificationLayout: NotificationLayout.BigPicture,
+        bigPicture: 'assets/images/alarm-clock-smile.png'
       ),
       schedule: NotificationCalendar.fromDate(date: time)
     );
