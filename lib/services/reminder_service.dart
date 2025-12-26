@@ -10,15 +10,18 @@ class ReminderService {
   DateTime selectedTime = DateTime.now().add(Duration(minutes: 5));
   bool isSet = false;
 
-  void initSelectedTime (context) {
+  void initSelectedTime (BuildContext context) {
     DateTime? savedTime = context.read<ProfileProvider>().reminderTime;
 
     if (savedTime == null) selectedTime = DateTime.now().add(Duration(minutes: 5));
-    else if (savedTime.isAfter(DateTime.now())) {
-      context.read<ProfileProvider>().setReminderTime(null);
+    else if (savedTime.isBefore(DateTime.now())) {
+      context.read<ProfileProvider>().changeReminderTime(null);
       selectedTime = DateTime.now().add(Duration(minutes: 5));
     }
-    else selectedTime = savedTime;
+    else {
+      selectedTime = savedTime;
+      isSet = true;
+    }
   }
 
   Future <void> showDatePicker(context) async {
@@ -65,7 +68,13 @@ class ReminderService {
     );
   }
 
-  void set() => _reminderNotification.showNotification(selectedTime);
+  void set() {
+    _reminderNotification.showNotification(selectedTime);
+    isSet = true;
+  }
   
-  void remove() => _reminderNotification.cancelNotification();
+  void remove() {
+    _reminderNotification.cancelNotification();
+    isSet = false;
+  }
 }

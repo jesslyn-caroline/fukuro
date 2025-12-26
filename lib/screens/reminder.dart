@@ -48,6 +48,7 @@ class _ReminderState extends State<Reminder> {
                 "${DateFormat.yMMMMd().format(_reminderService.selectedTime)}", 
               icon: Icons.calendar_month_outlined, 
               action: () async {
+                if (_reminderService.isSet) return;
                 await _reminderService.showDatePicker(context);
                 setState(() {});
               }
@@ -59,13 +60,14 @@ class _ReminderState extends State<Reminder> {
                 "${DateFormat.Hm().format(_reminderService.selectedTime)}", 
               icon: Icons.timer_outlined, 
               action: () async {
+                if (_reminderService.isSet) return;
                 await _reminderService.showTimePicker(context);
                 setState(() {});
               }
             ),
             SizedBox(height: 12),
             BlockButton(
-              text: _reminderService.isSet ? "SET REMINDER" : "CANCEL", 
+              text: _reminderService.isSet ? "CANCEL" : "SET REMINDER", 
               action: () {
                 if (_reminderService.isSet) {
                   context.read<ProfileProvider>().changeReminderTime(null);
@@ -74,6 +76,7 @@ class _ReminderState extends State<Reminder> {
                 }
                 context.read<ProfileProvider>().changeReminderTime(_reminderService.selectedTime);
                 _reminderService.set();
+                setState(() {});
               }
             )
           ],
