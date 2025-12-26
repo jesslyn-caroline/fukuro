@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/screens/reminder.dart';
-import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart  ';
 
 import 'package:fukuro/firebase/firebase_analytics.dart';
@@ -39,23 +38,25 @@ class _IndexState extends State<Index> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[index]["screen"],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: index,
-        showUnselectedLabels: true,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Theme.of(context).colorScheme.primary,
-        onTap: (value) {
-          analytics.movePage(screens[index]["label"], screens[value]["label"]);
-          index = value;  
-          setState(() {});
-        },
-        items: [
-          ...screens.map((e) {
-            return BottomNavigationBarItem(icon: Icon(e["icon"]), label: e["label"]);
-          })
-        ]
+    return SafeArea(
+      child: Scaffold(
+        body: screens[index]["screen"],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: index,
+          showUnselectedLabels: true,
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Theme.of(context).colorScheme.primary,
+          onTap: (value) {
+            analytics.movePage(screens[index]["label"], screens[value]["label"]);
+            index = value;  
+            setState(() {});
+          },
+          items: [
+            ...screens.map((e) {
+              return BottomNavigationBarItem(icon: Icon(e["icon"]), label: e["label"]);
+            })
+          ]
+        ),
       ),
     );
   }
