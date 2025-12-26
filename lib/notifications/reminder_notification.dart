@@ -1,6 +1,5 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:fukuro/notifications/notification.dart';
-import 'package:intl/intl.dart';
 
 class ReminderNotification {
   NotificationInit _notificationInit = NotificationInit();
@@ -18,4 +17,6 @@ class ReminderNotification {
       schedule: NotificationCalendar.fromDate(date: time)
     );
   }
+
+  void cancelNotification() async => await AwesomeNotifications().cancel(2);
 }
