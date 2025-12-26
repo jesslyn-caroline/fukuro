@@ -119,14 +119,27 @@ class _DailyQuizState extends State<DailyQuiz> {
                   text: l10n.quizSubmit, 
                   action: () async {
                     await _quizService.submit();
-                    showAlertDialog(context, l10n.quizComplete, l10n.quizScore, _quizService.score, [
-                      BlockButton(text: "OK", action: () {
-                        _quizService.resetAll();
-                        Navigator.of(context).pop();
-                        Navigator.of(context).pop();
-                      })
-                    ]);
-                    await _quizService.saveResult(context.read<ProfileProvider>().user!.uid, context.read<ProfileProvider>().userInfo!.point, context.read<ProfileProvider>().userInfo!.streakQuiz);
+                    showAlertDialog(
+                      context,
+                      l10n.quizComplete,
+                      l10n.quizScore, _quizService.score,
+                      [
+                        BlockButton(
+                          text: "OK",
+                          action: () async {
+                            await _quizService.saveResult(
+                              context.read<ProfileProvider>().user!.uid,
+                              context.read<ProfileProvider>().userInfo!.point,
+                              context.read<ProfileProvider>().userInfo!.streakQuiz
+                            );
+                            _quizService.resetAll();
+                            await context.read<ProfileProvider>().setUserInfo();
+                            Navigator.of(context).pop();
+                            Navigator.of(context).pop();
+                          }
+                        )
+                      ]
+                    );
                   }
                 )
               )
