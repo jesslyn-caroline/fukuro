@@ -22,7 +22,6 @@ class QuizService {
   int score = 0;
 
   void init () {
-    resetAll();
     questions = _quizRespository.fetch();
     _interstitialAdService.loadAd();
   }
@@ -44,6 +43,7 @@ class QuizService {
 
     await _interstitialAdService.showAd();
     _interstitialAdService.loadAd();
+  }
 
   Future<void> saveResult(String uid, int point, int streakQuiz) async {
     Map <String, dynamic> data = {

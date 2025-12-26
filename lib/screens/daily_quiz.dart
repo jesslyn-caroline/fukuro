@@ -127,7 +127,6 @@ class _DailyQuizState extends State<DailyQuiz> {
                       })
                     ]);
                     await _quizService.saveResult(context.read<ProfileProvider>().user!.uid, context.read<ProfileProvider>().userInfo!.point, context.read<ProfileProvider>().userInfo!.streakQuiz);
-                    _quizService.resetAll();
                   }
                 )
               )
