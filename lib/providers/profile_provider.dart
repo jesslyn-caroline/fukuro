@@ -33,6 +33,7 @@ class ProfileProvider with ChangeNotifier {
   }
 
   Future <void> setUserInfo() async {
+    user = FirebaseAuth.instance.currentUser;
     userInfo = await getUserInfo();
     notifyListeners();
   }

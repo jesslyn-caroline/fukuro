@@ -51,7 +51,7 @@ class Profile extends StatelessWidget {
                     child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().user!.photoURL}").image, ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(height: 10),
                 Semantics(
                   excludeSemantics: true,
                   child: Text( "${context.watch<ProfileProvider>().user?.displayName}", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -68,7 +68,7 @@ class Profile extends StatelessWidget {
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())), 
                   title: "${l10n.profileProfilePicture}", 
-                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,)),
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20)),
                 SizedBox(height: 14,),
                 Semantics(
                   label: "Current Mode: ${context.read<ProfileProvider>().isDark ? "Dark" : "Light" }",
@@ -80,7 +80,7 @@ class Profile extends StatelessWidget {
                       onChanged: (value) => context.read<ProfileProvider>().changeTheme(value))
                   ),
                 ),
-                SizedBox(height: 14,),
+                SizedBox(height: 14),
                 Semantics(
                   hint: "Double Tap to Change Username",
                   child: ProfileSettingTile(
@@ -89,19 +89,20 @@ class Profile extends StatelessWidget {
                     subtitle: context.watch<ProfileProvider>().user?.displayName,
                     trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
                 ),
-                SizedBox(height: 14,),
+                SizedBox(height: 14),
                 ProfileSettingTile(
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangePassword())), 
                   title: "${l10n.profilePassword}", 
                   subtitle: "• • • • • • • • • •",
-                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),),
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20)
+                ),
                 SizedBox(height: 14,),        
                 ProfileSettingTile(
-                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectLanguage(),)),
+                  action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectLanguage())),
                   title: "${l10n.profileChangeLanguage}",
-                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20,),
+                  trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20),
                 ),  
-                SizedBox(height: 14,), 
+                SizedBox(height: 14), 
                 BlockButton(
                   text: "${l10n.profileLogout}", 
                   action: () {
@@ -110,7 +111,8 @@ class Profile extends StatelessWidget {
                   }, 
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white, 
-                  borderColor: Theme.of(context).colorScheme.primary)
+                  borderColor: Theme.of(context).colorScheme.primary
+                )
               ],
             )
           )

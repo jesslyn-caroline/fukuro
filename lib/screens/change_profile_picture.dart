@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart';
 
 import 'package:fukuro/l10n/app_localizations.dart';
@@ -33,9 +32,9 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
         actionsPadding: EdgeInsets.all(12),
         actions: [
           TextButton(
-            onPressed: () async {  
-              _changeProfilePictureService.change();
-              context.read<ProfileProvider>().setUserInfo();
+            onPressed: () async {
+              await _changeProfilePictureService.change();
+              await context.read<ProfileProvider>().setUserInfo();
               Navigator.of(context).pop();
             },
             child: Text(
@@ -64,7 +63,8 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
               children: [
                 CircleAvatar(
                   radius: 50,
-                  backgroundImage: Image.asset("assets/images/${_changeProfilePictureService.selectedImage}").image),
+                  backgroundImage: Image.asset("assets/images/${_changeProfilePictureService.selectedImage}").image
+                ),
               ],
             ),
           ),
