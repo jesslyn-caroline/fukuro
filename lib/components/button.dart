@@ -10,7 +10,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(  
       style: ElevatedButton.styleFrom(
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
         backgroundColor: Theme.of(context).colorScheme.primary,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10))  
@@ -19,7 +19,8 @@ class Button extends StatelessWidget {
       child: Text(
         text,
         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-          color: Colors.white
+          color: Colors.white,
+          fontSize: 16
         )
       )
     );
