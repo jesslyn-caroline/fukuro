@@ -9,8 +9,9 @@ class QuizNotification {
       content: NotificationContent(
         id: 1, 
         channelKey: _notificationInit.quizNotifChannelKey,
-        title: 'See you tomorrow!',
-        body: 'Don\'t forget to your quiz tomorrow to extend your streak.'
+        notificationLayout: NotificationLayout.BigText,
+        title: "🎉 Hooray! You have completed a quiz.",
+        body: "Don't forget to come back and do your quiz tomorrow to not lose your streak."
       )
     );
   }
