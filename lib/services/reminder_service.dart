@@ -16,7 +16,7 @@ class ReminderService {
     await picker.DatePicker.showDatePicker(context, 
       minTime: DateTime.now(),
       currentTime: DateTime.now(),
-      onChanged: (time) => selectedTime = time,
+      onConfirm: (time) => selectedTime = time,
       theme: picker.DatePickerTheme(
         backgroundColor: Theme.of(context).colorScheme.background,
         doneStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -32,13 +32,16 @@ class ReminderService {
         containerHeight: MediaQuery.of(context).size.height * 0.4,
       ),
     );
+    print(selectedTime);
   }
 
   Future <void> showTimePicker(context) async {
+    if (selectedTime == null) return;
     await picker.DatePicker.showTimePicker(context, 
       showSecondsColumn: false,
       currentTime: DateTime.now(),
       onChanged: (time) => selectedTime = time,
+      onCancel: () => selectedTime = null,
       theme: picker.DatePickerTheme(
         backgroundColor: Theme.of(context).colorScheme.background,
         doneStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
