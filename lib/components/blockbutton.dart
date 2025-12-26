@@ -39,7 +39,7 @@ class BlockButton extends StatelessWidget {
           text,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             fontSize: 16,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w900,
             color: textColor == null? Colors.white : textColor
           )
         )
