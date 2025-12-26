@@ -23,8 +23,9 @@ class Testing extends StatelessWidget {
             //   ),
             //   value: [],
             // ),
-            BlockButton(text: "pick", action: () {
-              picker.DatePicker.showDatePicker(context, 
+            BlockButton(text: "pick", action: () async {
+              await picker.DatePicker.showDatePicker(context, 
+                minTime: DateTime.now(),
                 currentTime: DateTime.now(),
                 theme: picker.DatePickerTheme(
                   backgroundColor: Theme.of(context).colorScheme.background,
@@ -42,7 +43,7 @@ class Testing extends StatelessWidget {
 
                 )
               );
-              picker.DatePicker.showTimePicker(context, 
+              await picker.DatePicker.showTimePicker(context, 
                 currentTime: DateTime.now(),
                 theme: picker.DatePickerTheme(
                   backgroundColor: Theme.of(context).colorScheme.background,
