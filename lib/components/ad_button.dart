@@ -55,8 +55,9 @@ class _AdButtonState extends State<AdButton> {
           context.read<ProfileProvider>().setUserInfo(null, null, null, data["key"]);
           await _usersDb.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
           await _firestoreUser.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
-          // context.read<ProfileProvider>().setUserInfo();
         });
+
+        if (_rewardedAdService.rewardAd == null) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Failed to load Ad")));
         setState(() {});
         _rewardedAdService.loadAd();
       },
