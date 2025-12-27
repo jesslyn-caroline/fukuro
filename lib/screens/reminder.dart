@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/reminder_tile.dart';
-import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/providers/reminder_provider.dart';
-import 'package:fukuro/services/reminder_service.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -15,14 +13,6 @@ class Reminder extends StatefulWidget {
 }
 
 class _ReminderState extends State<Reminder> {
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    // context.read<ReminderProvider>().initSelectedTime(context);
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

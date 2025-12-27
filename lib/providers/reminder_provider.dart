@@ -80,5 +80,4 @@ class ReminderProvider with ChangeNotifier {
     reminderTime = null;
     notifyListeners();
   }
-  
 }
