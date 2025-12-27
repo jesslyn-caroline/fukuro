@@ -10,6 +10,7 @@ class UsersDb {
   String POINT = "point";
   String STREAKQUIZ = "streakQuiz";
   String LASTQUIZTAKEN = "lastQuizTaken";
+  String KEY = "key";
 
   DBService dbService = DBService();
 
@@ -21,7 +22,8 @@ class UsersDb {
           $UID TEXT PRIMARY KEY,
           $POINT INTEGER NOT NULL DEFAULT 0,
           $STREAKQUIZ INTEGER NOT NULL DEFAULT 0,
-          $LASTQUIZTAKEN TEXT NOT NULL
+          $LASTQUIZTAKEN TEXT NOT NULL,
+          $KEY INTEGER NOT NULL DEFAULT 0
         )
       '''
     );

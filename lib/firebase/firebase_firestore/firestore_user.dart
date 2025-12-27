@@ -9,6 +9,7 @@ class FirestoreUser {
   String LASTQUIZTAKEN = "lastQuizTaken";
   String STREAKQUIZ = "streakQuiz";
   String POINT = "point";
+  String KEY = "key";
 
   FirebaseFirestore db = FirebaseFirestore.instance;
 
@@ -17,7 +18,8 @@ class FirestoreUser {
       UID : uid, 
       LASTQUIZTAKEN : DateFormat('yyyy-MM-dd').format(DateTime.now().subtract(Duration(days: 2))),
       STREAKQUIZ : 0,
-      POINT : 0
+      POINT : 0,
+      KEY : 0
     };
     await db.collection(docs).doc(uid).set(data);
   }
