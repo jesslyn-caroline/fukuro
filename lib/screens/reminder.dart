@@ -14,6 +14,13 @@ class Reminder extends StatefulWidget {
 
 class _ReminderState extends State<Reminder> {
   @override
+  void initState() {
+    // TODO: implement initState
+    context.read<ReminderProvider>().init();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
