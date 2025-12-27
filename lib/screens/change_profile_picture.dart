@@ -34,7 +34,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
           TextButton(
             onPressed: () async {
               await _changeProfilePictureService.change();
-              await context.read<ProfileProvider>().setUserInfo();
+              context.read<ProfileProvider>().setUserInfo(null, null, null, null);
               Navigator.of(context).pop();
             },
             child: Text(

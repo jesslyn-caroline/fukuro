@@ -74,7 +74,7 @@ class _HomeState extends State<Home> {
                       () => ScaffoldMessenger.of(context).showSnackBar(snackBarCustom("Failed to load Ad", context)),
                       (reward) async {
                         await _homeService.updateKey(context.read<ProfileProvider>().userInfo!.uid, context.read<ProfileProvider>().userInfo!.key + reward);
-                        context.read<ProfileProvider>().setUserInfo();
+                        context.read<ProfileProvider>().setUserInfo(null, null, null, context.read<ProfileProvider>().userInfo!.key + reward);
                       }
                     );  
                   }

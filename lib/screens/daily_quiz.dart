@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import 'package:fukuro/l10n/app_localizations.dart';
 
@@ -133,7 +134,10 @@ class _DailyQuizState extends State<DailyQuiz> {
                               context.read<ProfileProvider>().userInfo!.streakQuiz
                             );
                             _quizService.resetAll();
-                            await context.read<ProfileProvider>().setUserInfo();
+                            context.read<ProfileProvider>().setUserInfo(
+                              DateFormat('yyyy-MM-dd').format(DateTime.now()), 
+                              context.read<ProfileProvider>().userInfo!.streakQuiz + 1,
+                              context.read<ProfileProvider>().userInfo!.point + _quizService.score, null);
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           }

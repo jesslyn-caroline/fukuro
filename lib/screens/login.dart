@@ -63,7 +63,8 @@ class Login extends StatelessWidget {
                         return;
                       }
 
-                      context.read<ProfileProvider>().setUserInfo();
+                      context.read<ProfileProvider>().initUserInfo();
+
                       Navigator.of(context).push(MaterialPageRoute(builder: (context) => Index()));
                     },
                   )

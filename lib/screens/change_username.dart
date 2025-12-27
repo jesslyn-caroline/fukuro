@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/services/change_username_service.dart';
-import 'package:fukuro/utils/get_user_info.dart';
+// import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart';
 import 'package:fukuro/l10n/app_localizations.dart';
 
@@ -50,7 +50,7 @@ class ChangeUsername extends StatelessWidget {
                   text: "${l10n.changeButton}",
                   action: () async {
                     await _changeUsernameService.change();
-                    context.read<ProfileProvider>().setUserInfo();
+                    context.read<ProfileProvider>().setUserInfo(null, null, null, null);
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

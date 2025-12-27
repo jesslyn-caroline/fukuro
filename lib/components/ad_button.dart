@@ -18,8 +18,14 @@ class _AdButtonState extends State<AdButton> {
   UsersDb _usersDb = UsersDb();
 
   FirestoreUser _firestoreUser = FirestoreUser();
-
   RewardedAdService _rewardedAdService = RewardedAdService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _rewardedAdService.loadAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +51,11 @@ class _AdButtonState extends State<AdButton> {
       ),
       onPressed: () async {
         await _rewardedAdService.showAd((reward) async {
-          Map <String, dynamic> data = {
-            "key" : context.read<ProfileProvider>().userInfo!.key + reward
-          };
+          Map <String, dynamic> data = { "key" : context.read<ProfileProvider>().userInfo!.key + reward };
+          context.read<ProfileProvider>().setUserInfo(null, null, null, data["key"]);
           await _usersDb.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
           await _firestoreUser.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
-          context.read<ProfileProvider>().setUserInfo();
+          // context.read<ProfileProvider>().setUserInfo();
         });
         setState(() {});
         _rewardedAdService.loadAd();

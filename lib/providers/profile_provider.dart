@@ -7,6 +7,7 @@ import 'package:fukuro/services/usersdb.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fukuro/utils/get_user_info.dart';
+// import 'package:fukuro/utils/get_user_info.dart';
 
 class ProfileProvider with ChangeNotifier {
   UsersDb usersDb = UsersDb();
@@ -20,6 +21,15 @@ class ProfileProvider with ChangeNotifier {
 
   String selectedLang = sharedPref.getSelectedLang() ?? 'en';
   DateTime? reminderTime = sharedPref.getReminderTime() != null? DateTime.parse(sharedPref.getReminderTime()!) : null;
+
+  void setUserInfo(String? lastQuizTaken, int? streakQuiz, int? point, int? key) {
+    userInfo!.lastQuizTaken = lastQuizTaken ?? userInfo!.lastQuizTaken;
+    userInfo!.streakQuiz = streakQuiz ?? userInfo!.streakQuiz;
+    userInfo!.point = point ?? userInfo!.point;
+    userInfo!.key = key ?? userInfo!.key; 
+    user = FirebaseAuth.instance.currentUser;
+    notifyListeners();
+  }
 
   void changeLang (langCode) {
     selectedLang = langCode;
@@ -40,11 +50,10 @@ class ProfileProvider with ChangeNotifier {
     else sharedPref.setReminderTime(time);
   }
 
-  Future <void> setUserInfo() async {
+  Future <void> initUserInfo() async {
     user = FirebaseAuth.instance.currentUser;
     userInfo = await getUserInfo();
     notifyListeners();
   }
 
-  
 }

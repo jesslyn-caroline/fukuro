@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/models/userInfo_model.dart';
 import 'package:fukuro/screens/reminder.dart';
+import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart  ';
 
 import 'package:fukuro/firebase/firebase_analytics.dart';
@@ -30,9 +32,10 @@ class _IndexState extends State<Index> {
   int index = 0;
 
 
+
   @override
   void initState() {
-    context.read<ProfileProvider>().setUserInfo();
+    context.read<ProfileProvider>().initUserInfo();
     super.initState();
   }
 
