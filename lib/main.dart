@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fukuro/notifications/notification.dart';
 import 'package:fukuro/notifications/quiz_notification.dart';
+import 'package:fukuro/providers/reminder_provider.dart';
 // import 'package:fukuro/screens/testing.dart';
 import 'package:provider/provider.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -33,6 +34,7 @@ void main () async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => ProfileProvider()),
+      ChangeNotifierProvider(create: (context) => ReminderProvider(),)
     ],
     child: MyApp(),
   ));
