@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fukuro/components/ad_button.dart';
+import 'package:fukuro/components/cards/key_card.dart';
 import 'package:fukuro/components/chapter_tile.dart';
 import 'package:fukuro/firebase/firebase_firestore/firestore_unlocked_chapter.dart';
 import 'package:fukuro/models/course_chapter_model.dart';
@@ -26,9 +27,7 @@ class _CourseChaptersState extends State<CourseChapters> {
 
   Future <void> fetchData () async {
     courseChapters = await _chapterRepository.fetchById(widget.id);
-    print(courseChapters!.chapters);
     unlockedChapters = await _firestoreUnlockedChapter.getByUID(context.read<ProfileProvider>().user!.uid);
-    print(unlockedChapters);
   }
 
   @override
@@ -52,7 +51,10 @@ class _CourseChaptersState extends State<CourseChapters> {
                     icon: Icon(Icons.arrow_back, color: Theme.of(context).colorScheme.primary, size: 24),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
-                  Padding(padding: EdgeInsetsGeometry.only(right: 20), child: AdButton(count: 5))
+                  Padding(padding: EdgeInsetsGeometry.only(right: 20), child: Row(
+                    spacing: 5,
+                    children: [ KeyCard(), AdButton(), ],
+                  ))
                 ],
               ),
               Padding(
