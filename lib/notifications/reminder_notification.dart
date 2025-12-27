@@ -5,14 +5,14 @@ class ReminderNotification {
   NotificationInit _notificationInit = NotificationInit();
 
   Future <void> showNotification(DateTime time) async {
-    AwesomeNotifications().createNotification(
+    time = DateTime(time.year, time.month, time.day, time.hour, time.minute, 0);
+    await AwesomeNotifications().createNotification(
       content: NotificationContent(
-        id: 2, 
+        id: 2,
+        notificationLayout: NotificationLayout.BigText,
         channelKey: _notificationInit.reminderNotifChannelKey,
-        title: 'Study Time ⏰',
-        body: 'It\’s time for your study session. Open the app and let\'s focus together 💪📚',
-        notificationLayout: NotificationLayout.BigPicture,
-        bigPicture: 'assets/images/alarm-clock-smile.png'
+        title: "Study Time ⏰",
+        body: "It's time for your study session. Open the app and let's focus together 💪📚",
       ),
       schedule: NotificationCalendar.fromDate(date: time)
     );
