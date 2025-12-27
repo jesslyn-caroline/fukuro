@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/admob/rewarded_ad_service.dart';
+import 'package:fukuro/components/cards/action_card.dart';
+import 'package:fukuro/components/snackbarcustom.dart';
 import 'package:fukuro/l10n/app_localizations.dart';
+import 'package:fukuro/services/home_service.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -8,14 +12,27 @@ import 'package:fukuro/components/cards/banner_card.dart';
 import 'package:fukuro/components/cards/todoDailyQuiz_card.dart';
 import 'package:fukuro/components/cards/course_card.dart';
 import 'package:fukuro/components/cards/progress_card.dart';
-import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   Home({super.key});
 
-  FirebaseAnalyticsServices analytics = FirebaseAnalyticsServices();
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  RewardedAdService _rewardedAdService = RewardedAdService();
+  
+  HomeService _homeService = HomeService();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _rewardedAdService.loadAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +64,20 @@ class Home extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 12),
+                ActionCard(
+                  title: "Watch Ads to collect keys!", 
+                  desc: "Keys are used to unlock courses!", 
+                  image: "assets/images/marketing.png", 
+                  action: () async {
+                    await _homeService.watchAd(
+                      () => setState(() {}),
+                      () => ScaffoldMessenger.of(context).showSnackBar(snackBarCustom("Failed to load Ad", context)),
+                      context.read<ProfileProvider>().user!.uid, 
+                      context.read<ProfileProvider>().userInfo!.key
+                    );  
+                  }
+                ),
+                SizedBox(height: 12),
                 (
                   context.watch<ProfileProvider>().userInfo?.lastQuizTaken.toString() != DateFormat('yyyy-MM-dd').format(DateTime.now()) ?
                   TodoDailyQuizCard() : SizedBox()
@@ -60,13 +91,11 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text(
-                        "${l10n.coursesTitle}",
+                      Text("${l10n.coursesTitle}",
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontSize: 20,
                           fontWeight: FontWeight.w900
-                        )
-                      ),
+                      )),
                       GestureDetector(
                         onTap: () {},
                         child: Text(
