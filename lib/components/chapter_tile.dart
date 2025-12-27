@@ -6,7 +6,6 @@ import 'package:fukuro/models/course_chapter_material_model.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/screens/course_material.dart';
 import 'package:fukuro/services/usersdb.dart';
-import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart';
 
 class ChapterTile extends StatefulWidget {
