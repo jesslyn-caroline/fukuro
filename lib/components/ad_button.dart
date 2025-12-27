@@ -32,17 +32,22 @@ class _AdButtonState extends State<AdButton> {
       child: Row(
         spacing: 5,
         children: [
-          Text(context.read<ProfileProvider>().userInfo!.key.toString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-            color: Colors.white, 
-            fontSize: 16,
-            fontWeight: FontWeight.w900
-          )),
-          Image.asset("assets/images/key.png", width: 18,)
+          Text(
+            context.read<ProfileProvider>().userInfo!.key.toString(),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              color: Colors.white, 
+              fontSize: 16,
+              fontWeight: FontWeight.w900
+            )
+          ),
+          Image.asset("assets/images/key.png", width: 18)
         ],
       ),
       onPressed: () async {
         await _rewardedAdService.showAd((reward) async {
-          Map <String, dynamic> data = { "key" : context.read<ProfileProvider>().userInfo!.key + reward };
+          Map <String, dynamic> data = {
+            "key" : context.read<ProfileProvider>().userInfo!.key + reward
+          };
           await _usersDb.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
           await _firestoreUser.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
           context.read<ProfileProvider>().setUserInfo();
