@@ -8,13 +8,17 @@ class RewardedAdService {
 
   void loadAd() async {
     rewardAd = null;
-    RewardedAd.load(
+    await RewardedAd.load(
       adUnitId: rewardAdId, 
       request: AdRequest(), 
       rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) => rewardAd = ad,
+        onAdLoaded: (ad) => { rewardAd = ad, msg = "" },
         onAdFailedToLoad: (error) => msg = "Failed to load Ad",
       )
     );
+  }
+
+  Future <void> showAd(void Function(int reward) onRewarded) async {
+    await rewardAd?.show(onUserEarnedReward: (ad, reward) => onRewarded(reward as int));
   }
 }
