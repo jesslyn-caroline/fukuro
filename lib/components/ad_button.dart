@@ -6,9 +6,7 @@ import 'package:fukuro/admob/rewarded_ad_service.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 
 class AdButton extends StatefulWidget {
-  AdButton({super.key, required this.count});
-
-  int count;
+  AdButton({super.key});
 
   @override
   State<AdButton> createState() => _AdButtonState();
@@ -35,20 +33,7 @@ class _AdButtonState extends State<AdButton> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: EdgeInsets.symmetric(horizontal: 12) 
       ),
-      child: Row(
-        spacing: 5,
-        children: [
-          Text(
-            context.read<ProfileProvider>().userInfo!.key.toString(),
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Colors.white, 
-              fontSize: 16,
-              fontWeight: FontWeight.w900
-            )
-          ),
-          Image.asset("assets/images/key.png", width: 18)
-        ],
-      ),
+      child: Icon(Icons.movie_filter_outlined, size: 24, color: Colors.white),
       onPressed: () async {
         await _rewardedAdService.showAd((reward) async {
           Map <String, dynamic> data = { "key" : context.read<ProfileProvider>().userInfo!.key + reward };
