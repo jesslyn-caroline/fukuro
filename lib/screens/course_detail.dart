@@ -3,6 +3,7 @@ import 'package:fukuro/components/button.dart';
 import 'package:fukuro/components/tag.dart';
 import 'package:fukuro/firebase/firebase_analytics.dart';
 import 'package:fukuro/respositories/course_respository.dart';
+import 'package:fukuro/screens/course_chapters.dart';
 import 'package:fukuro/screens/loading.dart';
 
 class CourseDetail extends StatelessWidget {
@@ -64,8 +65,11 @@ class CourseDetail extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerRight,
                   child: Button(
-                    action: () => analytics.logCourse(id, snapshot.data!.name, snapshot.data!.level), 
-                    text: "Enroll"
+                    action: () {
+                      () => analytics.logCourse(id, snapshot.data!.name, snapshot.data!.level);
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => CourseChapters(id: id, title: snapshot.data!.name,),));
+                    }, 
+                    text: "Learn"
                   )
                 )
               ],
