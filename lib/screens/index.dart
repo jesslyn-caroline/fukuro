@@ -52,7 +52,7 @@ class _IndexState extends State<Index> {
           onTap: (value) {
             analytics.movePage(screens[index]["label"], screens[value]["label"]);
             index = value;  
-            print(context.read<ProfileProvider>().userInfo!.key);
+            // print(context.read<ProfileProvider>().userInfo!.key);
             setState(() {});
           },
           items: [
