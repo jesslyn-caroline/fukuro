@@ -17,6 +17,13 @@ class _ReminderState extends State<Reminder> {
   ReminderService _reminderService = ReminderService();
 
   @override
+  void initState() {
+    // TODO: implement initState
+    _reminderService.initSelectedTime(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
