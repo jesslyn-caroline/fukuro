@@ -19,6 +19,8 @@ class RewardedAdService {
   }
 
   Future <void> showAd(void Function(int reward) onRewarded) async {
-    await rewardAd?.show(onUserEarnedReward: (ad, reward) => onRewarded(reward as int));
+    await rewardAd?.show(
+      onUserEarnedReward: (ad, reward) => onRewarded(reward.amount as int),
+    );
   }
 }
