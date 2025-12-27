@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:fukuro/admob/rewarded_ad_service.dart';
+import 'package:fukuro/providers/profile_provider.dart';
 
 class AdButton extends StatelessWidget {
   AdButton({super.key, required this.count});
@@ -18,7 +20,7 @@ class AdButton extends StatelessWidget {
       child: Row(
         spacing: 5,
         children: [
-          Text(count.toString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          Text(context.read<ProfileProvider>().userInfo!.point.toString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             color: Colors.white, 
             fontSize: 16,
             fontWeight: FontWeight.w900

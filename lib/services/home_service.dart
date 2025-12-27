@@ -8,12 +8,8 @@ class HomeService {
   FirestoreUser _firestoreUser = FirestoreUser();
   UsersDb _usersDb = UsersDb();
 
-  Future <void> watchAd( void Function() setState, void Function() onFailed, String uid, int totalKey ) async {
-    if (_rewardedAdService.rewardAd == null) {
-      onFailed();
-      return;
-    }
-    await _rewardedAdService.showAd((reward) =>updateKey(uid, totalKey + reward));
+  Future <void> watchAd( void Function() setState, void Function() onFailed, void Function(int reward) onEarned) async {
+    await _rewardedAdService.showAd((reward) => onEarned(reward));
     setState();
     _rewardedAdService.loadAd();
   }

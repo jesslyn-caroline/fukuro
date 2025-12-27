@@ -72,8 +72,10 @@ class _HomeState extends State<Home> {
                     await _homeService.watchAd(
                       () => setState(() {}),
                       () => ScaffoldMessenger.of(context).showSnackBar(snackBarCustom("Failed to load Ad", context)),
-                      context.read<ProfileProvider>().user!.uid, 
-                      context.read<ProfileProvider>().userInfo!.key
+                      (reward) async {
+                        await _homeService.updateKey(context.read<ProfileProvider>().userInfo!.uid, context.read<ProfileProvider>().userInfo!.key + reward);
+                        context.read<ProfileProvider>().setUserInfo();
+                      }
                     );  
                   }
                 ),

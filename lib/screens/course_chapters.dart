@@ -3,20 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/components/ad_button.dart';
 import 'package:fukuro/components/chapter_tile.dart';
 import 'package:fukuro/respositories/course_chapter_repository.dart';
+import 'package:fukuro/utils/get_user_info.dart';
 
-class CourseChapters extends StatelessWidget {
+class CourseChapters extends StatefulWidget {
   CourseChapters({super.key, required this.id, required this.title});
 
+  String id, title;
+
+  @override
+  State<CourseChapters> createState() => _CourseChaptersState();
+}
+
+class _CourseChaptersState extends State<CourseChapters> {
   CourseChapterRepository _chapterRepository = CourseChapterRepository();
 
-  String id, title;
-  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: FutureBuilder(
-          future: _chapterRepository.fetchById(id), 
+          future: _chapterRepository.fetchById(widget.id), 
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) return Center( child: CircularProgressIndicator(), );
             if (snapshot.hasError || snapshot.data == null) return Text("Something wrong");
@@ -37,7 +49,7 @@ class CourseChapters extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 12, 20, 20),
-                  child: Text(title, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  child: Text(widget.title, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 24, 
                     fontWeight: FontWeight.w900,
                     color: Theme.of(context).colorScheme.primary
