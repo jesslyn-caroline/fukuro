@@ -17,13 +17,6 @@ class _ReminderState extends State<Reminder> {
   ReminderService _reminderService = ReminderService();
 
   @override
-  void initState() {
-    // TODO: implement initState
-    _reminderService.initSelectedTime(context);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
@@ -32,9 +25,9 @@ class _ReminderState extends State<Reminder> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(_reminderService.isSet ? "assets/images/alarm-clock-smile.png" : "assets/images/alarm-clock.png", width: 200),
+            Image.asset(context.watch<ProfileProvider>().reminderTime != null ? "assets/images/alarm-clock-smile.png" : "assets/images/alarm-clock.png", width: 200),
             SizedBox(height: 16),
-            Text(_reminderService.isSet ? "We will remind you by the time!" : "Schedule your study session!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            Text(context.watch<ProfileProvider>().reminderTime != null ? "We will remind you by the time!" : "Schedule your study session!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w900,
               color: Theme.of(context).colorScheme.primary
@@ -42,41 +35,37 @@ class _ReminderState extends State<Reminder> {
             SizedBox(height: 16),
             ReminderTile(
               title: "Date", 
-              subtitle: _reminderService.isSet ?
-                "${DateFormat.yMMMMd().format(context.read<ProfileProvider>().reminderTime!)}" : 
-                "${DateFormat.yMMMMd().format(_reminderService.selectedTime)}", 
+              subtitle: context.watch<ProfileProvider>().reminderTime != null ?
+                DateFormat.yMMMMd().format(context.read<ProfileProvider>().reminderTime!) : 
+                DateFormat.yMMMMd().format(_reminderService.selectedTime), 
               icon: Icons.calendar_month_outlined, 
               action: () async {
-                if (_reminderService.isSet) return;
+                if (context.read<ProfileProvider>().reminderTime != null) return;
                 await _reminderService.showDatePicker(context);
                 setState(() {});
               }
             ),
             ReminderTile(
               title: "Time", 
-              subtitle: _reminderService.isSet ?
-                "${DateFormat.Hm().format(context.read<ProfileProvider>().reminderTime!)}" : 
-                "${DateFormat.Hm().format(_reminderService.selectedTime)}", 
+              subtitle: context.watch<ProfileProvider>().reminderTime != null ?
+                DateFormat.Hm().format(context.read<ProfileProvider>().reminderTime!) : 
+                DateFormat.Hm().format(_reminderService.selectedTime), 
               icon: Icons.timer_outlined, 
               action: () async {
-                if (_reminderService.isSet) return;
+                if (context.read<ProfileProvider>().reminderTime != null) return;
                 await _reminderService.showTimePicker(context);
                 setState(() {});
               }
             ),
             SizedBox(height: 12),
             BlockButton(
-              text: _reminderService.isSet ? "CANCEL" : "SET REMINDER", 
-              action: () {
-                if (_reminderService.isSet) {
-                  context.read<ProfileProvider>().changeReminderTime(null);
-                  _reminderService.remove();
+              text: context.watch<ProfileProvider>().reminderTime != null ? "CANCEL" : "SET REMINDER", 
+              action: () async {
+                if (context.read<ProfileProvider>().reminderTime != null) {
+                  await _reminderService.remove(context);
                 } else {
-                  context.read<ProfileProvider>().changeReminderTime(_reminderService.selectedTime);
-                  _reminderService.set();
+                  await _reminderService.set(context);
                 }
-                
-                setState(() {});
               }
             )
           ],

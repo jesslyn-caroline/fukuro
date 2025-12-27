@@ -5,7 +5,6 @@ class ReminderNotification {
   NotificationInit _notificationInit = NotificationInit();
 
   Future <void> showNotification(DateTime time) async {
-    time = DateTime(time.year, time.month, time.day, time.hour, time.minute, 0);
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 2,
@@ -14,9 +13,18 @@ class ReminderNotification {
         title: "Study Time ⏰",
         body: "It's time for your study session. Open the app and let's focus together 💪📚",
       ),
-      schedule: NotificationCalendar.fromDate(date: time)
+      schedule: NotificationCalendar(
+        year: time.year,
+        month: time.month,
+        day: time.day,
+        hour: time.hour,
+        minute: time.minute,
+        second: 0,
+        millisecond: 0,
+        preciseAlarm: true
+      ),
     );
   }
 
-  void cancelNotification() async => await AwesomeNotifications().cancel(2);
+  Future<void> cancelNotification() async => await AwesomeNotifications().cancel(2);
 }

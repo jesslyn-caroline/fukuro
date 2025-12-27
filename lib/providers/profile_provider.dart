@@ -45,6 +45,4 @@ class ProfileProvider with ChangeNotifier {
     userInfo = await getUserInfo();
     notifyListeners();
   }
-
-  
 }
