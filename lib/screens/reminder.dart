@@ -34,11 +34,14 @@ class _ReminderState extends State<Reminder> {
           children: [
             Image.asset(context.watch<ProfileProvider>().reminderTime != null ? "assets/images/alarm-clock-smile.png" : "assets/images/alarm-clock.png", width: 200),
             SizedBox(height: 16),
-            Text(context.watch<ProfileProvider>().reminderTime != null ? "We will remind you by the time!" : "Schedule your study session!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontSize: 20,
-              fontWeight: FontWeight.w900,
-              color: Theme.of(context).colorScheme.primary
-            )),
+            Text(
+              context.watch<ProfileProvider>().reminderTime != null ? "We will remind you by the time!" : "Schedule your study session!",
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+                color: Theme.of(context).colorScheme.primary
+              )
+            ),
             SizedBox(height: 16),
             ReminderTile(
               title: "Date", 
