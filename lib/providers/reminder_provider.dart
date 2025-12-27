@@ -58,7 +58,15 @@ class ReminderProvider with ChangeNotifier {
   }
 
   Future<void> set(BuildContext context) async {
-    reminderTime = selectedTime;
+    reminderTime = DateTime(
+      selectedTime!.year,
+      selectedTime!.month,
+      selectedTime!.day,
+      selectedTime!.hour,
+      selectedTime!.minute,
+      0
+    );
+
     notifyListeners();
     await _reminderNotification.showNotification(selectedTime!);
 
@@ -70,7 +78,7 @@ class ReminderProvider with ChangeNotifier {
         selectedTime = DateTime.now().add(Duration(minutes: 5));
         notifyListeners(); 
       } 
-    },);
+    });
   }
   
   Future<void> remove() async {
