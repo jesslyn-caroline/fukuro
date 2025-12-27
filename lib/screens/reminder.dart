@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/reminder_tile.dart';
 import 'package:fukuro/providers/profile_provider.dart';
+import 'package:fukuro/providers/reminder_provider.dart';
 import 'package:fukuro/services/reminder_service.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +15,11 @@ class Reminder extends StatefulWidget {
 }
 
 class _ReminderState extends State<Reminder> {
-  ReminderService _reminderService = ReminderService();
 
   @override
   void initState() {
     // TODO: implement initState
-    _reminderService.initSelectedTime(context);
+    // context.read<ReminderProvider>().initSelectedTime(context);
     super.initState();
   }
 
@@ -33,14 +33,14 @@ class _ReminderState extends State<Reminder> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              context.watch<ProfileProvider>().reminderTime != null
+              context.watch<ReminderProvider>().reminderTime != null
                 ? "assets/images/alarm-clock-smile.png"
                 : "assets/images/alarm-clock.png",
               width: 200
             ),
             SizedBox(height: 16),
             Text(
-              context.watch<ProfileProvider>().reminderTime != null
+              context.watch<ReminderProvider>().reminderTime != null
                 ? "We will remind you by the time!"
                 : "Schedule your study session!",
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -52,36 +52,36 @@ class _ReminderState extends State<Reminder> {
             SizedBox(height: 16),
             ReminderTile(
               title: "Date", 
-              subtitle: context.watch<ProfileProvider>().reminderTime != null
-                ? DateFormat.yMMMMd().format(context.read<ProfileProvider>().reminderTime!) 
-                : DateFormat.yMMMMd().format(_reminderService.selectedTime), 
+              subtitle: context.watch<ReminderProvider>().reminderTime != null
+                ? DateFormat.yMMMMd().format(context.read<ReminderProvider>().reminderTime!) 
+                : DateFormat.yMMMMd().format(context.read<ReminderProvider>().selectedTime!), 
               icon: Icons.calendar_month_outlined, 
               action: () async {
-                if (context.read<ProfileProvider>().reminderTime != null) return;
-                await _reminderService.showDatePicker(context);
+                if (context.read<ReminderProvider>().reminderTime != null) return;
+                await context.read<ReminderProvider>().showDatePicker(context);
                 setState(() {});
               }
             ),
             ReminderTile(
               title: "Time", 
-              subtitle: context.watch<ProfileProvider>().reminderTime != null
-                ? DateFormat.Hm().format(context.read<ProfileProvider>().reminderTime!)
-                : DateFormat.Hm().format(_reminderService.selectedTime), 
+              subtitle: context.watch<ReminderProvider>().reminderTime != null
+                ? DateFormat.Hm().format(context.read<ReminderProvider>().reminderTime!)
+                : DateFormat.Hm().format(context.read<ReminderProvider>().selectedTime!), 
               icon: Icons.timer_outlined, 
               action: () async {
-                if (context.read<ProfileProvider>().reminderTime != null) return;
-                await _reminderService.showTimePicker(context);
+                if (context.read<ReminderProvider>().reminderTime != null) return;
+                await context.read<ReminderProvider>().showTimePicker(context);
                 setState(() {});
               }
             ),
             SizedBox(height: 12),
             BlockButton(
-              text: context.watch<ProfileProvider>().reminderTime != null ? "CANCEL" : "SET REMINDER", 
+              text: context.watch<ReminderProvider>().reminderTime != null ? "CANCEL" : "SET REMINDER", 
               action: () async {
-                if (context.read<ProfileProvider>().reminderTime != null) {
-                  await _reminderService.remove(context);
+                if (context.read<ReminderProvider>().reminderTime != null) {
+                  await context.read<ReminderProvider>().remove();
                 } else {
-                  await _reminderService.set(context);
+                  await context.read<ReminderProvider>().set(context);
                 }
               }
             )
