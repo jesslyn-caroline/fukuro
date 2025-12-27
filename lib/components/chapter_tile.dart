@@ -38,7 +38,19 @@ class _ChapterTileState extends State<ChapterTile> {
         Text("Coming soon", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
           color: Colors.white,fontWeight: FontWeight.w900))
         : null,
-      trailing: Icon(widget.status == 'unlocked' ? Icons.lock_open : Icons.lock, color: Theme.of(context).colorScheme.primary),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 3,
+        children: [
+          widget.status == "coming-soon" ? Text("") : Text("${int.parse(widget.chapterId.split('_')[1]) == 0 ? 0 : 20 }", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+            fontWeight: FontWeight.w900,
+            fontSize: 18
+          ),),
+          Icon(widget.status == 'unlocked' ? Icons.lock_open : Icons.lock, color: Theme.of(context).colorScheme.primary),
+        ],
+        
+      ),
       onTap: () {
         if (widget.status == "coming-soon") return;
         if (widget.status == "locked") {
