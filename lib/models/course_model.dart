@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class CourseModel {
     String id;
     String name;

@@ -36,7 +36,8 @@ class LoginService {
         uid: userInfo.uid, 
         lastQuizTaken: userInfo.lastQuizTaken, 
         streakQuiz: userInfo.streakQuiz, 
-        point: userInfo.point
+        point: userInfo.point,
+        key: userInfo.key
       ).toJson();
       
       usersDb.updateByUID(currentUser.uid, data);

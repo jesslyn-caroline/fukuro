@@ -11,8 +11,7 @@ class ReminderNotification {
         channelKey: _notificationInit.reminderNotifChannelKey,
         title: 'Study Time ⏰',
         body: 'It\’s time for your study session. Open the app and let\'s focus together 💪📚',
-        notificationLayout: NotificationLayout.BigPicture,
-        bigPicture: 'assets/images/alarm-clock-smile.png'
+        notificationLayout: NotificationLayout.BigText
       ),
       schedule: NotificationCalendar.fromDate(date: time)
     );

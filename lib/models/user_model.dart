@@ -6,6 +6,7 @@ class UserModel {
   int point;
   int streakQuiz;
   String lastQuizTaken;
+  int key;
 
   UserModel({
     required this.uid,
@@ -14,7 +15,8 @@ class UserModel {
     required this.photoURL,
     required this.point,
     required this.streakQuiz,
-    required this.lastQuizTaken
+    required this.lastQuizTaken,
+    required this.key
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -25,6 +27,7 @@ class UserModel {
     point: json['point'],
     streakQuiz: json['streakQuiz'],
     lastQuizTaken: json['lastQuizTaken'],
+    key: json['key']
   );
 
   Map<String, dynamic> toJson() => {
@@ -34,6 +37,6 @@ class UserModel {
     'photoURL': photoURL,
     'point': point,
     'streakQuiz': streakQuiz,
-    'lastQuizTaken': lastQuizTaken
+    'lastQuizTaken': lastQuizTaken,
   };
 }
