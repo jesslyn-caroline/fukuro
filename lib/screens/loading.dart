@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 
-import 'package:fukuro/services/usersdb.dart';
-
 class Loading extends StatefulWidget {
   const Loading({super.key});
 

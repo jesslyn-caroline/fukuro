@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/utils/get_user_info.dart';
-import 'package:provider/provider.dart';
 
 import 'package:fukuro/l10n/app_localizations.dart';
 
 import 'package:fukuro/components/snackbarcustom.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
-import 'package:fukuro/providers/profile_provider.dart';
 import 'package:fukuro/services/change_password_service.dart';
 
 class ChangePassword extends StatelessWidget {

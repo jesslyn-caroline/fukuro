@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/utils/get_user_info.dart';
 
 import 'package:provider/provider.dart';
 

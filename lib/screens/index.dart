@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fukuro/models/userInfo_model.dart';
-import 'package:fukuro/screens/reminder.dart';
-import 'package:fukuro/utils/get_user_info.dart';
 import 'package:provider/provider.dart  ';
 
 import 'package:fukuro/firebase/firebase_analytics.dart';
@@ -10,6 +7,7 @@ import 'package:fukuro/screens/courses.dart';
 import 'package:fukuro/screens/home.dart';
 import 'package:fukuro/screens/profile.dart';
 import 'package:fukuro/services/usersdb.dart';
+import 'package:fukuro/screens/reminder.dart';
 
 class Index extends StatefulWidget {
   const Index({super.key});
@@ -52,7 +50,6 @@ class _IndexState extends State<Index> {
           onTap: (value) {
             analytics.movePage(screens[index]["label"], screens[value]["label"]);
             index = value;  
-            // print(context.read<ProfileProvider>().userInfo!.key);
             setState(() {});
           },
           items: [

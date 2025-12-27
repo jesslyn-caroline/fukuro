@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fukuro/admob/rewarded_ad_service.dart';
 import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
 import 'package:fukuro/services/usersdb.dart';

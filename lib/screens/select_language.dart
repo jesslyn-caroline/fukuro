@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/providers/profile_provider.dart';
-import 'package:fukuro/screens/profile.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:geolocator/geolocator.dart';
 
 import 'package:provider/provider.dart';
 

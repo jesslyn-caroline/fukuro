@@ -23,7 +23,6 @@ Future <UserInfoModel> getUserInfo () async {
   DateTime prev = DateTime.parse(userInfo.lastQuizTaken);
   DateTime now = DateTime.parse(DateFormat('yyyy-MM-dd').format(DateTime.now()).toString());
   int diff = now.difference(prev).inDays;
-  // int diff = now.compareTo(prev).abs();
 
   if (diff > 1) {
     await _firestoreUser.updateByUID(
