@@ -50,7 +50,7 @@ class _AdButtonState extends State<AdButton> {
           };
           await _usersDb.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
           await _firestoreUser.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
-          context.read<ProfileProvider>().setUserInfo();
+          await context.read<ProfileProvider>().setUserInfo();
         });
         setState(() {});
         _rewardedAdService.loadAd();
