@@ -19,7 +19,7 @@ class _ReminderState extends State<Reminder> {
   @override
   void initState() {
     // TODO: implement initState
-    // context.read<ReminderProvider>().initSelectedTime(context);
+    context.read<ReminderProvider>().init();
     super.initState();
   }
 

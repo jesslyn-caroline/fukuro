@@ -80,5 +80,18 @@ class ReminderProvider with ChangeNotifier {
     reminderTime = null;
     notifyListeners();
   }
+
+  void init() async {
+    if (reminderTime == null) return;
+    timerValue = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (reminderTime!.isBefore(DateTime.now())) {
+        timerValue!.cancel();
+        sharedPref.delReminderTime();
+        reminderTime = null;
+        selectedTime = DateTime.now().add(Duration(minutes: 5));
+        notifyListeners(); 
+      } 
+    },);
+  }
   
 }
