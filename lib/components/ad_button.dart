@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/firebase/firebase_firestore/firestore_user.dart';
+import 'package:fukuro/services/usersdb.dart';
 import 'package:provider/provider.dart';
 import 'package:fukuro/admob/rewarded_ad_service.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 
-class AdButton extends StatelessWidget {
+class AdButton extends StatefulWidget {
   AdButton({super.key, required this.count});
 
-  RewardedAdService _rewardedAdService = RewardedAdService();
   int count;
+
+  @override
+  State<AdButton> createState() => _AdButtonState();
+}
+
+class _AdButtonState extends State<AdButton> {
+  UsersDb _usersDb = UsersDb();
+
+  FirestoreUser _firestoreUser = FirestoreUser();
+
+  RewardedAdService _rewardedAdService = RewardedAdService();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +32,7 @@ class AdButton extends StatelessWidget {
       child: Row(
         spacing: 5,
         children: [
-          Text(context.read<ProfileProvider>().userInfo!.point.toString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          Text(context.read<ProfileProvider>().userInfo!.key.toString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(
             color: Colors.white, 
             fontSize: 16,
             fontWeight: FontWeight.w900
@@ -29,7 +41,13 @@ class AdButton extends StatelessWidget {
         ],
       ),
       onPressed: () async {
-        // await _rewardedAdService.showAd();
+        await _rewardedAdService.showAd((reward) async {
+          Map <String, dynamic> data = { "key" : context.read<ProfileProvider>().userInfo!.key + reward };
+          await _usersDb.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
+          await _firestoreUser.updateByUID(context.read<ProfileProvider>().userInfo!.uid, data);
+          context.read<ProfileProvider>().setUserInfo();
+        });
+        setState(() {});
         _rewardedAdService.loadAd();
       },
     );
