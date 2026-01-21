@@ -48,7 +48,7 @@ class Profile extends StatelessWidget {
                   hint: "Double Tap to Change Profile Picture",
                   child: GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())),
-                    child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().user!.photoURL}").image, ),
+                    child: CircleAvatar( radius: 50, backgroundImage: Image.asset("assets/images/${context.watch<ProfileProvider>().user?.photoURL ?? "pp-bear.png"}").image, ),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -66,6 +66,7 @@ class Profile extends StatelessWidget {
             child: Column(
               children: [
                 ProfileSettingTile(
+                  key: ValueKey("profilePictureSetting"),
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeProfilePicture())), 
                   title: "${l10n.profileProfilePicture}", 
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20)),
@@ -73,6 +74,7 @@ class Profile extends StatelessWidget {
                 Semantics(
                   label: "Current Mode: ${context.read<ProfileProvider>().isDark ? "Dark" : "Light" }",
                   child: ProfileSettingTile(
+                    key: ValueKey("switchModeSetting"),
                     action: () => context.read<ProfileProvider>().changeTheme(!context.read<ProfileProvider>().isDark), 
                     title: "${l10n.profileSwitch}", 
                     trailing: Switch(
@@ -84,6 +86,7 @@ class Profile extends StatelessWidget {
                 Semantics(
                   hint: "Double Tap to Change Username",
                   child: ProfileSettingTile(
+                    key: ValueKey("changeUsernameSetting"),
                     action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeUsername())), 
                     title: "${l10n.profileUsername}",
                     subtitle: context.watch<ProfileProvider>().user?.displayName,
@@ -91,6 +94,7 @@ class Profile extends StatelessWidget {
                 ),
                 SizedBox(height: 14),
                 ProfileSettingTile(
+                  key: ValueKey("changePasswordSetting"),
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangePassword())), 
                   title: "${l10n.profilePassword}", 
                   subtitle: "• • • • • • • • • •",
@@ -98,6 +102,7 @@ class Profile extends StatelessWidget {
                 ),
                 SizedBox(height: 14,),        
                 ProfileSettingTile(
+                  key: ValueKey("changeLanguageSetting"),
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => SelectLanguage())),
                   title: "${l10n.profileChangeLanguage}",
                   trailing: Icon(Icons.arrow_forward_ios_rounded, color: Theme.of(context).colorScheme.primary, size: 20),

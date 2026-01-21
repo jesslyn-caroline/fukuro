@@ -18,6 +18,7 @@ class ChangeUsername extends StatelessWidget {
     var l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
+      key: ValueKey("changeUsernameScreen"),
       appBar: AppBar(
         toolbarHeight: 90,
         leading: Padding(

@@ -78,6 +78,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                     label: "Change language to ${lang["label"]}",
                     hint: "Double Tap to select and tap save button to change",
                     child: ListTile(
+                      key: ValueKey("languageOption_${lang['id']}"),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: BorderSide(
@@ -100,9 +101,11 @@ class _SelectLanguageState extends State<SelectLanguage> {
                 )),
                 SizedBox(height: 24),
                 BlockButton(
+                  key: ValueKey("changeLanguageBtn"),
                   text: "${l10n.changeButton}",
                   action: () {
                     context.read<ProfileProvider>().changeLang(selectedLang!);
+
                     Navigator.of(context).pop();
                   },
                   bgColor: Theme.of(context).colorScheme.primary,

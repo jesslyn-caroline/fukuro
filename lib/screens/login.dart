@@ -49,11 +49,12 @@ class Login extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary
                   )),
                   SizedBox(height: 20),
-                  BlockField(hintText: "Email", controller: _loginService.emailC, errorText: "", isPassword: false),
+                  BlockField(hintText: "Email", controller: _loginService.emailC, errorText: "", isPassword: false, key: ValueKey("loginEmailField"),),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Password", controller: _loginService.passwordC, errorText: "", isPassword: true),
+                  BlockField(hintText: "Password", controller: _loginService.passwordC, errorText: "", isPassword: true, key: ValueKey("loginPasswordField"),),
                   SizedBox(height: 28),
                   BlockButton(
+                    key: ValueKey("loginBtn"),
                     text: "LOGIN",
                     action: () async {
                       String msg = await _loginService.login();

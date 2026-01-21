@@ -47,15 +47,16 @@ class Signup extends StatelessWidget {
                     color: Theme.of(context).colorScheme.secondary
                   )),
                   SizedBox(height: 20),
-                  BlockField(hintText: "Name", controller: _signupService.nameC, errorText: "", isPassword: false),
+                  BlockField(hintText: "Name", controller: _signupService.nameC, errorText: "", isPassword: false, key: ValueKey("signupNameField"),),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Email", controller: _signupService.emailC, errorText: "", isPassword: false),
+                  BlockField(hintText: "Email", controller: _signupService.emailC, errorText: "", isPassword: false, key: ValueKey("signupEmailField"),),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Password", controller: _signupService.passwordC, errorText: "", isPassword: true),
+                  BlockField(hintText: "Password", controller: _signupService.passwordC, errorText: "", isPassword: true, key: ValueKey("signupPasswordField"),),
                   SizedBox(height: 16),
-                  BlockField(hintText: "Confirm Password", controller: _signupService.confirmPasswordC, errorText: "", isPassword: true),
+                  BlockField(hintText: "Confirm Password", controller: _signupService.confirmPasswordC, errorText: "", isPassword: true, key: ValueKey("signupConfirmPasswordField"),),
                   SizedBox(height: 28),
                   BlockButton(
+                    key: ValueKey("signupBtn"),
                     text: "SIGN UP",
                     action: () async {
                       String msg = await _signupService.signup();

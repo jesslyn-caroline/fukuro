@@ -26,6 +26,7 @@ class _ChangeProfilePictureState extends State<ChangeProfilePicture> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: ValueKey("changeProfilePictureScreen"),
       appBar: AppBar(
         toolbarHeight: 100,
         backgroundColor: Theme.of(context).colorScheme.primary,

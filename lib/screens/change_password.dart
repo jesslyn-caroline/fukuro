@@ -17,6 +17,7 @@ class ChangePassword extends StatelessWidget {
     var l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
+      key: ValueKey("changePasswordScreen"),
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         toolbarHeight: 90,
