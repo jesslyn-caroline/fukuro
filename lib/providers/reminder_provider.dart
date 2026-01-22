@@ -67,6 +67,8 @@ class ReminderProvider with ChangeNotifier {
       0
     );
 
+    sharedPref.setReminderTime(reminderTime!);
+
     notifyListeners();
     await _reminderNotification.showNotification(selectedTime!);
 
