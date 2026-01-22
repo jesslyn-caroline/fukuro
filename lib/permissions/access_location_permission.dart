@@ -5,6 +5,12 @@ import 'package:geolocator/geolocator.dart';
 Future <String> requestLocationPermission () async {
   String selectedLang = "en";
 
+  bool isFirstOpen = sharedPref.checkIsFirstOpen();
+
+  if (!isFirstOpen) return sharedPref.getSelectedLang() ?? "en"; 
+
+  await sharedPref.setFirstOpen();
+
   var status = await Permission.location.status;
 
   if (status.isDenied) status = await Permission.location.request();
