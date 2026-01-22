@@ -50,7 +50,7 @@ void main() {
 
       var datePickerTile = find.byKey(ValueKey('datePicker'));
       var datePickerTitle = find.text('Date');
-
+      
       expect(datePickerTile, findsOneWidget);
       expect(datePickerTitle, findsOneWidget);
     });
