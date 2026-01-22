@@ -133,11 +133,11 @@ class _DailyQuizState extends State<DailyQuiz> {
                               context.read<ProfileProvider>().userInfo!.point,
                               context.read<ProfileProvider>().userInfo!.streakQuiz
                             );
-                            _quizService.resetAll();
                             context.read<ProfileProvider>().setUserInfo(
                               DateFormat('yyyy-MM-dd').format(DateTime.now()), 
                               context.read<ProfileProvider>().userInfo!.streakQuiz + 1,
                               context.read<ProfileProvider>().userInfo!.point + _quizService.score, null);
+                            _quizService.resetAll();
                             Navigator.of(context).pop();
                             Navigator.of(context).pop();
                           }
