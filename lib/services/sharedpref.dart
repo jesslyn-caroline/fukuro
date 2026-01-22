@@ -35,6 +35,14 @@ class SharedPref{
     return sharedPref?.getString('reminderTime');
   } 
 
+  bool checkIsFirstOpen() {
+    return sharedPref?.getBool('isFirstOpen') ?? true;
+  }
+
+  Future <void> setFirstOpen () async {
+    await sharedPref?.setBool('isFirstOpen', false);
+  }
+
   Future <void> clear() async => await sharedPref?.remove('lang');
 }
 
