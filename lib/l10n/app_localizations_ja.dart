@@ -12,6 +12,45 @@ class AppLocalizationsJa extends AppLocalizations {
   String get hello => 'こんにちは';
 
   @override
+  String get welcomeDesc => '知識を発見し、可能性を解き放ち、目標への第一歩を踏み出そう。';
+
+  @override
+  String get welcomeLetsgo => 'さあ、行こう！';
+
+  @override
+  String get getStartedDesc => '知識の世界へ踏み出そう';
+
+  @override
+  String get getStartedBtn => '始める';
+
+  @override
+  String get getStartedHaveAccount => 'すでにアカウントをお持ちです';
+
+  @override
+  String get signupTitle => 'あなたのことをもっと教えてください！';
+
+  @override
+  String get signupDesc => 'あなたの旅はここから始まります！';
+
+  @override
+  String get signupBtn => '登録';
+
+  @override
+  String get loginTitle => 'おかえりなさい！';
+
+  @override
+  String get loginDesc => 'もっと発見する準備はできていますか？';
+
+  @override
+  String get loginBtn => 'ログイン';
+
+  @override
+  String get homeWatchAdTitle => '広告を見て鍵を獲得しよう！';
+
+  @override
+  String get homeWatchAdDesc => '鍵はコースを解放するために使われます！';
+
+  @override
   String get homeQuizPoint => 'ポイント';
 
   @override
@@ -79,6 +118,24 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get coursesDetailEnroll => 'エンロール';
+
+  @override
+  String get reminderReminding => '時間になったらお知らせします！';
+
+  @override
+  String get reminderSchedule => '学習セッションをスケジュールしよう！';
+
+  @override
+  String get reminderDate => '日付';
+
+  @override
+  String get reminderTime => '時間';
+
+  @override
+  String get reminderCancel => 'キャンセル';
+
+  @override
+  String get reminderSet => 'リマインダーを設定';
 
   @override
   String get profileProfilePicture => 'プロフィールシャシンヲヘンコウ';

@@ -12,6 +12,46 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hello => 'Hello';
 
   @override
+  String get welcomeDesc =>
+      'Discover knowledge, unlock your potential, and take the first step toward your goals.';
+
+  @override
+  String get welcomeLetsgo => 'LET\'S GO';
+
+  @override
+  String get getStartedDesc => 'Step into the world of knowledge';
+
+  @override
+  String get getStartedBtn => 'GET STARTED';
+
+  @override
+  String get getStartedHaveAccount => 'I ALREADY HAVE AN ACCOUNT';
+
+  @override
+  String get signupTitle => 'Let\'s get to know you better!';
+
+  @override
+  String get signupDesc => 'Your journey starts here!';
+
+  @override
+  String get signupBtn => 'SIGN UP';
+
+  @override
+  String get loginTitle => 'Welcome back!';
+
+  @override
+  String get loginDesc => 'Ready to discover more?';
+
+  @override
+  String get loginBtn => 'LOGIN';
+
+  @override
+  String get homeWatchAdTitle => 'Watch Ads to collect keys!';
+
+  @override
+  String get homeWatchAdDesc => 'Keys are used to unlock courses!';
+
+  @override
   String get homeQuizPoint => 'Point';
 
   @override
@@ -82,6 +122,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get coursesDetailEnroll => 'Enroll';
+
+  @override
+  String get reminderReminding => 'We will remind you by the time!';
+
+  @override
+  String get reminderSchedule => 'Schedule your study session!';
+
+  @override
+  String get reminderDate => 'Date';
+
+  @override
+  String get reminderTime => 'Time';
+
+  @override
+  String get reminderCancel => 'CANCEL';
+
+  @override
+  String get reminderSet => 'SET REMINDER';
 
   @override
   String get profileProfilePicture => 'Change Profile Picture';
