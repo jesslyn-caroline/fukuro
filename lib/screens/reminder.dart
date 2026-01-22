@@ -50,6 +50,7 @@ class _ReminderState extends State<Reminder> {
             ),
             SizedBox(height: 16),
             ReminderTile(
+              key: ValueKey('datePicker'),
               title: l10n.reminderDate, 
               subtitle: context.watch<ReminderProvider>().reminderTime != null
                 ? DateFormat.yMMMMd().format(context.read<ReminderProvider>().reminderTime!) 
@@ -62,6 +63,7 @@ class _ReminderState extends State<Reminder> {
               }
             ),
             ReminderTile(
+              key: ValueKey('timePicker'),
               title: l10n.reminderTime, 
               subtitle: context.watch<ReminderProvider>().reminderTime != null
                 ? DateFormat.Hm().format(context.read<ReminderProvider>().reminderTime!)
@@ -75,6 +77,7 @@ class _ReminderState extends State<Reminder> {
             ),
             SizedBox(height: 12),
             BlockButton(
+              key: ValueKey('saveOrCancelBtn'),
               text: context.watch<ReminderProvider>().reminderTime != null ? l10n.reminderCancel : l10n.reminderSet,
               action: () async {
                 if (context.read<ReminderProvider>().reminderTime != null) {
