@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fukuro/permissions/access_location_permission.dart';
-import 'package:fukuro/services/sharedpref.dart';
+import 'package:fukuro/providers/profile_provider.dart';
 
 import 'package:fukuro/screens/index.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/screens/getstarted.dart';
 import 'package:fukuro/screens/loading.dart';
+import 'package:provider/provider.dart';
 
 class Welcome extends StatefulWidget {
   Welcome({super.key});
@@ -19,30 +20,22 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   loading() async {
     await Future.delayed(Duration(seconds: 3));
+    requestLoc();
     return true;
   }
 
   late Future <void> futureLoading;
 
-  SharedPref sharedPref = SharedPref();
   String? idLang;
 
   Future <void> requestLoc () async {
     idLang = await requestLocationPermission();
-    print("idLang : $idLang");
+    context.read<ProfileProvider>().changeLang(idLang!);
   }
 
   @override
   void initState() {
     futureLoading = loading();
-  
-    // idLang = context.read<ProfileProvider>().selectedLang;
-
-    // if (sharedPref.getSelectedLang() == null)  {
-    //   requestLoc();
-    //   context.read<ProfileProvider>().changeLang(idLang);w
-    // }
-
     super.initState();
   }
 
