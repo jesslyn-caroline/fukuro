@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,8 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -38,12 +41,12 @@ class Login extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               child: ListView(
                 children: [
-                  Text( "Welcome back!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  Text(l10n.loginTitle, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
                     color: Theme.of(context).colorScheme.primary
                   )),
-                  Text("Ready to discover more?", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  Text(l10n.loginDesc, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20, 
                     fontWeight: FontWeight.w900, 
                     color: Theme.of(context).colorScheme.secondary
@@ -55,7 +58,7 @@ class Login extends StatelessWidget {
                   SizedBox(height: 28),
                   BlockButton(
                     key: ValueKey("loginBtn"),
-                    text: "LOGIN",
+                    text: l10n.loginBtn,
                     action: () async {
                       String msg = await _loginService.login();
                       if (msg != "") {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/blockfield.dart';
 import 'package:fukuro/components/snackbarcustom.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:fukuro/services/signup_service.dart';
 import 'package:fukuro/screens/login.dart';
 
@@ -14,6 +15,8 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
@@ -36,12 +39,12 @@ class Signup extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               child: ListView(
                 children: [
-                  Text("Let's get to know you better!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  Text(l10n.signupTitle, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20,
                     fontWeight: FontWeight.w900,
                     color: Theme.of(context).colorScheme.primary
                   )),
-                  Text("Your journey starts here!", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  Text(l10n.signupDesc, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     fontSize: 20, 
                     fontWeight: FontWeight.w900, 
                     color: Theme.of(context).colorScheme.secondary
@@ -57,7 +60,7 @@ class Signup extends StatelessWidget {
                   SizedBox(height: 28),
                   BlockButton(
                     key: ValueKey("signupBtn"),
-                    text: "SIGN UP",
+                    text: l10n.signupBtn,
                     action: () async {
                       String msg = await _signupService.signup();
 

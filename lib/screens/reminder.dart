@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fukuro/components/blockbutton.dart';
 import 'package:fukuro/components/reminder_tile.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:fukuro/providers/reminder_provider.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _ReminderState extends State<Reminder> {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.fromLTRB(24, 90, 24, 20),
@@ -38,8 +40,8 @@ class _ReminderState extends State<Reminder> {
             SizedBox(height: 16),
             Text(
               context.watch<ReminderProvider>().reminderTime != null
-                ? "We will remind you by the time!"
-                : "Schedule your study session!",
+                ? l10n.reminderReminding
+                : l10n.reminderSchedule,
               style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontSize: 20,
                 fontWeight: FontWeight.w900,
@@ -48,7 +50,7 @@ class _ReminderState extends State<Reminder> {
             ),
             SizedBox(height: 16),
             ReminderTile(
-              title: "Date", 
+              title: l10n.reminderDate, 
               subtitle: context.watch<ReminderProvider>().reminderTime != null
                 ? DateFormat.yMMMMd().format(context.read<ReminderProvider>().reminderTime!) 
                 : DateFormat.yMMMMd().format(context.read<ReminderProvider>().selectedTime!), 
@@ -60,7 +62,7 @@ class _ReminderState extends State<Reminder> {
               }
             ),
             ReminderTile(
-              title: "Time", 
+              title: l10n.reminderTime, 
               subtitle: context.watch<ReminderProvider>().reminderTime != null
                 ? DateFormat.Hm().format(context.read<ReminderProvider>().reminderTime!)
                 : DateFormat.Hm().format(context.read<ReminderProvider>().selectedTime!), 
@@ -73,7 +75,7 @@ class _ReminderState extends State<Reminder> {
             ),
             SizedBox(height: 12),
             BlockButton(
-              text: context.watch<ReminderProvider>().reminderTime != null ? "CANCEL" : "SET REMINDER", 
+              text: context.watch<ReminderProvider>().reminderTime != null ? l10n.reminderCancel : l10n.reminderSet,
               action: () async {
                 if (context.read<ReminderProvider>().reminderTime != null) {
                   await context.read<ReminderProvider>().remove();
