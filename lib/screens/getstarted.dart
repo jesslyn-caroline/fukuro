@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fukuro/components/blockbutton.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:fukuro/screens/login.dart';
 import 'package:fukuro/screens/signup.dart';
 
@@ -9,6 +10,8 @@ class GetStarted extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
@@ -28,7 +31,7 @@ class GetStarted extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary
                 )),   
                 SizedBox(height: 20),
-                Text("Step into the world of knowledge", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                Text(l10n.getStartedDesc, style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   fontSize: 20,
                   color: Theme.of(context).colorScheme.primary
                 )),   
@@ -37,12 +40,12 @@ class GetStarted extends StatelessWidget {
             Column(
               children: [
                 BlockButton(
-                  text: "GET STARTED", 
+                  text: l10n.getStartedBtn, 
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Signup())),
                 ),
                 SizedBox(height: 15),
                 BlockButton(
-                  text: "I ALREADY HAVE AN ACCOUNT",
+                  text: l10n.getStartedHaveAccount,
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => Login())),
                   bgColor: Theme.of(context).colorScheme.background,
                   textColor: Theme.of(context).colorScheme.primary,

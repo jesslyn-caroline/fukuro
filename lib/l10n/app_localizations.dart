@@ -106,6 +106,84 @@ abstract class AppLocalizations {
   /// **'Hello'**
   String get hello;
 
+  /// No description provided for @welcomeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover knowledge, unlock your potential, and take the first step toward your goals.'**
+  String get welcomeDesc;
+
+  /// No description provided for @welcomeLetsgo.
+  ///
+  /// In en, this message translates to:
+  /// **'LET\'S GO'**
+  String get welcomeLetsgo;
+
+  /// No description provided for @getStartedDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Step into the world of knowledge'**
+  String get getStartedDesc;
+
+  /// No description provided for @getStartedBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'GET STARTED'**
+  String get getStartedBtn;
+
+  /// No description provided for @getStartedHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'I ALREADY HAVE AN ACCOUNT'**
+  String get getStartedHaveAccount;
+
+  /// No description provided for @signupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s get to know you better!'**
+  String get signupTitle;
+
+  /// No description provided for @signupDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your journey starts here!'**
+  String get signupDesc;
+
+  /// No description provided for @signupBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'SIGN UP'**
+  String get signupBtn;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back!'**
+  String get loginTitle;
+
+  /// No description provided for @loginDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready to discover more?'**
+  String get loginDesc;
+
+  /// No description provided for @loginBtn.
+  ///
+  /// In en, this message translates to:
+  /// **'LOGIN'**
+  String get loginBtn;
+
+  /// No description provided for @homeWatchAdTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Watch Ads to collect keys!'**
+  String get homeWatchAdTitle;
+
+  /// No description provided for @homeWatchAdDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys are used to unlock courses!'**
+  String get homeWatchAdDesc;
+
   /// No description provided for @homeQuizPoint.
   ///
   /// In en, this message translates to:
@@ -243,6 +321,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enroll'**
   String get coursesDetailEnroll;
+
+  /// No description provided for @reminderReminding.
+  ///
+  /// In en, this message translates to:
+  /// **'We will remind you by the time!'**
+  String get reminderReminding;
+
+  /// No description provided for @reminderSchedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Schedule your study session!'**
+  String get reminderSchedule;
+
+  /// No description provided for @reminderDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get reminderDate;
+
+  /// No description provided for @reminderTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get reminderTime;
+
+  /// No description provided for @reminderCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'CANCEL'**
+  String get reminderCancel;
+
+  /// No description provided for @reminderSet.
+  ///
+  /// In en, this message translates to:
+  /// **'SET REMINDER'**
+  String get reminderSet;
 
   /// No description provided for @profileProfilePicture.
   ///

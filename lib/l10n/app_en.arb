@@ -1,6 +1,23 @@
 {
   "hello": "Hello",
 
+  "welcomeDesc" : "Discover knowledge, unlock your potential, and take the first step toward your goals.",
+  "welcomeLetsgo": "LET'S GO",
+
+  "getStartedDesc" : "Step into the world of knowledge",
+  "getStartedBtn" : "GET STARTED",
+  "getStartedHaveAccount" : "I ALREADY HAVE AN ACCOUNT",
+
+  "signupTitle" : "Let's get to know you better!",
+  "signupDesc" : "Your journey starts here!",
+  "signupBtn" : "SIGN UP",
+
+  "loginTitle" : "Welcome back!",
+  "loginDesc" : "Ready to discover more?",
+  "loginBtn" : "LOGIN",
+
+  "homeWatchAdTitle" : "Watch Ads to collect keys!",
+  "homeWatchAdDesc" : "Keys are used to unlock courses!",
   "homeQuizPoint" : "Point",
   "homeFirstQuote": "Knowledge is your power",
   "homeSecondQuote": "Study now, success later",
@@ -26,6 +43,13 @@
   "coursesDetailLevel": "Level",
   "coursesDetailLessons": "Number of Lessons",
   "coursesDetailEnroll": "Enroll",
+
+  "reminderReminding": "We will remind you by the time!",
+  "reminderSchedule": "Schedule your study session!",
+  "reminderDate": "Date",
+  "reminderTime": "Time",
+  "reminderCancel": "CANCEL",
+  "reminderSet": "SET REMINDER",
 
   "profileProfilePicture": "Change Profile Picture",
   "profileSwitch": "Switch Mode",

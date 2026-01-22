@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fukuro/l10n/app_localizations.dart';
 import 'package:fukuro/permissions/access_location_permission.dart';
 import 'package:fukuro/providers/profile_provider.dart';
 
@@ -42,6 +43,8 @@ class _WelcomeState extends State<Welcome> {
 
   @override
   Widget build(BuildContext context) {
+    var l10n = AppLocalizations.of(context)!;
+
     return FutureBuilder(
       future: futureLoading,
       builder: (_, snapshot) { 
@@ -62,7 +65,7 @@ class _WelcomeState extends State<Welcome> {
                     Image.asset("assets/images/owl-on-moon.png", width: 200),
                     SizedBox(height: 20),
                     Text(
-                      "Discover knowledge, unlock your potential, and take the first step toward your goals.",
+                      l10n.welcomeDesc,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                         fontSize: 16,
                         fontWeight: FontWeight.w700,
@@ -73,7 +76,7 @@ class _WelcomeState extends State<Welcome> {
                   ],
                 ),
                 BlockButton(
-                  text: "LET'S GO", 
+                  text: l10n.welcomeLetsgo, 
                   action: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => GetStarted())),
                   bgColor: Theme.of(context).colorScheme.primary, 
                   textColor: Colors.white, 

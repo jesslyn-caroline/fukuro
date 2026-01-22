@@ -1,6 +1,23 @@
 {
   "hello": "こんにちは",
 
+  "welcomeDesc": "知識を発見し、可能性を解き放ち、目標への第一歩を踏み出そう。",
+  "welcomeLetsgo": "さあ、行こう！",
+
+  "getStartedDesc": "知識の世界へ踏み出そう",
+  "getStartedBtn": "始める",
+  "getStartedHaveAccount": "すでにアカウントをお持ちです",
+
+  "signupTitle": "あなたのことをもっと教えてください！",
+  "signupDesc": "あなたの旅はここから始まります！",
+  "signupBtn": "登録",
+
+  "loginTitle": "おかえりなさい！",
+  "loginDesc": "もっと発見する準備はできていますか？",
+  "loginBtn": "ログイン",
+
+  "homeWatchAdTitle": "広告を見て鍵を獲得しよう！",
+  "homeWatchAdDesc": "鍵はコースを解放するために使われます！",
   "homeQuizPoint": "ポイント",
   "homeFirstQuote": "チシキハアナタノチカラデス",
   "homeSecondQuote": "イマベンキョウシテ、アトデセイコウシヨウ",
@@ -26,6 +43,13 @@
   "coursesDetailLevel": "レベル",            
   "coursesDetailLessons": "マテリアルスウ",  
   "coursesDetailEnroll": "エンロール",
+
+  "reminderReminding": "時間になったらお知らせします！",
+  "reminderSchedule": "学習セッションをスケジュールしよう！",
+  "reminderDate": "日付",
+  "reminderTime": "時間",
+  "reminderCancel": "キャンセル",
+  "reminderSet": "リマインダーを設定",
 
   "profileProfilePicture": "プロフィールシャシンヲヘンコウ",
   "profileSwitch": "モードキリカエ",

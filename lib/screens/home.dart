@@ -65,8 +65,8 @@ class _HomeState extends State<Home> {
                 ),
                 SizedBox(height: 12),
                 ActionCard(
-                  title: "Watch Ads to collect keys!", 
-                  desc: "Keys are used to unlock courses!", 
+                  title: "${l10n.homeWatchAdTitle}", 
+                  desc: "${l10n.homeWatchAdDesc}", 
                   image: "assets/images/marketing.png", 
                   action: () async {
                     await _homeService.watchAd(

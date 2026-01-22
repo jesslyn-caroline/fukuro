@@ -12,6 +12,46 @@ class AppLocalizationsId extends AppLocalizations {
   String get hello => 'Halo';
 
   @override
+  String get welcomeDesc =>
+      'Temukan pengetahuan, buka potensimu, dan ambil langkah pertama menuju tujuanmu.';
+
+  @override
+  String get welcomeLetsgo => 'Ayo Mulai';
+
+  @override
+  String get getStartedDesc => 'Masuki dunia pengetahuan';
+
+  @override
+  String get getStartedBtn => 'MULAI';
+
+  @override
+  String get getStartedHaveAccount => 'SAYA SUDAH PUNYA AKUN';
+
+  @override
+  String get signupTitle => 'Mari kita kenal kamu lebih dekat!';
+
+  @override
+  String get signupDesc => 'Perjalananmu dimulai di sini!';
+
+  @override
+  String get signupBtn => 'DAFTAR';
+
+  @override
+  String get loginTitle => 'Selamat datang kembali!';
+
+  @override
+  String get loginDesc => 'Siap untuk belajar lebih banyak?';
+
+  @override
+  String get loginBtn => 'MASUK';
+
+  @override
+  String get homeWatchAdTitle => 'Tonton iklan untuk mendapatkan kunci!';
+
+  @override
+  String get homeWatchAdDesc => 'Kunci digunakan untuk membuka kursus!';
+
+  @override
   String get homeQuizPoint => 'Poin';
 
   @override
@@ -82,6 +122,24 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get coursesDetailEnroll => 'Daftar';
+
+  @override
+  String get reminderReminding => 'Kami akan mengingatkanmu tepat waktu!';
+
+  @override
+  String get reminderSchedule => 'Jadwalkan sesi belajarmu!';
+
+  @override
+  String get reminderDate => 'Tanggal';
+
+  @override
+  String get reminderTime => 'Waktu';
+
+  @override
+  String get reminderCancel => 'BATAL';
+
+  @override
+  String get reminderSet => 'ATUR PENGINGAT';
 
   @override
   String get profileProfilePicture => 'Ubah Foto Profil';

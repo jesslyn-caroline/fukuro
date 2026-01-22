@@ -1,6 +1,23 @@
 {
   "hello" : "Halo",
 
+  "welcomeDesc": "Temukan pengetahuan, buka potensimu, dan ambil langkah pertama menuju tujuanmu.",
+  "welcomeLetsgo": "Ayo Mulai",
+
+  "getStartedDesc": "Masuki dunia pengetahuan",
+  "getStartedBtn": "MULAI",
+  "getStartedHaveAccount": "SAYA SUDAH PUNYA AKUN",
+
+  "signupTitle": "Mari kita kenal kamu lebih dekat!",
+  "signupDesc": "Perjalananmu dimulai di sini!",
+  "signupBtn" : "DAFTAR",
+
+  "loginTitle": "Selamat datang kembali!",
+  "loginDesc": "Siap untuk belajar lebih banyak?",
+  "loginBtn" : "MASUK",
+
+  "homeWatchAdTitle" : "Tonton iklan untuk mendapatkan kunci!",
+  "homeWatchAdDesc": "Kunci digunakan untuk membuka kursus!",
   "homeQuizPoint" : "Poin",
   "homeFirstQuote": "Pengetahuan adalah kekuatanmu",
   "homeSecondQuote": "Belajar sekarang, sukses nanti",
@@ -26,6 +43,13 @@
   "coursesDetailLevel": "Tingkat",
   "coursesDetailLessons": "Jumlah Materi",
   "coursesDetailEnroll": "Daftar",
+
+  "reminderReminding": "Kami akan mengingatkanmu tepat waktu!",
+  "reminderSchedule": "Jadwalkan sesi belajarmu!",
+  "reminderDate": "Tanggal",
+  "reminderTime": "Waktu",
+  "reminderCancel": "BATAL",
+  "reminderSet": "ATUR PENGINGAT",
 
   "profileProfilePicture": "Ubah Foto Profil",
   "profileSwitch": "Ganti Mode",
