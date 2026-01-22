@@ -85,7 +85,12 @@ class _HomeState extends State<Home> {
                   TodoDailyQuizCard() : SizedBox()
                 ),
                 SizedBox(height: 20),
-                BannerCard(text: l10n.homeBanner, semanticsLabel: "Home Banner", image: "assets/images/illustration.png",),
+                BannerCard(
+                  key: ValueKey("homeBanner"),
+                  text: l10n.homeBanner,
+                  semanticsLabel: "Home Banner",
+                  image: "assets/images/illustration.png"
+                ),
                 SizedBox(height: 20),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 4),
